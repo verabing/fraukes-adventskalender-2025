@@ -26,6 +26,4 @@ Das Projekt basiert auf **Vite + React Starter** und wird automatisch über **Ve
 
 > © 2025 Frauke. Nur für private Nutzung und geteilte Freude in der Adventszeit.
 >
-> 
-> // redeploy trigger
 
