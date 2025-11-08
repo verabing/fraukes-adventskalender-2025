@@ -111,12 +111,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
               >
                {isOpen && daysConfig[i]?.images?.[0] ? (
   <img
-    src={daysConfig[i].images[0]}
-    alt={`Tag ${i + 1}`}
-    className="absolute inset-0 w-full h-full object-cover"
-  />
-) : (
-  <span className="text-4xl sm:text-5xl">{i + 1}</span>
+            src={daysConfig[i].images[0]}
+            alt={`Tag ${i + 1}`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/20"></div>
+        </>
+      ) : (
+        <span className="relative z-10">{i + 1}</span>
 )}
 
               </button>
