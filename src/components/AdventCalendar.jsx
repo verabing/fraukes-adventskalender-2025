@@ -1,182 +1,115 @@
-// src/components/AdventCalendar.jsx
-import React, { useEffect, useMemo, useState } from "react";
-import daysConfig from "../data/daysConfig";
+import React, { useState, useEffect, useMemo } from "react";
 
-export default function AdventCalendar() {
+// Hintergrundbild und Schrift
+const backgroundUrl =
+  "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2060&auto=format&fit=crop";
+const fontLink =
+  "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
+
+const daysConfig = Array.from({ length: 24 }, (_, i) => ({
+  title: `Türchen ${i + 1}`,
+  tip: "Frohe Adventszeit!",
+  image:
+    "https://images.unsplash.com/photo-1543599538-a6c4d72673a6?q=80&w=1600&auto=format&fit=crop",
+}));
+
+function isUnlocked(year, monthIndex, dayOfMonth, preview) {
+  if (preview) return true;
+  const today = new Date();
+  const unlockDate = new Date(year, monthIndex, dayOfMonth);
+  return today >= unlockDate;
+}
+
+export default function AdventCalendar({ year = 2025, monthIndex = 11, preview = false }) {
+  const [openDay, setOpenDay] = useState(null);
   const [openedDays, setOpenedDays] = useState(() => {
-    const saved = localStorage.getItem("fraukesOpenedDays");
+    const saved = localStorage.getItem("openedDays");
     return saved ? JSON.parse(saved) : [];
   });
-const [activeDay, setActiveDay] = useState(null);
-const [shuffled, setShuffled] = useState([]);
-const [forcePreview, setForcePreview] = useState(false);
 
-
-  // 1) Google-Font Cinzel Decorative dynamisch einbinden (bruchsicher, keine weiteren Dateien nötig)
+  // Schrift einbinden
   useEffect(() => {
     const link = document.createElement("link");
-    link.href =
-      "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap";
+    link.href = fontLink;
     link.rel = "stylesheet";
     document.head.appendChild(link);
   }, []);
 
-  // 2) Einmalige Zufallsreihenfolge – persistent
-  useEffect(() => {
-    const stored = localStorage.getItem("fraukesShuffle");
-    if (stored) {
-      setShuffled(JSON.parse(stored));
-    } else {
-      const arr = [...Array(24).keys()].sort(() => Math.random() - 0.5);
-      setShuffled(arr);
-      localStorage.setItem("fraukesShuffle", JSON.stringify(arr));
-    }
-  }, []);
-
-  // 3) Freischaltung: Dezember-Tage oder Preview
-  const previewFromUrl = useMemo(
-    () => typeof window !== "undefined" && window.location.search.includes("preview"),
-    []
+  // Freigeschaltete Tage
+  const unlocked = useMemo(
+    () => Array.from({ length: 24 }, (_, i) => isUnlocked(year, monthIndex, i + 1, preview)),
+    [year, monthIndex, preview]
   );
 
- const isUnlocked = (i) => {
+  useEffect(() => {
+    localStorage.setItem("openedDays", JSON.stringify(openedDays));
+  }, [openedDays]);
 
-    if (forcePreview || previewFromUrl) return true;
-    const today = new Date();
-    const isDecember = today.getMonth() === 11; // 0-basiert
-    if (!isDecember) return false;
-    const day = i + 1;
-    return today.getDate() >= day;
+  const handleOpenDay = (index) => {
+    if (!unlocked[index]) return;
+    setOpenDay(index);
+    if (!openedDays.includes(index)) setOpenedDays((prev) => [...prev, index]);
   };
-
-  // 4) Öffnen
-  const handleOpen = (i) => {
-    if (!isUnlocked(i)) return;
-    setActiveDay(i);
-    if (!openedDays.includes(i)) {
-      const upd = [...openedDays, i];
-      setOpenedDays(upd);
-      localStorage.setItem("fraukesOpenedDays", JSON.stringify(upd));
-    }
-  };
-
-  const handleClose = () => setActiveDay(null);
-
-  // 5) Helper: Aspect-Klasse für Masonry-Kachel
-const aspectClass = (a) =>
-  a === "landscape"
-    ? "aspect-[4/3]"
-    : a === "square"
-    ? "aspect-square"
-    : "aspect-[3/4]";
-
 
   return (
     <div
-      className="min-h-screen bg-fixed bg-cover bg-center text-white"
+      className="relative min-h-screen bg-cover bg-center bg-fixed text-white"
       style={{
-        backgroundImage: "url('/bilder/hintergrund.jpg')",
+        backgroundImage: `url(${backgroundUrl})`,
         fontFamily: "'Cinzel Decorative', serif",
       }}
     >
-      {/* Header (fixiert) */}
-      <header className="sticky top-0 z-20 bg-neutral-800/85 backdrop-blur py-4 shadow">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-5xl tracking-wide">
-            FRAUKES ADVENTSKALENDER 2025
-          </h1>
-
-          <button
-            className="mt-3 bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded"
-            onClick={() => {
-              const all = Array.from({ length: 24 }, (_, i) => i);
-              setOpenedDays(all);
-              setForcePreview(true);
-              localStorage.setItem("fraukesOpenedDays", JSON.stringify(all));
-            }}
-          >
-            Preview (alle Türchen offen)
-          </button>
-        </div>
+      {/* Fixierter Header */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4">
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
+          FRAUKES ADVENTSKALENDER {year}
+        </h1>
+        {preview && (
+          <div className="text-sm bg-yellow-400 text-black inline-block mt-2 px-3 py-1 rounded">
+            PREVIEW (ALLE TÜRCHEN OFFEN)
+          </div>
+        )}
       </header>
 
-      {/* Kalender – Masonry ohne Löcher:
-          Tailwind columns + break-inside-avoid auf Kacheln */}
-      <div className="max-w-6xl mx-auto px-4 py-10">
-        <div className="columns-2 sm:columns-3 lg:columns-5 gap-4 [column-gap:1rem]">
-          {shuffled.map((i) => {
-            const day = daysConfig[i];
-            const open = openedDays.includes(i);
-            const unlocked = isUnlocked(i);
+      <main className="pt-32 pb-10 flex justify-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl w-full px-6">
+          {Array.from({ length: 24 }, (_, i) => {
+            const isOpen = openedDays.includes(i);
             return (
-              <div key={i} className="mb-4 break-inside-avoid">
-                <button
-                  onClick={() => handleOpen(i)}
-                  className={`relative w-full ${aspectClass(day?.aspect)} overflow-hidden flex items-center justify-center text-white font-bold text-3xl sm:text-4xl transition-colors
-                    ${unlocked ? "bg-[#e64a4b] hover:bg-[#d14243]" : "bg-gray-500/60 cursor-not-allowed"}`}
-                >
-                  {open && day?.images?.[0] ? (
-                    <>
-                      <img
-                        src={day.images[0]}
-                        alt={`Tag ${i + 1}`}
-                        className="absolute inset-0 w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black/20" />
-                    </>
-                  ) : (
-                    <span className="relative z-10">{i + 1}</span>
-                  )}
-                </button>
-              </div>
+              <button
+                key={i}
+                onClick={() => handleOpenDay(i)}
+                disabled={!unlocked[i]}
+                className={`aspect-[3/4] w-full shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all bg-[#8b0000] hover:bg-[#a80000] ${
+                  unlocked[i] ? "cursor-pointer" : "cursor-not-allowed opacity-50"
+                } ${isOpen ? "opacity-70" : ""}`}
+              >
+                {isOpen ? "🎁" : i + 1}
+              </button>
             );
           })}
         </div>
-      </div>
+      </main>
 
-      {/* Modal mit Tages-Inhalt */}
-      {activeDay !== null && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="relative bg-neutral-900/90 text-white max-w-3xl w-full p-6 rounded-xl">
-            <button className="absolute top-3 right-4 text-2xl" onClick={handleClose}>
-              ×
+      {/* Modal Fenster */}
+      {openDay !== null && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
+          <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 max-w-lg w-full">
+            <button
+              onClick={() => setOpenDay(null)}
+              className="absolute right-3 top-3 text-white text-2xl"
+            >
+              ✕
             </button>
-
-            <h2 className="text-2xl sm:text-3xl text-center mb-2">
-              {daysConfig[activeDay]?.title || `Tag ${activeDay + 1}`}
+            <h2 className="text-2xl font-bold mb-2 text-center">
+              {daysConfig[openDay]?.title}
             </h2>
-            {daysConfig[activeDay]?.text && (
-              <p className="text-center mb-4">{daysConfig[activeDay]?.text}</p>
-            )}
-
-            {/* Bilder (Karussell light: mehrere untereinander) */}
-            {daysConfig[activeDay]?.images?.length > 0 &&
-              daysConfig[activeDay].images.map((src, idx) => (
-                <img
-                  key={idx}
-                  src={src}
-                  alt={`Tag ${activeDay + 1} – Bild ${idx + 1}`}
-                  className="w-full object-contain mb-3 rounded"
-                />
-              ))}
-
-            {/* Optional: Spotify-Embed */}
-            {daysConfig[activeDay]?.spotify && (
-              <iframe
-                title="Spotify"
-                src={daysConfig[activeDay].spotify}
-                width="100%"
-                height="152"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                className="rounded"
-              />
-            )}
-
-            <p className="text-center mt-2 text-sm opacity-80">
-              Tag {activeDay + 1} • Advent 2025
-            </p>
+            <p className="text-center text-white/90 mb-4">{daysConfig[openDay]?.tip}</p>
+            <img
+              src={daysConfig[openDay]?.image}
+              alt={`Türchen ${openDay + 1}`}
+              className="w-full rounded-xl shadow mb-4 object-cover"
+            />
           </div>
         </div>
       )}
