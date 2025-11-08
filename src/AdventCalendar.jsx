@@ -109,11 +109,16 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
                     : "bg-gray-600/70 cursor-not-allowed"
                 } ${isOpen ? "opacity-80" : ""}`}
               >
-                {isOpen ? (
-                  <span className="text-lg sm:text-xl text-center px-2">🎁 Geöffnet</span>
-                ) : (
-                  i + 1
-                )}
+               {isOpen && daysConfig[i]?.images?.[0] ? (
+  <img
+    src={daysConfig[i].images[0]}
+    alt={`Tag ${i + 1}`}
+    className="absolute inset-0 w-full h-full object-cover"
+  />
+) : (
+  <span className="text-4xl sm:text-5xl">{i + 1}</span>
+)}
+
               </button>
             );
           })}
