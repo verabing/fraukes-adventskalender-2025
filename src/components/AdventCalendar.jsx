@@ -50,7 +50,7 @@ const [forcePreview, setForcePreview] = useState(false);
   };
 
   // 4) Öffnen
-  const handleOpen = (i: number) => {
+  const handleOpen = (i) => {
     if (!isUnlocked(i)) return;
     setActiveDay(i);
     if (!openedDays.includes(i)) {
@@ -63,8 +63,13 @@ const [forcePreview, setForcePreview] = useState(false);
   const handleClose = () => setActiveDay(null);
 
   // 5) Helper: Aspect-Klasse für Masonry-Kachel
-  const aspectClass = (a?: string) =>
-    a === "landscape" ? "aspect-[4/3]" : a === "square" ? "aspect-square" : "aspect-[3/4]";
+const aspectClass = (a) =>
+  a === "landscape"
+    ? "aspect-[4/3]"
+    : a === "square"
+    ? "aspect-square"
+    : "aspect-[3/4]";
+
 
   return (
     <div
