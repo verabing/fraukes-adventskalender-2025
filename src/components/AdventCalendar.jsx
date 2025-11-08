@@ -39,7 +39,8 @@ const [forcePreview, setForcePreview] = useState(false);
     []
   );
 
-  const isUnlocked = (i: number) => {
+ const isUnlocked = (i) => {
+
     if (forcePreview || previewFromUrl) return true;
     const today = new Date();
     const isDecember = today.getMonth() === 11; // 0-basiert
