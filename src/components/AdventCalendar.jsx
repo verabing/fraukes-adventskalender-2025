@@ -6,7 +6,7 @@ const AdventCalendar = () => {
   const [activeDay, setActiveDay] = useState(null);
   const [shuffledDays, setShuffledDays] = useState([]);
 
-  // Türchen-Reihenfolge nur einmal pro User mischen
+  // Türchen-Reihenfolge fest, aber zufällig
   useEffect(() => {
     const storedShuffle = localStorage.getItem("fraukesShuffle");
     if (storedShuffle) {
@@ -27,7 +27,7 @@ const AdventCalendar = () => {
   const handleOpenDay = (index) => {
     const today = new Date();
     const currentDay = today.getDate();
-    const isDecember = today.getMonth() === 11; // Dezember = 11 (0-basiert)
+    const isDecember = today.getMonth() === 11; // 0-basiert: 11 = Dezember
 
     if (!isDecember && !window.location.href.includes("preview")) return;
     if (index + 1 > currentDay && !window.location.href.includes("preview")) return;
@@ -59,7 +59,8 @@ const AdventCalendar = () => {
         Preview (alle Türchen offen)
       </button>
 
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mx-auto max-w-5xl justify-items-center px-4">
+      {/* --- Türchen-Grid --- */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-5 mx-auto max-w-5xl justify-items-center px-4">
         {shuffledDays.map((i) => {
           const isOpen = openedDays.includes(i);
           const day = daysConfig[i];
@@ -74,9 +75,8 @@ const AdventCalendar = () => {
             <button
               key={i}
               onClick={() => handleOpenDay(i)}
-              className={`relative ${aspect} rounded-none overflow-hidden shadow-md flex items-center justify-center text-white font-bold text-4xl transition-all ${
-                isOpen ? "cursor-pointer" : "cursor-pointer"
-              } bg-[#e64a4b] hover:bg-[#d14243]`}
+              className={`relative ${aspect} overflow-hidden shadow-md flex items-center justify-center text-white font-bold text-4xl transition-all bg-[#e64a4b] hover:bg-[#d14243] rounded-none`}
+              style={{ width: "100%" }}
             >
               {isOpen && day?.images?.[0] ? (
                 <>
@@ -95,6 +95,7 @@ const AdventCalendar = () => {
         })}
       </div>
 
+      {/* --- Modal --- */}
       {activeDay !== null && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
           <div className="bg-neutral-900/90 text-white max-w-3xl p-6 rounded-xl relative overflow-hidden">
