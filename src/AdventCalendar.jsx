@@ -1,175 +1,134 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
+import daysConfig from "../data/daysConfig";
 
-/**
- * Fraukes Adventskalender 2025 – Version 2
- * ----------------------------------------
- * - kleinere Türchen, keine abgerundeten Ecken
- * - größere Zahlen in weihnachtlicher Serifenschrift (Google Font)
- * - Responsive Grid für Handy / Tablet / Desktop
- * - Hintergrund fixiert
- * - Überschrift fixiert, volle Breite, gleiche Schrift
- * - Geöffnete Türchen bleiben im localStorage gespeichert
- */
+const AdventCalendar = () => {
+  const [openedDays, setOpenedDays] = useState([]);
+  const [activeDay, setActiveDay] = useState(null);
+  const [shuffledDays, setShuffledDays] = useState([]);
 
-const backgroundUrl =
-  "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2060&auto=format&fit=crop";
-
-// Google Font einfügen (Cinzel Decorative)
-const fontLink =
-  "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
-
-const daysConfig = [
-  {
-    title: "1. Dezember – Willkommen!",
-    tip: "Zünde eine Kerze an und atme tief durch – der Advent beginnt.",
-    images: [
-      "/bilder/kamel.jpg"
-    ],
-    spotifyEmbedUrl: "https://open.spotify.com/embed/track/11dFghVXANMlKmJXsNCbNl",
-  },
-  {
-    title: "2. Dezember – Kleine Freude",
-    tip: "Schreib jemandem eine nette Nachricht.",
-    images: [
-      "/bilder/mine.jpg"
-    ],
-  },
-  // ... bis Tag 24 erweiterbar
-];
-
-function isUnlocked(year, monthIndex, dayOfMonth, preview) {
-  if (preview) return true;
-  const today = new Date();
-  const unlockDate = new Date(year, monthIndex, dayOfMonth);
-  return today >= unlockDate;
-}
-
-export default function AdventCalendar({ year = 2025, monthIndex = 11, preview = false }) {
-  const [openDay, setOpenDay] = useState(null);
-  const [openedDays, setOpenedDays] = useState(() => {
-    const saved = localStorage.getItem("openedDays");
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  // Google Font einbinden
+  // Türchen-Reihenfolge nur einmal pro User mischen
   useEffect(() => {
-    const link = document.createElement("link");
-    link.href = fontLink;
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    const storedShuffle = localStorage.getItem("fraukesShuffle");
+    if (storedShuffle) {
+      setShuffledDays(JSON.parse(storedShuffle));
+    } else {
+      const shuffled = [...Array(24).keys()].sort(() => Math.random() - 0.5);
+      setShuffledDays(shuffled);
+      localStorage.setItem("fraukesShuffle", JSON.stringify(shuffled));
+    }
   }, []);
 
-  // Unlock-Status berechnen
-  const unlocked = useMemo(
-    () => Array.from({ length: 24 }, (_, i) => isUnlocked(year, monthIndex, i + 1, preview)),
-    [year, monthIndex, preview]
-  );
-
-  // Geöffnete Tage speichern
+  // Geöffnete Türchen merken
   useEffect(() => {
-    localStorage.setItem("openedDays", JSON.stringify(openedDays));
-  }, [openedDays]);
+    const stored = JSON.parse(localStorage.getItem("fraukesOpenedDays")) || [];
+    setOpenedDays(stored);
+  }, []);
 
   const handleOpenDay = (index) => {
-    if (!unlocked[index]) return;
-    setOpenDay(index);
-    if (!openedDays.includes(index)) setOpenedDays((prev) => [...prev, index]);
+    const today = new Date();
+    const currentDay = today.getDate();
+    const isDecember = today.getMonth() === 11; // Dezember = 11 (0-basiert)
+
+    if (!isDecember && !window.location.href.includes("preview")) return;
+    if (index + 1 > currentDay && !window.location.href.includes("preview")) return;
+
+    if (!openedDays.includes(index)) {
+      const updated = [...openedDays, index];
+      setOpenedDays(updated);
+      localStorage.setItem("fraukesOpenedDays", JSON.stringify(updated));
+    }
+    setActiveDay(index);
   };
 
+  const handleCloseModal = () => setActiveDay(null);
+
   return (
-    <div
-      className="relative min-h-screen bg-cover bg-center bg-fixed text-white"
-      style={{ backgroundImage: `url(${backgroundUrl})`, fontFamily: "'Cinzel Decorative', serif" }}
-    >
-      {/* Fixierter Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/60 text-center py-4">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-wide">
-          Fraukes Adventskalender {year}
-        </h1>
-        {preview && (
-          <div className="text-sm bg-yellow-400 text-black inline-block mt-2 px-2 py-1 rounded-none">
-            Preview (alle Türchen offen)
-          </div>
-        )}
-      </header>
+    <div className="text-center">
+      <h1 className="text-4xl sm:text-5xl font-serif text-white tracking-wide mt-8 mb-4">
+        FRAUKES ADVENTSKALENDER 2025
+      </h1>
 
-      <div className="pt-28 pb-10 px-3 sm:px-6">
-        {/* Raster */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-          {Array.from({ length: 24 }, (_, i) => {
-            const isOpen = openedDays.includes(i);
-            return (
-              <button
-                key={i}
-                onClick={() => handleOpenDay(i)}
-                disabled={!unlocked[i]}
-                className={`relative aspect-[3/4] rounded-none shadow text-4xl sm:text-5xl font-bold flex items-center justify-center transition-all ${
-                  unlocked[i]
-                    ? "bg-red-600 hover:bg-red-500 cursor-pointer"
-                    : "bg-gray-600/70 cursor-not-allowed"
-                } ${isOpen ? "opacity-80" : ""}`}
-              >
-               {isOpen && daysConfig[i]?.images?.[0] ? (
-  <img
-            src={daysConfig[i].images[0]}
-            alt={`Tag ${i + 1}`}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/20"></div>
-        </>
-      ) : (
-        <span className="relative z-10">{i + 1}</span>
-)}
+      <button
+        className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-4 py-2 rounded mb-8"
+        onClick={() => {
+          const all = Array.from({ length: 24 }, (_, i) => i);
+          setOpenedDays(all);
+          localStorage.setItem("fraukesOpenedDays", JSON.stringify(all));
+        }}
+      >
+        Preview (alle Türchen offen)
+      </button>
 
-              </button>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-4 mx-auto max-w-5xl justify-items-center px-4">
+        {shuffledDays.map((i) => {
+          const isOpen = openedDays.includes(i);
+          const day = daysConfig[i];
+          const aspect =
+            day?.aspect === "landscape"
+              ? "aspect-[4/3]"
+              : day?.aspect === "square"
+              ? "aspect-square"
+              : "aspect-[3/4]";
+
+          return (
+            <button
+              key={i}
+              onClick={() => handleOpenDay(i)}
+              className={`relative ${aspect} rounded-none overflow-hidden shadow-md flex items-center justify-center text-white font-bold text-4xl transition-all ${
+                isOpen ? "cursor-pointer" : "cursor-pointer"
+              } bg-[#e64a4b] hover:bg-[#d14243]`}
+            >
+              {isOpen && day?.images?.[0] ? (
+                <>
+                  <img
+                    src={day.images[0]}
+                    alt={`Tag ${i + 1}`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </>
+              ) : (
+                <span className="relative z-10">{i + 1}</span>
+              )}
+            </button>
+          );
+        })}
       </div>
 
-      {/* Modal */}
-      {openDay !== null && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
-          <div className="relative bg-white/10 backdrop-blur rounded-2xl p-4 max-w-2xl w-full">
+      {activeDay !== null && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+          <div className="bg-neutral-900/90 text-white max-w-3xl p-6 rounded-xl relative overflow-hidden">
             <button
-              onClick={() => setOpenDay(null)}
-              className="absolute right-3 top-3 text-white text-xl"
+              className="absolute top-3 right-4 text-2xl"
+              onClick={handleCloseModal}
             >
-              ✕
+              ×
             </button>
 
-            <div className="text-center mb-4">
-              <h2 className="text-2xl font-bold mb-2">{daysConfig[openDay]?.title}</h2>
-              <p className="text-white/90">{daysConfig[openDay]?.tip}</p>
-            </div>
+            <h2 className="text-2xl sm:text-3xl font-serif mb-2 text-center">
+              {daysConfig[activeDay].title}
+            </h2>
+            <p className="text-lg font-serif mb-4 text-center">
+              {daysConfig[activeDay].text}
+            </p>
 
-            {daysConfig[openDay]?.images?.length > 0 && (
+            {daysConfig[activeDay].images?.map((img, idx) => (
               <img
-                src={daysConfig[openDay].images[0]}
-                alt={`Türchen ${openDay + 1}`}
-                className="w-full rounded-xl shadow mb-4"
+                key={idx}
+                src={img}
+                alt={`Tag ${activeDay + 1}`}
+                className="w-full object-contain mb-2"
               />
-            )}
+            ))}
 
-            {daysConfig[openDay]?.spotifyEmbedUrl && (
-              <iframe
-                title="Spotify"
-                src={daysConfig[openDay].spotifyEmbedUrl}
-                width="100%"
-                height="152"
-                frameBorder="0"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-                className="rounded-xl"
-              ></iframe>
-            )}
-
-            <p className="text-center text-xs text-white/70 mt-4">
-              Tag {openDay + 1} • Advent {year}
+            <p className="text-center mt-2 text-sm opacity-80">
+              Tag {activeDay + 1} • Advent 2025
             </p>
           </div>
         </div>
       )}
     </div>
   );
-}
+};
+
+export default AdventCalendar;
