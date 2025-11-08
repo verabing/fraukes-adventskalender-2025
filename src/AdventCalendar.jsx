@@ -23,7 +23,7 @@ const daysConfig = [
     title: "1. Dezember – Willkommen!",
     tip: "Zünde eine Kerze an und atme tief durch – der Advent beginnt.",
     images: [
-      "https://images.unsplash.com/photo-1543599538-a6c4d72673a6?q=80&w=1600&auto=format&fit=crop",
+      "/bilder/kamel.jpg"
     ],
     spotifyEmbedUrl: "https://open.spotify.com/embed/track/11dFghVXANMlKmJXsNCbNl",
   },
@@ -31,7 +31,7 @@ const daysConfig = [
     title: "2. Dezember – Kleine Freude",
     tip: "Schreib jemandem eine nette Nachricht.",
     images: [
-      "https://images.unsplash.com/photo-1456926631375-92c8ce872def?q=80&w=1600&auto=format&fit=crop",
+      "/bilder/mine.jpg"
     ],
   },
   // ... bis Tag 24 erweiterbar
