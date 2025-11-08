@@ -7,9 +7,10 @@ export default function AdventCalendar() {
     const saved = localStorage.getItem("fraukesOpenedDays");
     return saved ? JSON.parse(saved) : [];
   });
-  const [activeDay, setActiveDay] = useState(null);
-  const [shuffled, setShuffled] = useState<number[]>([]);
-  const [forcePreview, setForcePreview] = useState(false);
+const [activeDay, setActiveDay] = useState(null);
+const [shuffled, setShuffled] = useState([]);
+const [forcePreview, setForcePreview] = useState(false);
+
 
   // 1) Google-Font Cinzel Decorative dynamisch einbinden (bruchsicher, keine weiteren Dateien nötig)
   useEffect(() => {
