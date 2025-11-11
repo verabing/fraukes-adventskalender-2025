@@ -7,40 +7,12 @@ const backgroundUrl =
 const fontLink =
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
 
-const daysConfig = Array.from({ length: 24 }, (_, i) => ({
-  title: `Türchen ${i + 1}`,
-  tip: "Frohe Adventszeit!",
-  image:
-    "https://images.unsplash.com/photo-1543599538-a6c4d72673a6?q=80&w=1600&auto=format&fit=crop",
-}));
 // fixed global shuffle order (same for all users)
 const shuffleOrder = [
-  5,
-  17,
-  2,
-  8,
-  1,
-  23,
-  12,
-  3,
-  14,
-  19,
-  9,
-  4,
-  16,
-  6,
-  13,
-  24,
-  11,
-  20,
-  7,
-  10,
-  15,
-  18,
-  21,
-  22,
+  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
 ];
 
+// daysConfig sortieren nach fester Shuffle-Reihenfolge
 const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
@@ -53,12 +25,11 @@ function isUnlocked(year, monthIndex, dayOfMonth, preview) {
 }
 
 export default function AdventCalendar({ year = 2025, monthIndex = 11, preview = false }) {
-  const [openDay, setOpenDay] = useState(null);
+  const [openDayIndex, setOpenDayIndex] = useState(null);
   const [openedDays, setOpenedDays] = useState(() => {
     const saved = localStorage.getItem("openedDays");
     return saved ? JSON.parse(saved) : [];
   });
-
 
   // Schrift einbinden
   useEffect(() => {
@@ -74,14 +45,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
     [year, monthIndex, preview]
   );
 
+  // Geöffnete Tage speichern
   useEffect(() => {
     localStorage.setItem("openedDays", JSON.stringify(openedDays));
   }, [openedDays]);
 
-  const handleOpenDay = (index) => {
-    if (!unlocked[index]) return;
-    setOpenDay(index);
-    if (!openedDays.includes(index)) setOpenedDays((prev) => [...prev, index]);
   const handleOpenDay = (dayNumber, index) => {
     if (!unlocked[dayNumber - 1]) return;
     setOpenDayIndex(index);
@@ -112,10 +80,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
         )}
       </header>
 
-      <main className="pt-32 pb-10 flex justify-center">
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl w-full px-6">
-          {Array.from({ length: 24 }, (_, i) => {
-            const isOpen = openedDays.includes(i);
       {/* header spacing to prevent overlap on mobile */}
       <main className="pt-24 md:pt-28 pb-10">
         {/* narrower grid width and responsive columns for smaller doors */}
@@ -125,20 +89,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
             const isOpen = openedDays.includes(dayNumber);
             return (
               <button
-                key={i}
-                onClick={() => handleOpenDay(i)}
-                disabled={!unlocked[i]}
                 key={dayNumber}
                 onClick={() => handleOpenDay(dayNumber, index)}
                 disabled={!unlocked[dayNumber - 1]}
                 className={`aspect-[3/4] w-full shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all bg-[#8b0000] hover:bg-[#a80000] ${
-                  unlocked[i] ? "cursor-pointer" : "cursor-not-allowed opacity-50"
                   unlocked[dayNumber - 1]
                     ? "cursor-pointer"
                     : "cursor-not-allowed opacity-50"
                 } ${isOpen ? "opacity-70" : ""}`}
               >
-                {isOpen ? "🎁" : i + 1}
                 {isOpen ? "🎁" : dayNumber}
               </button>
             );
@@ -147,35 +106,22 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
       </main>
 
       {/* Modal Fenster */}
-      {openDay !== null && (
       {openDay && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 max-w-lg w-full">
             <button
-              onClick={() => setOpenDay(null)}
+              onClick={() => setOpenDayIndex(null)}
               className="absolute right-3 top-3 text-white text-2xl"
             >
-            <button onClick={() => setOpenDayIndex(null)} className="absolute right-3 top-3 text-white text-2xl">
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-2 text-center">
-              {daysConfig[openDay]?.title}
-            </h2>
-            <p className="text-center text-white/90 mb-4">{daysConfig[openDay]?.tip}</p>
+            <h2 className="text-2xl font-bold mb-2 text-center">{openDay.title}</h2>
+            <p className="text-center text-white/90 mb-4">{openDay.tip}</p>
             <img
-              src={daysConfig[openDay]?.image}
-              alt={`Türchen ${openDay + 1}`}
+              src={openDay.image}
+              alt={`Türchen ${openDay.title}`}
               className="w-full rounded-xl shadow mb-4 object-cover"
             />
-            <h2 className="text-2xl font-bold mb-2 text-center">{openDay.title}</h2>
-            <p className="text-center text-white/90 mb-4">{openDay.text}</p>
-            {openDay.images?.[0] && (
-              <img
-                src={openDay.images[0]}
-                alt={`Türchen ${openDay.day}`}
-                className="w-full rounded-xl shadow mb-4 object-cover"
-              />
-            )}
           </div>
         </div>
       )}
