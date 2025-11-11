@@ -41,8 +41,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
 
   // Freigeschaltete Tage
   const unlocked = useMemo(
-    () => Array.from({ length: 24 }, (_, i) => isUnlocked(year, monthIndex, i + 1, preview)),
-    [year, monthIndex, preview]
+    () => Array.from({ length: 24 }, (_, i) => isUnlocked(year, monthIndex, i + 1, )),
+    [year, monthIndex, ]
   );
 
   // Geöffnete Tage speichern
@@ -73,11 +73,28 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
         </h1>
-        {preview && (
-          <div className="text-sm bg-yellow-400 text-black inline-block mt-2 px-3 py-1 rounded">
-            PREVIEW (ALLE TÜRCHEN OFFEN)
-          </div>
-        )}
+       {preview && (
+  <button
+    onClick={() => {
+      if (openedDays.length > 0) {
+        // alle Türen schließen
+        setOpenedDays([]);
+        localStorage.removeItem("openedDays");
+      } else {
+        // alle Türen öffnen
+        const allDays = days.map((d) => d.day);
+        setOpenedDays(allDays);
+        localStorage.setItem("openedDays", JSON.stringify(allDays));
+      }
+    }}
+    className="text-sm bg-yellow-400 text-black inline-block mt-2 px-3 py-1 rounded hover:bg-yellow-300 transition"
+  >
+    {openedDays.length > 0
+      ? "PREVIEW (ALLE TÜREN SCHLIESSEN)"
+      : "PREVIEW (ALLE TÜRCHEN OFFEN)"}
+  </button>
+)}
+
       </header>
 
       {/* Abstand für Header, zentriertes Grid */}
