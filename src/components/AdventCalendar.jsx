@@ -7,12 +7,12 @@ const backgroundUrl =
 const fontLink =
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
 
-// fixed global shuffle order (same for all users)
+// feste globale Zufallsreihenfolge (gleich für alle Nutzer)
 const shuffleOrder = [
   5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
 ];
 
-// daysConfig sortieren nach fester Shuffle-Reihenfolge
+// Sortierte Reihenfolge nach Shuffle
 const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
@@ -80,32 +80,40 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
         )}
       </header>
 
-      {/* header spacing to prevent overlap on mobile */}
-      <main className="pt-24 md:pt-28 pb-10">
-        {/* narrower grid width and responsive columns for smaller doors */}
-        <div className="grid max-w-[900px] mx-auto px-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+      {/* Abstand für Header, zentriertes Grid */}
+      <main className="pt-24 md:pt-28 pb-10 flex justify-center">
+        <div className="w-[90%] max-w-[900px] px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {days.map((day, index) => {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
+            const isAvailable = unlocked[dayNumber - 1];
             return (
               <button
                 key={dayNumber}
                 onClick={() => handleOpenDay(dayNumber, index)}
-                disabled={!unlocked[dayNumber - 1]}
-                className={`aspect-[3/4] w-full shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all bg-[#8b0000] hover:bg-[#a80000] ${
-                  unlocked[dayNumber - 1]
-                    ? "cursor-pointer"
-                    : "cursor-not-allowed opacity-50"
-                } ${isOpen ? "opacity-70" : ""}`}
+                disabled={!isAvailable}
+                className={`relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all ${
+                  isAvailable
+                    ? "bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
+                    : "bg-[#8b0000] cursor-not-allowed opacity-50"
+                }`}
               >
-                {isOpen ? "🎁" : dayNumber}
+                {isOpen ? (
+                  <img
+                    src={day.images?.[0]}
+                    alt={day.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span>{dayNumber}</span>
+                )}
               </button>
             );
           })}
         </div>
       </main>
 
-      {/* Modal Fenster */}
+      {/* Modal-Fenster */}
       {openDay && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 max-w-lg w-full">
@@ -116,12 +124,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
               ✕
             </button>
             <h2 className="text-2xl font-bold mb-2 text-center">{openDay.title}</h2>
-            <p className="text-center text-white/90 mb-4">{openDay.tip}</p>
-            <img
-              src={openDay.image}
-              alt={`Türchen ${openDay.title}`}
-              className="w-full rounded-xl shadow mb-4 object-cover"
-            />
+            <p className="text-center text-white/90 mb-4">{openDay.text}</p>
+            {openDay.images?.[0] && (
+              <img
+                src={openDay.images[0]}
+                alt={`Türchen ${openDay.title}`}
+                className="w-full rounded-xl shadow mb-4 object-cover"
+              />
+            )}
           </div>
         </div>
       )}
