@@ -3,7 +3,7 @@ import daysConfig from "../data/daysConfig";
 
 // Hintergrundbild und Schrift
 const backgroundUrl =
-  "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2060&auto=format&fit=crop";
+  "/public/bilder/hintergrund.jpg";
 const fontLink =
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
 
