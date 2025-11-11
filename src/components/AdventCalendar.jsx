@@ -2,8 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import daysConfig from "../data/daysConfig";
 
 // Hintergrundbild und Schrift
-const backgroundUrl =
-  "/public/bilder/hintergrund.jpg";
+const backgroundUrl = "/bilder/hintergrund.jpg";
 const fontLink =
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
 
