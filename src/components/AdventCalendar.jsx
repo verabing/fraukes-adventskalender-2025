@@ -105,26 +105,27 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
             const isOpen = openedDays.includes(dayNumber);
             const isAvailable = unlocked[dayNumber - 1];
             return (
-              <button
-                key={dayNumber}
-                onClick={() => handleOpenDay(dayNumber, index)}
-                disabled={!isAvailable}
-                className={`relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all ${
-                  isAvailable
-                    ? "bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
-                    : "bg-[#8b0000] cursor-not-allowed opacity-50"
-                }`}
-              >
-                {isOpen ? (
-                  <img
-                    src={day.images?.[0]}
-                    alt={day.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <span>{dayNumber}</span>
-                )}
-              </button>
+             <button
+  key={dayNumber}
+  onClick={() => handleOpenDay(dayNumber, index)}
+  disabled={!isAvailable && !preview}
+  className={`relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all ${
+    !isAvailable && !preview
+      ? "bg-[#8b0000] cursor-not-allowed"
+      : "bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
+  }`}
+>
+  {isOpen ? (
+    <img
+      src={day.images?.[0]}
+      alt={day.title}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <span>{dayNumber}</span>
+  )}
+</button>
+
             );
           })}
         </div>
