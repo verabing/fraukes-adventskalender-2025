@@ -24,6 +24,7 @@ const daysConfig = [
     title: "4. Dezember – Spaziergang",
     text: "Mach einen kleinen Winterspaziergang – auch wenn’s nur fünf Minuten sind.",
     images: ["/bilder/tuer4.jpg"],
+    aspect: "portrait",
   },
   {
     day: 5,
@@ -104,12 +105,14 @@ const daysConfig = [
     title: "17. Dezember – Gutes tun",
     text: "Mach jemandem heute das Leben ein bisschen leichter.",
     images: ["/bilder/tuer17.jpg"],
+    aspect: "portrait",
   },
   {
     day: 18,
     title: "18. Dezember – Stille",
     text: "Schalte alle Geräte aus – nur für eine Viertelstunde.",
     images: ["/bilder/tuer18.jpg"],
+    aspect: "portrait",
   },
   {
     day: 19,
