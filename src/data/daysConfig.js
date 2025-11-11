@@ -71,6 +71,7 @@ const daysConfig = [
     title: "12. Dezember – Genussmoment",
     text: "Iss etwas, das du liebst – langsam und bewusst.",
     images: ["/bilder/tuer12.jpg"],
+    aspect: "portrait",
   },
   {
     day: 13,
