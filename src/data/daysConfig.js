@@ -1,8 +1,8 @@
 const daysConfig = [
   {
     day: 1,
-    title: "1. Dezember – Willkommen",
-    text: "Der erste Adventsmoment. Atme tief durch und freu dich auf die kommenden Tage.",
+    title: "1. December – Welcome",
+    text: "... to my doodle advents calender!",
     images: ["/bilder/tuer1.jpg"],
   },
   {
