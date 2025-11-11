@@ -58,8 +58,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
     const saved = localStorage.getItem("openedDays");
     return saved ? JSON.parse(saved) : [];
   });
-  const [openDayIndex, setOpenDayIndex] = useState(null);
-  const [openedDays, setOpenedDays] = useState([]);
+
 
   // Schrift einbinden
   useEffect(() => {
