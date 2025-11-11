@@ -7,31 +7,31 @@ const backgroundUrl =
 const fontLink =
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap";
 
-// feste globale Zufallsreihenfolge (gleich für alle Nutzer)
+// feste globale Shuffle-Reihenfolge (gleich für alle Nutzer)
 const shuffleOrder = [
   5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
 ];
 
-// Sortierte Reihenfolge nach Shuffle
 const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
 
-function isUnlocked(year, monthIndex, dayOfMonth, preview) {
-  if (preview) return true;
-  const today = new Date();
+function isUnlocked(simulatedDate, year, monthIndex, dayOfMonth) {
+  const today = simulatedDate ? new Date(simulatedDate) : new Date();
   const unlockDate = new Date(year, monthIndex, dayOfMonth);
   return today >= unlockDate;
 }
 
-export default function AdventCalendar({ year = 2025, monthIndex = 11, preview = false }) {
+export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const [openDayIndex, setOpenDayIndex] = useState(null);
   const [openedDays, setOpenedDays] = useState(() => {
     const saved = localStorage.getItem("openedDays");
     return saved ? JSON.parse(saved) : [];
   });
+  const [simulatedDate, setSimulatedDate] = useState("");
+  const [notYet, setNotYet] = useState(false);
 
-  // Schrift einbinden
+  // Schrift laden
   useEffect(() => {
     const link = document.createElement("link");
     link.href = fontLink;
@@ -39,19 +39,27 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
     document.head.appendChild(link);
   }, []);
 
-  // Freigeschaltete Tage
+  // Unlock-Status je Tag berechnen
   const unlocked = useMemo(
-    () => Array.from({ length: 24 }, (_, i) => isUnlocked(year, monthIndex, i + 1, )),
-    [year, monthIndex, ]
+    () =>
+      Array.from({ length: 24 }, (_, i) =>
+        isUnlocked(simulatedDate, year, monthIndex, i + 1)
+      ),
+    [simulatedDate, year, monthIndex]
   );
 
-  // Geöffnete Tage speichern
+  // Geöffnete Türchen speichern
   useEffect(() => {
     localStorage.setItem("openedDays", JSON.stringify(openedDays));
   }, [openedDays]);
 
   const handleOpenDay = (dayNumber, index) => {
-    if (!unlocked[dayNumber - 1]) return;
+    if (!unlocked[dayNumber - 1]) {
+      // "Not yet"-Popup zeigen
+      setNotYet(true);
+      setTimeout(() => setNotYet(false), 1200);
+      return;
+    }
     setOpenDayIndex(index);
     if (!openedDays.includes(dayNumber)) {
       setOpenedDays((prev) => [...prev, dayNumber]);
@@ -68,64 +76,65 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
         fontFamily: "'Cinzel Decorative', serif",
       }}
     >
-      {/* Fixierter Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4">
+      {/* Header */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4 backdrop-blur">
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
         </h1>
-       {preview && (
-  <button
-    onClick={() => {
-      if (openedDays.length > 0) {
-        // alle Türen schließen
-        setOpenedDays([]);
-        localStorage.removeItem("openedDays");
-      } else {
-        // alle Türen öffnen
-        const allDays = days.map((d) => d.day);
-        setOpenedDays(allDays);
-        localStorage.setItem("openedDays", JSON.stringify(allDays));
-      }
-    }}
-    className="text-sm bg-yellow-400 text-black inline-block mt-2 px-3 py-1 rounded hover:bg-yellow-300 transition"
-  >
-    {openedDays.length > 0
-      ? "PREVIEW (ALLE TÜREN SCHLIESSEN)"
-      : "PREVIEW (ALLE TÜRCHEN OFFEN)"}
-  </button>
-)}
 
+        {/* Simulationsfeld */}
+        <div className="mt-3 text-sm flex flex-col items-center gap-1">
+          <label htmlFor="simDate" className="text-white/80">
+            Simuliere Datum (TT.MM.JJJJ)
+          </label>
+          <input
+            id="simDate"
+            type="text"
+            placeholder="z. B. 12.12.2025"
+            value={simulatedDate}
+            onChange={(e) => setSimulatedDate(e.target.value)}
+            className="px-3 py-1 rounded text-black text-center w-40"
+          />
+        </div>
       </header>
 
-      {/* Abstand für Header, zentriertes Grid */}
-      <main className="pt-24 md:pt-28 pb-10 flex justify-center">
-        <div className="w-[90%] max-w-[900px] px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      {/* Abstand für Header */}
+      <main className="pt-40 pb-10 px-4">
+        {/* Masonry-Layout */}
+        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
-            const isAvailable = unlocked[dayNumber - 1];
             return (
-             <button
-  key={dayNumber}
-  onClick={() => handleOpenDay(dayNumber, index)}
-  disabled={!isAvailable && !preview}
-  className={`relative aspect-[3/4] w-full overflow-hidden rounded-lg shadow-md flex items-center justify-center text-white font-bold text-3xl transition-all ${
-    !isAvailable && !preview
-      ? "bg-[#8b0000] cursor-not-allowed"
-      : "bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
-  }`}
->
-  {isOpen ? (
-    <img
-      src={day.images?.[0]}
-      alt={day.title}
-      className="w-full h-full object-cover"
-    />
-  ) : (
-    <span>{dayNumber}</span>
-  )}
-</button>
-
+              <div
+                key={dayNumber}
+                className="break-inside-avoid mb-4 flex justify-center"
+              >
+                <button
+                  onClick={() => handleOpenDay(dayNumber, index)}
+                  className="relative w-full overflow-hidden rounded-lg shadow-md bg-[#8b0000] hover:bg-[#a80000] transition-all cursor-pointer"
+                  style={{
+                    aspectRatio:
+                      day.aspect === "landscape"
+                        ? "4 / 3"
+                        : day.aspect === "portrait"
+                        ? "3 / 4"
+                        : "1 / 1",
+                  }}
+                >
+                  {isOpen ? (
+                    <img
+                      src={day.images?.[0]}
+                      alt={day.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+                      {dayNumber}
+                    </span>
+                  )}
+                </button>
+              </div>
             );
           })}
         </div>
@@ -141,7 +150,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
             >
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-2 text-center">{openDay.title}</h2>
+            <h2 className="text-2xl font-bold mb-2 text-center">
+              {openDay.title}
+            </h2>
             <p className="text-center text-white/90 mb-4">{openDay.text}</p>
             {openDay.images?.[0] && (
               <img
@@ -150,6 +161,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11, preview =
                 className="w-full rounded-xl shadow mb-4 object-cover"
               />
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Not-yet Popup */}
+      {notYet && (
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          <div className="bg-black/80 text-white px-6 py-3 rounded-lg text-xl shadow-lg">
+            Not yet ✋
           </div>
         </div>
       )}
