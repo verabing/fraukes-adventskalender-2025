@@ -17,6 +17,7 @@ const daysConfig = [
     title: "3. Dezember – Lichtmoment",
     text: "Zünde eine Kerze an und genieß einen Moment Ruhe.",
     images: ["/bilder/tuer3.jpg"],
+    aspect: "portrait",
   },
   {
     day: 4,
@@ -78,6 +79,7 @@ const daysConfig = [
     title: "13. Dezember – Licht teilen",
     text: "Zünde eine Kerze für jemanden an, den du vermisst.",
     images: ["/bilder/tuer13.jpg"],
+    aspect: "portrait",
   },
   {
     day: 14,
