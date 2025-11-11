@@ -143,6 +143,7 @@ const daysConfig = [
     title: "24. Dezember – Heiligabend",
     text: "Ein Moment der Ruhe. Du bist hier. Das reicht.",
     images: ["/bilder/tuer24.jpg"],
+    aspect: "landscape",
   },
 ];
 
