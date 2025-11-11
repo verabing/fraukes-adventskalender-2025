@@ -6,13 +6,12 @@ const daysConfig = [
     images: ["/bilder/tuer1.jpg"],
   },
   {
-    day: 2,
-    title: "2. Dezember – Kleine Freude",
-    text: "Schreib jemandem eine nette Nachricht.",
-    images: ["/bilder/tuer2.jpg"],
-    
-    aspect: "landscape",
-  },
+  day: 2,
+  title: "2. Dezember – Kleine Freude",
+  text: "Schreib jemandem eine nette Nachricht.",
+  images: ["/bilder/tuer2.jpg"],
+  aspect: "landscape",
+},
   {
     day: 3,
     title: "3. Dezember – Lichtmoment",
