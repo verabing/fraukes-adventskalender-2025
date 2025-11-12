@@ -118,8 +118,23 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             value={simulatedDate}
             onChange={(e) => setSimulatedDate(e.target.value)}
             className="px-3 py-1 rounded text-black text-center w-40"
+            
           />
         </div>
+        <div className="mt-3 text-sm flex flex-col items-center gap-1">
+  <label htmlFor="simDate" className="text-white/80">
+    Simuliere Datum (TT.MM.JJJJ)
+  </label>
+  <input
+    id="simDate"
+    type="text"
+    placeholder="z. B. 12.12.2025"
+    value={simulatedDate}
+    onChange={(e) => setSimulatedDate(e.target.value)}
+    className="px-3 py-1 rounded text-black text-center w-40"
+  />
+</div>
+
       </header>
 
       {/* Abstand für Header */}
