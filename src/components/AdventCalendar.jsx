@@ -101,29 +101,27 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       }}
     >
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4 backdrop-blur flex flex-col items-center gap-2">
+<header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2 overflow-visible">
+  <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
+    FRAUKES ADVENTSKALENDER {year}
+  </h1>
 
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
-          FRAUKES ADVENTSKALENDER {year}
-        </h1>
+  {/* Simulationsfeld */}
+  <div className="text-sm flex flex-col items-center gap-1">
+    <label htmlFor="simDate" className="text-white/80">
+      Simuliere Datum (TT.MM.JJJJ)
+    </label>
+    <input
+      id="simDate"
+      type="text"
+      placeholder="z. B. 12.12.2025"
+      value={simulatedDate}
+      onChange={(e) => setSimulatedDate(e.target.value)}
+      className="px-3 py-1 rounded text-black text-center w-40"
+    />
+  </div>
 
-        {/* Simulationsfeld */}
-        <div className="mt-3 text-sm flex flex-col items-center gap-1">
-          <label htmlFor="simDate" className="text-white/80">
-            Simuliere Datum (TT.MM.JJJJ)
-          </label>
-          <input
-            id="simDate"
-            type="text"
-            placeholder="z. B. 12.12.2025"
-            value={simulatedDate}
-            onChange={(e) => setSimulatedDate(e.target.value)}
-            className="px-3 py-1 rounded text-black text-center w-40"
-            
-          />
-        </div>
-        {/* Reset-Button nur für Testphase */}
-<div className="mt-2">
+  {/* Reset-Button nur für Testphase */}
   <button
     onClick={() => {
       localStorage.removeItem("openedDays");
@@ -133,10 +131,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   >
     🔄 Alle Türchen schließen
   </button>
-</div>
-
-
-      </header>
+</header>
 
       {/* Abstand für Header */}
       <main className="pt-44 pb-10 px-4">
