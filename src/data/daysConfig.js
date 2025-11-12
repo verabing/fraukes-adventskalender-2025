@@ -31,7 +31,8 @@ const daysConfig = [
     day: 5,
     title: "5. Dezember – Dankbarkeit",
     text: "Notiere drei Dinge, für die du heute dankbar bist.",
-    images: ["/bilder/tuer5.jpg"],
+    images: ["/bilder/tuer5.jpg",
+            "/bilder/tuer5b.jpg"],
   },
   {
     day: 6,
