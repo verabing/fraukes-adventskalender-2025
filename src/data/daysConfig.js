@@ -9,7 +9,8 @@ const daysConfig = [
   day: 2,
   title: "2. Dezember – Kleine Freude",
   text: "Schreib jemandem eine nette Nachricht.",
-  images: ["/bilder/tuer2.jpg"],
+  images: ["/bilder/tuer2.jpg",
+          /bilder/minekritz.jpg"],
   
 },
   {
