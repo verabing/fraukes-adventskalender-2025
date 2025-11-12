@@ -134,7 +134,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 </header>
 
       {/* Abstand für Header */}
-      <main className="pt-44 pb-10 px-4">
+      <main className="pt-52 pb-10 px-4">
         {/* Masonry-Layout mit Rahmen & Schatten */}
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
