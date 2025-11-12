@@ -101,7 +101,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       }}
     >
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4 backdrop-blur">
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-4 backdrop-blur flex flex-col items-center gap-2">
+
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
         </h1>
@@ -138,7 +139,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       </header>
 
       {/* Abstand für Header */}
-      <main className="pt-40 pb-10 px-4">
+      <main className="pt-44 pb-10 px-4">
         {/* Masonry-Layout mit Rahmen & Schatten */}
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
