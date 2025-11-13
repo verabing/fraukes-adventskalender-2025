@@ -147,7 +147,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               >
                 <button
                   onClick={() => handleOpenDay(dayNumber, index)}
-                  className="relative w-full overflow-hidden shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
+                className="relative w-full shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
                  style={{
       borderWidth: "6px",
       borderStyle: "solid",
