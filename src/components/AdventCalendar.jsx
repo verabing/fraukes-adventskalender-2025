@@ -169,7 +169,18 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     backgroundColor: "#8b0000",
   }}
 >
-
+{isOpen ? (
+    <img
+      src={day.images?.[0]}
+      alt={day.title}
+      className="w-full h-full object-cover"
+    />
+  ) : (
+    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+      {dayNumber}
+    </span>
+  )}
+</button>
 
 
               </div>
