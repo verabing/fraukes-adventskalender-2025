@@ -145,7 +145,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-          <button
+              </div>div>
+                <button
   onClick={() => handleOpenDay(dayNumber, index)}
   className="relative w-full shadow-md hover:shadow-lg transition-all cursor-pointer"
   style={{
