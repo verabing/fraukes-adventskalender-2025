@@ -9,35 +9,49 @@ const fontLinks = [
 ];
 
 const shuffleOrder = [
-  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
+  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20,
+  7, 10, 15, 18, 21, 22,
 ];
 
+// sortiert das daysConfig nach der Shuffle-Liste
 const days = shuffleOrder
-  .map((num) => daysConfig.find((day) => day.day === num))
+  .map((num) => daysConfig.find((d) => d && d.day === num))
   .filter(Boolean);
 
+// robustes Datums-Parsing
 function parseDate(input) {
-  if (!input) return null;
-  const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
-  if (!day || !month || !year) return null;
-  return new Date(year, month - 1, day);
+  if (!input || typeof input !== "string") return null;
+  const parts = input.split(".");
+  if (parts.length !== 3) return null;
+
+  const [d, m, y] = parts.map((x) => Number(x));
+  if (!d || !m || !y) return null;
+
+  const date = new Date(y, m - 1, d);
+  return isNaN(date.getTime()) ? null : date;
 }
 
 function isUnlocked(simulatedDate, year, monthIndex, dayOfMonth) {
   const today = simulatedDate ? parseDate(simulatedDate) : new Date();
+  if (!today) return false;
   const unlockDate = new Date(year, monthIndex, dayOfMonth);
   return today >= unlockDate;
 }
 
 export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const [openDayIndex, setOpenDayIndex] = useState(null);
-  const [openedDays, setOpenedDays] = useState(() => {
-    const saved = localStorage.getItem("openedDays");
-    return saved ? JSON.parse(saved) : [];
-  });
   const [simulatedDate, setSimulatedDate] = useState("");
   const [notYet, setNotYet] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [openedDays, setOpenedDays] = useState(() => {
+    try {
+      const saved = localStorage.getItem("openedDays");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
 
   // Schriftarten laden
   useEffect(() => {
@@ -49,7 +63,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     });
   }, []);
 
-  // Unlock-Status je Tag berechnen
+  // Berechnung: welche Türchen frei sind
   const unlocked = useMemo(
     () =>
       Array.from({ length: 24 }, (_, i) =>
@@ -58,9 +72,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     [simulatedDate, year, monthIndex]
   );
 
-  // Geöffnete Türchen speichern
+  // Speichere geöffnete Türchen
   useEffect(() => {
-    localStorage.setItem("openedDays", JSON.stringify(openedDays));
+    try {
+      localStorage.setItem("openedDays", JSON.stringify(openedDays));
+    } catch {}
   }, [openedDays]);
 
   const handleOpenDay = (dayNumber, index) => {
@@ -69,8 +85,10 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       setTimeout(() => setNotYet(false), 1200);
       return;
     }
+
     setOpenDayIndex(index);
     setCurrentImageIndex(0);
+
     if (!openedDays.includes(dayNumber)) {
       setOpenedDays((prev) => [...prev, dayNumber]);
     }
@@ -78,14 +96,17 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
   const openDay = openDayIndex !== null ? days[openDayIndex] : null;
 
-  // Automatisches Karussell
+  // automatisches Bildkarussell
   useEffect(() => {
-    if (!openDay || !openDay.images || openDay.images.length <= 1) return;
+    if (!openDay || !Array.isArray(openDay.images) || openDay.images.length <= 1)
+      return;
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) =>
         prev + 1 >= openDay.images.length ? 0 : prev + 1
       );
     }, 3000);
+
     return () => clearInterval(interval);
   }, [openDay]);
 
@@ -103,7 +124,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
           FRAUKES ADVENTSKALENDER {year}
         </h1>
 
-        {/* Simulationsfeld */}
         <div className="text-sm flex flex-col items-center gap-1">
           <label htmlFor="simDate" className="text-white/80">
             Simuliere Datum (TT.MM.JJJJ)
@@ -118,7 +138,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
           />
         </div>
 
-        {/* Reset */}
         <button
           onClick={() => {
             localStorage.removeItem("openedDays");
@@ -130,16 +149,34 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </button>
       </header>
 
-      {/* Abstand für Header */}
+      {/* Kalender */}
       <main className="pt-52 pb-10 px-4">
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
+            if (!day) return null;
+
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
 
+            // Aspect Ratio
+            const ratio =
+              day.aspect === "landscape"
+                ? "4 / 3"
+                : day.aspect === "portrait"
+                ? "3 / 4"
+                : day.aspect === "16x9-breit"
+                ? "16 / 9"
+                : day.aspect === "3x2-breit"
+                ? "3 / 2"
+                : day.aspect === "9x16-hoch"
+                ? "9 / 16"
+                : day.aspect === "2x3-hoch"
+                ? "2 / 3"
+                : "1 / 1";
+
             return (
               <div
-                key={dayNumber}
+                key={`day-${dayNumber}`}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
                 <button
@@ -149,20 +186,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     borderWidth: "12px",
                     borderStyle: "solid",
                     borderImage: "url('/ui/rahmen.svg') 200 round",
-                    aspectRatio:
-                      day.aspect === "landscape"
-                        ? "4 / 3"
-                        : day.aspect === "portrait"
-                        ? "3 / 4"
-                        : day.aspect === "16x9-breit"
-                        ? "16 / 9"
-                        : day.aspect === "3x2-breit"
-                        ? "3 / 2"
-                        : day.aspect === "9x16-hoch"
-                        ? "9 / 16"
-                        : day.aspect === "2x3-hoch"
-                        ? "2 / 3"
-                        : "1 / 1",
+                    aspectRatio: ratio,
                     backgroundColor: "#8b0000",
                   }}
                 >
@@ -203,6 +227,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             <h2 className="text-2xl font-bold mb-2 text-center">
               {openDay.title}
             </h2>
+
             <p
               className="text-center text-white/90 mb-4"
               style={{ fontFamily: "'EB Garamond', serif" }}
@@ -210,11 +235,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               {openDay.text}
             </p>
 
-            {openDay.images && openDay.images.length > 0 && (
+            {openDay.images?.length > 0 && (
               <div className="relative">
                 <img
                   src={openDay.images[currentImageIndex]}
-                  alt={`Türchen ${openDay.title}`}
+                  alt={openDay.title}
                   className="w-full rounded-xl shadow mb-4 object-cover transition-opacity duration-500"
                 />
 
@@ -232,12 +257,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     >
                       ◀
                     </button>
+
                     <button
                       onClick={() =>
                         setCurrentImageIndex((prev) =>
-                          prev + 1 >= openDay.images.length
-                            ? 0
-                            : prev + 1
+                          prev + 1 >= openDay.images.length ? 0 : prev + 1
                         )
                       }
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
