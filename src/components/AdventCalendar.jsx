@@ -190,10 +190,10 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     </span>
                   )}
                 </button>
-              </div>
+             
             );
           })}
-      
+       </div>
       </main>
 
       {/* Modal-Fenster */}
