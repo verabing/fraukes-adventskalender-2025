@@ -149,10 +149,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                   onClick={() => handleOpenDay(dayNumber, index)}
                 className="relative w-full shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
                  style={{
-      borderWidth: "6px",
-      borderStyle: "solid",
-      borderColor: "blue",
-      borderImage: "url('ui/rahmen.svg') 30 round",
+      border: "10px solid red",
                    aspectRatio:
     day.aspect === "landscape"
       ? "4 / 3"
