@@ -146,38 +146,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 className="break-inside-avoid mb-4 flex justify-center"
               >
                 <button
-                  onClick={() => handleOpenDay(dayNumber, index)}
-                className="relative w-full shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
-                 style={{
-      border: "10px solid red",
-                   aspectRatio:
-    day.aspect === "landscape"
-      ? "4 / 3"
-      : day.aspect === "portrait"
-      ? "3 / 4"
-      : day.aspect === "16x9-breit"
-      ? "16 / 9"
-      : day.aspect === "3x2-breit"
-      ? "3 / 2"
-      : day.aspect === "9x16-hoch"
-      ? "9 / 16"
-      : day.aspect === "2x3-hoch"
-      ? "2 / 3"
-      : "1 / 1"
-}}
-                >
-                  {isOpen ? (
-                    <img
-                      src={day.images?.[0]}
-                      alt={day.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
-                      {dayNumber}
-                    </span>
-                  )}
-                </button>
+  style={{
+    border: "10px solid red",
+    width: "200px",
+    height: "200px",
+  }}
+>
+  TEST
+</button>
+
               </div>
             );
           })}
