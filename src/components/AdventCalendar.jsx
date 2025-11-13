@@ -9,45 +9,36 @@ const fontLinks = [
 ];
 
 const shuffleOrder = [
-  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20,
-  7, 10, 15, 18, 21, 22,
+  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24,
+  11, 20, 7, 10, 15, 18, 21, 22,
 ];
 
 const days = shuffleOrder
-  .map((num) => daysConfig.find((d) => d && d.day === num))
+  .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
 
 function parseDate(input) {
-  if (!input || typeof input !== "string") return null;
-  const parts = input.split(".");
-  if (parts.length !== 3) return null;
-
-  const [d, m, y] = parts.map(Number);
-  const date = new Date(y, m - 1, d);
-  return isNaN(date.getTime()) ? null : date;
+  if (!input) return null;
+  const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
+  if (!day || !month || !year) return null;
+  return new Date(year, month - 1, day);
 }
 
 function isUnlocked(simulatedDate, year, monthIndex, dayOfMonth) {
   const today = simulatedDate ? parseDate(simulatedDate) : new Date();
-  if (!today) return false;
   const unlockDate = new Date(year, monthIndex, dayOfMonth);
   return today >= unlockDate;
 }
 
 export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const [openDayIndex, setOpenDayIndex] = useState(null);
+  const [openedDays, setOpenedDays] = useState(() => {
+    const saved = localStorage.getItem("openedDays");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [simulatedDate, setSimulatedDate] = useState("");
   const [notYet, setNotYet] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const [openedDays, setOpenedDays] = useState(() => {
-    try {
-      const saved = localStorage.getItem("openedDays");
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
 
   useEffect(() => {
     fontLinks.forEach((url) => {
@@ -60,16 +51,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
   const unlocked = useMemo(
     () =>
-      [...Array(24)].map((_, i) =>
+      Array.from({ length: 24 }, (_, i) =>
         isUnlocked(simulatedDate, year, monthIndex, i + 1)
       ),
     [simulatedDate, year, monthIndex]
   );
 
   useEffect(() => {
-    try {
-      localStorage.setItem("openedDays", JSON.stringify(openedDays));
-    } catch {}
+    localStorage.setItem("openedDays", JSON.stringify(openedDays));
   }, [openedDays]);
 
   const handleOpenDay = (dayNumber, index) => {
@@ -78,10 +67,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       setTimeout(() => setNotYet(false), 1200);
       return;
     }
-
     setOpenDayIndex(index);
     setCurrentImageIndex(0);
-
     if (!openedDays.includes(dayNumber)) {
       setOpenedDays((prev) => [...prev, dayNumber]);
     }
@@ -91,13 +78,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
   useEffect(() => {
     if (!openDay || !openDay.images || openDay.images.length <= 1) return;
-
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) =>
         prev + 1 >= openDay.images.length ? 0 : prev + 1
       );
     }, 3000);
-
     return () => clearInterval(interval);
   }, [openDay]);
 
@@ -109,6 +94,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         fontFamily: "'Cinzel Decorative', serif",
       }}
     >
+      {/* HEADER */}
       <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2">
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
@@ -139,32 +125,16 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </button>
       </header>
 
+      {/* CONTENT */}
       <main className="pt-52 pb-10 px-4">
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
-            if (!day) return null;
-
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
 
-            const ratio =
-              day.aspect === "landscape"
-                ? "4 / 3"
-                : day.aspect === "portrait"
-                ? "3 / 4"
-                : day.aspect === "16x9-breit"
-                ? "16 / 9"
-                : day.aspect === "3x2-breit"
-                ? "3 / 2"
-                : day.aspect === "9x16-hoch"
-                ? "9 / 16"
-                : day.aspect === "2x3-hoch"
-                ? "2 / 3"
-                : "1 / 1";
-
             return (
               <div
-                key={`day-${dayNumber}`}
+                key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
                 <button
@@ -173,8 +143,21 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                   style={{
                     borderWidth: "12px",
                     borderStyle: "solid",
-                    borderImage: `url('/ui/rahmen.svg') 200 round`,
-                    aspectRatio: ratio,
+                    borderImage: "url('/ui/rahmen.svg') 200 round",
+                    aspectRatio:
+                      day.aspect === "landscape"
+                        ? "4 / 3"
+                        : day.aspect === "portrait"
+                        ? "3 / 4"
+                        : day.aspect === "16x9-breit"
+                        ? "16 / 9"
+                        : day.aspect === "3x2-breit"
+                        ? "3 / 2"
+                        : day.aspect === "9x16-hoch"
+                        ? "9 / 16"
+                        : day.aspect === "2x3-hoch"
+                        ? "2 / 3"
+                        : "1 / 1",
                     backgroundColor: "#8b0000",
                   }}
                 >
@@ -190,13 +173,13 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     </span>
                   )}
                 </button>
-             
+              </div>
             );
           })}
-       </div>
+        </div>
       </main>
 
-      {/* Modal-Fenster */}
+      {/* MODAL */}
       {openDay && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
@@ -215,7 +198,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             <h2 className="text-2xl font-bold mb-2 text-center">
               {openDay.title}
             </h2>
-
             <p
               className="text-center text-white/90 mb-4"
               style={{ fontFamily: "'EB Garamond', serif" }}
@@ -223,11 +205,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               {openDay.text}
             </p>
 
-            {openDay.images?.length > 0 && (
+            {openDay.images && openDay.images.length > 0 && (
               <div className="relative">
                 <img
                   src={openDay.images[currentImageIndex]}
-                  alt={openDay.title}
+                  alt={`Türchen ${openDay.title}`}
                   className="w-full rounded-xl shadow mb-4 object-cover transition-opacity duration-500"
                 />
 
@@ -249,7 +231,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     <button
                       onClick={() =>
                         setCurrentImageIndex((prev) =>
-                          prev + 1 >= openDay.images.length ? 0 : prev + 1
+                          prev + 1 >= openDay.images.length
+                            ? 0
+                            : prev + 1
                         )
                       }
                       className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
@@ -264,6 +248,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       )}
 
+      {/* NOT-YET */}
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-black/80 text-white px-6 py-3 rounded-lg text-xl shadow-lg">
