@@ -11,6 +11,7 @@ const daysConfig = [
   text: "Schreib jemandem eine nette Nachricht.",
   images: ["/bilder/tuer2.jpg",
           "/bilder/minekritz.jpg"],
+  aspect: "portrait",
   
 },
   {
@@ -20,7 +21,7 @@ const daysConfig = [
     images: ["/bilder/tuer3.jpg",
             "/bilder/tuer3b.jpg",
             "/bilder/tuer3c.jpg"],
-    aspect: "portrait",
+    aspect: "9x16-hoch",
   },
   {
     day: 4,
@@ -28,7 +29,7 @@ const daysConfig = [
     text: "Mach einen kleinen Winterspaziergang – auch wenn’s nur fünf Minuten sind.",
     images: ["/bilder/tuer4.jpg",
             "/bilder/tuer4b.jpg"],
-    aspect: "portrait",
+    aspect: "9x16-hoch",
   },
   {
     day: 5,
@@ -71,6 +72,7 @@ const daysConfig = [
     text: "Zimt, Tanne, Orangen – such dir deinen Lieblingsduft und atme tief ein.",
     images: ["/bilder/tuer10.jpg",
             "/bilder/tuer10b.jpg"],
+    aspect: "portrait",
   },
   {
     day: 11,
@@ -115,7 +117,7 @@ const daysConfig = [
     images: ["/bilder/tuer15.jpg",
             "/bilder/tuer15b.jpg",
             "/bilder/tuer15c.jpg"],
-    aspect: "portrait",
+    aspect: "2x3-hoch",
   },
   {
     day: 16,
@@ -146,7 +148,7 @@ const daysConfig = [
     text: "Such einen Gegenstand, der dich an etwas Schönes erinnert.",
     images: ["/bilder/tuer19.jpg",
             "/bilder/tuer19b.jpg"],
-    aspect: "portrait",
+    aspect: "9x16-hoch",
   },
   {
     day: 20,
@@ -168,7 +170,7 @@ const daysConfig = [
     text: "Ruf jemanden an, den du lange nicht gesprochen hast.",
     images: ["/bilder/tuer22.jpg",
             "/bilder/tuer22b.jpg"],
-    aspect: "landscape",
+    aspect: "16x9-breit",
   },
   {
     day: 23,
