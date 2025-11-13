@@ -147,9 +147,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               >
                 <button
   style={{
-    borderWidth: "6px",
+    borderWidth: "8px",
 borderStyle: "solid",
-borderImage: "url('/ui/rahmen.svg') 30 round",
+borderImage: "url('/ui/rahmen.svg') 100 round",
   }}
 >
   TEST
