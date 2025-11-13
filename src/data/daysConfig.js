@@ -130,7 +130,7 @@ const daysConfig = [
     text: "Mach jemandem heute das Leben ein bisschen leichter.",
     images: ["/bilder/tuer17.jpg",
             "/bilder/tuer17b.jpg"],
-    aspect: "portrait",
+    aspect: "landscape",
   },
   {
     day: 18,
