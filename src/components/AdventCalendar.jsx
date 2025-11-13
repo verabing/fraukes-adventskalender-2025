@@ -173,7 +173,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                   style={{
                     borderWidth: "12px",
                     borderStyle: "solid",
-                    borderImage: "url('/ui/rahmen.svg') 200 round",
+                    borderImage: `url('/ui/rahmen.svg') 200 round`,
                     aspectRatio: ratio,
                     backgroundColor: "#8b0000",
                   }}
