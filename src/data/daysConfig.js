@@ -104,7 +104,8 @@ const daysConfig = [
     title: "14. Dezember – Pause",
     text: "Trink eine Tasse Tee und schau aus dem Fenster.",
     images: ["/bilder/tuer14.jpg",
-            "/bilder/tuer14b.jpg"],
+            "/bilder/tuer14b.jpg",
+            "/bilder/tuer14c.jpg"],
     aspect: "landscape",
   },
   {
