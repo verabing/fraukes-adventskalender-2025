@@ -193,7 +193,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               </div>
             );
           })}
-        </div>
+      
       </main>
 
       {/* Modal-Fenster */}
