@@ -168,7 +168,7 @@ const daysConfig = [
     text: "Ruf jemanden an, den du lange nicht gesprochen hast.",
     images: ["/bilder/tuer22.jpg",
             "/bilder/tuer22b.jpg"],
-    aspect: "portrait",
+    aspect: "landscape",
   },
   {
     day: 23,
