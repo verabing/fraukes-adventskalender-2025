@@ -151,6 +151,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                  style={{
       borderWidth: "6px",
       borderStyle: "solid",
+      borderColor: "blue",
       borderImage: "url('ui/rahmen.svg') 30 round",
                    aspectRatio:
     day.aspect === "landscape"
