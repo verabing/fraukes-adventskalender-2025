@@ -13,20 +13,16 @@ const shuffleOrder = [
   7, 10, 15, 18, 21, 22,
 ];
 
-// sortiert das daysConfig nach der Shuffle-Liste
 const days = shuffleOrder
   .map((num) => daysConfig.find((d) => d && d.day === num))
   .filter(Boolean);
 
-// robustes Datums-Parsing
 function parseDate(input) {
   if (!input || typeof input !== "string") return null;
   const parts = input.split(".");
   if (parts.length !== 3) return null;
 
-  const [d, m, y] = parts.map((x) => Number(x));
-  if (!d || !m || !y) return null;
-
+  const [d, m, y] = parts.map(Number);
   const date = new Date(y, m - 1, d);
   return isNaN(date.getTime()) ? null : date;
 }
@@ -53,7 +49,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     }
   });
 
-  // Schriftarten laden
   useEffect(() => {
     fontLinks.forEach((url) => {
       const link = document.createElement("link");
@@ -63,16 +58,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     });
   }, []);
 
-  // Berechnung: welche Türchen frei sind
   const unlocked = useMemo(
     () =>
-      Array.from({ length: 24 }, (_, i) =>
+      [...Array(24)].map((_, i) =>
         isUnlocked(simulatedDate, year, monthIndex, i + 1)
       ),
     [simulatedDate, year, monthIndex]
   );
 
-  // Speichere geöffnete Türchen
   useEffect(() => {
     try {
       localStorage.setItem("openedDays", JSON.stringify(openedDays));
@@ -96,10 +89,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
   const openDay = openDayIndex !== null ? days[openDayIndex] : null;
 
-  // automatisches Bildkarussell
   useEffect(() => {
-    if (!openDay || !Array.isArray(openDay.images) || openDay.images.length <= 1)
-      return;
+    if (!openDay || !openDay.images || openDay.images.length <= 1) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) =>
@@ -118,7 +109,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         fontFamily: "'Cinzel Decorative', serif",
       }}
     >
-      {/* Header */}
       <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2">
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
@@ -149,7 +139,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </button>
       </header>
 
-      {/* Kalender */}
       <main className="pt-52 pb-10 px-4">
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
@@ -158,7 +147,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
 
-            // Aspect Ratio
             const ratio =
               day.aspect === "landscape"
                 ? "4 / 3"
@@ -208,7 +196,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       </main>
 
-      {/* Modal */}
+      {/* Modal-Fenster */}
       {openDay && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
@@ -276,7 +264,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       )}
 
-      {/* Not-yet Popup */}
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-black/80 text-white px-6 py-3 rounded-lg text-xl shadow-lg">
