@@ -144,7 +144,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   className="relative w-full shadow-md hover:shadow-lg transition-all cursor-pointer"
   style={{
     clipPath:
-      "path('M4 6 Q10 2 20 4 L80 3 Q92 4 96 10 L97 88 Q94 96 80 96 L18 97 Q8 96 4 88 Z')",
+     "path('M3 5 Q10 0 50 2 Q90 0 97 5 L98 95 Q90 100 50 98 Q10 100 3 95 Z')",
     padding: "12px",
     border: "none",
     backgroundColor: colors[index % colors.length],
