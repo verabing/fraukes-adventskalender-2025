@@ -130,7 +130,13 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       {/* CONTENT */}
       <main className="pt-52 pb-10 px-4">
 
-          <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 gap-4 mx-auto max-w-[900px]">
+        <div
+  className="gap-4 mx-auto max-w-[1100px]"
+  style={{
+    columnWidth: "250px",
+    columnGap: "16px"
+  }}
+>
 
           {days.map((day, index) => {
             const dayNumber = day.day;
