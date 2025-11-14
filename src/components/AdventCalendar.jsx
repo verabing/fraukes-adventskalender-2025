@@ -17,6 +17,8 @@ const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
 
+const colors = ["#D6A45E", "#D9822B", "#6A5DA8", "#A3A56D"];
+
 function parseDate(input) {
   if (!input) return null;
   const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
