@@ -137,42 +137,49 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-                <button
-                  onClick={() => handleOpenDay(dayNumber, index)}
-                  className="relative w-full shadow-md hover:shadow-lg transition-all cursor-pointer"
-                  style={{
-                    borderWidth: "12px",
-                    borderStyle: "solid",
-                    borderImage: "url('/ui/rahmen.svg') 200 round",
-                    aspectRatio:
-                      day.aspect === "landscape"
-                        ? "4 / 3"
-                        : day.aspect === "portrait"
-                        ? "3 / 4"
-                        : day.aspect === "16x9-breit"
-                        ? "16 / 9"
-                        : day.aspect === "3x2-breit"
-                        ? "3 / 2"
-                        : day.aspect === "9x16-hoch"
-                        ? "9 / 16"
-                        : day.aspect === "2x3-hoch"
-                        ? "2 / 3"
-                        : "1 / 1",
-                    backgroundColor: "#8b0000",
-                  }}
-                >
-                  {isOpen ? (
-                    <img
-                      src={day.images?.[0]}
-                      alt={day.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
-                      {dayNumber}
-                    </span>
-                  )}
-                </button>
+    <button
+  onClick={() => handleOpenDay(dayNumber, index)}
+  className="relative w-full shadow-md hover:shadow-lg transition-all cursor-pointer"
+  style={{
+    clipPath:
+      "path('M4 6 Q10 2 20 4 L80 3 Q92 4 96 10 L97 88 Q94 96 80 96 L18 97 Q8 96 4 88 Z')",
+    border: "none",
+    backgroundColor: colors[index % colors.length],
+    backgroundImage: "url('/ui/paper-light.png')",
+    backgroundBlendMode: "multiply",
+    backgroundSize: "cover",
+    aspectRatio:
+      day.aspect === "landscape"
+        ? "4 / 3"
+        : day.aspect === "portrait"
+        ? "3 / 4"
+        : day.aspect === "16x9-breit"
+        ? "16 / 9"
+        : day.aspect === "3x2-breit"
+        ? "3 / 2"
+        : day.aspect === "9x16-hoch"
+        ? "9 / 16"
+        : day.aspect === "2x3-hoch"
+        ? "2 / 3"
+        : "1 / 1",
+  }}
+>
+  {isOpen ? (
+    <img
+      src={day.images?.[0]}
+      alt={day.title}
+      className="w-full h-full object-cover"
+      style={{ clipPath:
+        "path('M4 6 Q10 2 20 4 L80 3 Q92 4 96 10 L97 88 Q94 96 80 96 L18 97 Q8 96 4 88 Z')"
+      }}
+    />
+  ) : (
+    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+      {dayNumber}
+    </span>
+  )}
+</button>
+
               </div>
             );
           })}
