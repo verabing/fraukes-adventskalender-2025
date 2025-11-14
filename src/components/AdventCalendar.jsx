@@ -145,7 +145,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       "path('M4 6 Q10 2 20 4 L80 3 Q92 4 96 10 L97 88 Q94 96 80 96 L18 97 Q8 96 4 88 Z')",
     border: "none",
     backgroundColor: colors[index % colors.length],
-    backgroundImage: "url('/ui/paper-light.png')",
+    backgroundImage: `
+    linear-gradient(rgba(255,255,250,0.9), rgba(255,255,245,0.9)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,240,0.03) 0px,
+      rgba(255,255,240,0.03) 1px,
+      rgba(0,0,0,0.03) 2px
+    )
+  `,
     backgroundBlendMode: "multiply",
     backgroundSize: "cover",
     aspectRatio:
