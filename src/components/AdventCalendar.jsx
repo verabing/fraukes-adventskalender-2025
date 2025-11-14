@@ -129,7 +129,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
       {/* CONTENT */}
       <main className="pt-52 pb-10 px-4">
-        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
+
+          <div className="columns-2 sm:columns-3 md:columns-3 lg:columns-4 gap-4 mx-auto max-w-[900px]">
+
           {days.map((day, index) => {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
