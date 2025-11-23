@@ -19,6 +19,13 @@ const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
 
+const colors = [
+  "#d9a45f", // warmes orange-beige
+  "#6c5b9c", // gedämpftes violett
+  "#a8a86a", // olivgrün
+  "#e38a3c", // kräftiges orange
+];
+
 function parseDate(input) {
   if (!input) return null;
   const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
@@ -128,6 +135,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       setOpenedDays([]);
     }}
     className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
+    
   >
     🔄 Alle Türchen schließen
   </button>
@@ -147,8 +155,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               >
                 <button
                   onClick={() => handleOpenDay(dayNumber, index)}
-                  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
-                 style={{
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all cursor-pointer"
+
+                  style={{
   aspectRatio:
     day.aspect === "landscape"
       ? "4 / 3"
@@ -162,7 +171,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       ? "9 / 16"
       : day.aspect === "2x3-hoch"
       ? "2 / 3"
-      : "1 / 1"
+      : "1 / 1",
+     backgroundColor: colors[index % colors.length],
+
 }}
                 >
                   {isOpen ? (
