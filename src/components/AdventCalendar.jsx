@@ -183,19 +183,20 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 >
 
   {/* --- TEST-OVERLAY (soll 100% sichtbar sein) --- */}
+{/* --- TEXTUR-OVERLAY SICHTBAR --- */}
 {!isOpen && (
   <div
-    className="absolute inset-0 pointer-events-none"
+    className="absolute inset-0 opacity-40 pointer-events-none"
     style={{
-      backgroundImage: `
-        url("/ui/paper-light.png"),
-        linear-gradient(0deg, rgba(255,255,255,0.25), rgba(0,0,0,0.10))
-      `,
-      backgroundSize: "200px 200px, cover",
-      backgroundBlendMode: "overlay",
-      opacity: 0.75,
+      backgroundImage: paperTexture,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+      mixBlendMode: "overlay",
       zIndex: 2,
     }}
+  />
+)}
+
   />
 )}
 
