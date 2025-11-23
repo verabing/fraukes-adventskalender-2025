@@ -19,20 +19,6 @@ const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
 
-const colors = [
-  "#d9a45f", // warmes orange-beige
-  "#6c5b9c", // gedämpftes violett
-  "#a8a86a", // olivgrün
-  "#e38a3c", // kräftiges orange
-];
-
-const paperTexture = `
-linear-gradient(rgba(255,255,245,0.88), rgba(255,255,240,0.88)),
-url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAEnElEQVR4nO2bS2gcVRzHP4tikhY2VpW1Fh6FSCGsSgsiWzLZk2Wps2D2YpEVmiWliJbKWpYiwlqYkphbUsAhSzBIlS0qGVRZbQssy0kCTpAhD2Lbzvcw+/5/33ntn3nvOuefOd+ac75zzzxjYmZmZlZ5ZgD8BkB6DfAPAdwEe6e/rwykKqpoP1BB7i7gFMAbgCMC2mJG9lYxwEfAsgA7B94GmqYj7fAC4EoHNj1T3c9+O5XcCgZwCqbi8CtwDyT2ycqFBn3AwAc8CTAttLRA0JcpFuE5P0E2OrCz2HRbqa/O9xu7ZRUoKb8IrgEeAXhnqHwYEuA6ITyBaNTK2kH5t2uqaQ4wCfAjYpoQO7rH7nHThZlWrUYLsMQ+1iarZR18pRZELf7JT9iSskBl9eu0YS4k2izxt4rF1C8z9nFkhuXIQrUsVPmPOYxmZqdZlZbOPTQyTf+qU1M9QWl7siBvWWFTrC0WWhc38v4Ax7+jr3mJ1p9B763TW8SkWB0ZHx81Rm7yOpWstr8EyMx2FrM3O28klXWnfnSl3xq2pYNYVjE9N4PbUo2iGDuW8wE2t6Qr6RH7pGSZJwvUM8dmn+Vhy1dHkXOW7mAcS1oxfWcY1Wc4kDB7Lhnd7l5N06ly3JMTx8fn6/un6hgUAkSUzKpPM2bRuY0t2lvCq2ttfZmYuSlAyPpp6lQ9rd6FJ07d2CKhQJSoQSzGksVlSRCgQ4Lr4MZomk8zr1XxYHB8fZ2dnOZBlhQsR6L2nAbHjkd+t1dVfF43GPgMLCwpiZmZGZmZk/2D7O2Ar8twmmA3AewG+D/AQzTkYrYdS7YAAAAAElFTkSuQmCC")
-`;
-
-
-
 function parseDate(input) {
   if (!input) return null;
   const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
@@ -142,7 +128,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       setOpenedDays([]);
     }}
     className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
-    
   >
     🔄 Alle Türchen schließen
   </button>
@@ -160,64 +145,38 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-               <button
-  onClick={() => handleOpenDay(dayNumber, index)}
-  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all cursor-pointer"
-  style={{
-    backgroundColor: colors[index % colors.length],
-    aspectRatio:
-      day.aspect === "landscape"
-        ? "4 / 3"
-        : day.aspect === "portrait"
-        ? "3 / 4"
-        : day.aspect === "16x9-breit"
-        ? "16 / 9"
-        : day.aspect === "3x2-breit"
-        ? "3 / 2"
-        : day.aspect === "9x16-hoch"
-        ? "9 / 16"
-        : day.aspect === "2x3-hoch"
-        ? "2 / 3"
-        : "1 / 1",
-  }}
->
-
-  {/* --- TEST-OVERLAY (soll 100% sichtbar sein) --- */}
-{/* --- TEXTUR-OVERLAY SICHTBAR --- */}
-{!isOpen && (
-  <div
-    className="absolute inset-0 opacity-40 pointer-events-none"
-    style={{
-      backgroundImage: paperTexture,
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      mixBlendMode: "overlay",
-      zIndex: 2,
-    }}
-  />
-)}
-
-  />
-)}
-
-
-  {isOpen ? (
-    <img
-      src={day.images?.[0]}
-      alt={day.title}
-      className="absolute inset-0 w-full h-full object-cover"
-      style={{ zIndex: 1 }}
-    />
-  ) : (
-    <span
-      className="absolute inset-0 flex items-center justify-center text-3xl font-bold"
-      style={{ zIndex: 4 }}
-    >
-      {dayNumber}
-    </span>
-  )}
-</button>
-
+                <button
+                  onClick={() => handleOpenDay(dayNumber, index)}
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
+                 style={{
+  aspectRatio:
+    day.aspect === "landscape"
+      ? "4 / 3"
+      : day.aspect === "portrait"
+      ? "3 / 4"
+      : day.aspect === "16x9-breit"
+      ? "16 / 9"
+      : day.aspect === "3x2-breit"
+      ? "3 / 2"
+      : day.aspect === "9x16-hoch"
+      ? "9 / 16"
+      : day.aspect === "2x3-hoch"
+      ? "2 / 3"
+      : "1 / 1"
+}}
+                >
+                  {isOpen ? (
+                    <img
+                      src={day.images?.[0]}
+                      alt={day.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+                      {dayNumber}
+                    </span>
+                  )}
+                </button>
               </div>
             );
           })}
