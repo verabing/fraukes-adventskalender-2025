@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useMemo } from "react";
 import daysConfig from "../data/daysConfig";
 
+// Hintergrundbild und Schrift
 const backgroundUrl = "/bilder/hintergrund.jpg";
 
+// Schriftarten laden
 const fontLinks = [
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap",
   "https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap",
 ];
 
+// Feste globale Shuffle-Reihenfolge (gleich für alle Nutzer)
 const shuffleOrder = [
-  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24,
-  11, 20, 7, 10, 15, 18, 21, 22,
+  5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
 ];
 
 const days = shuffleOrder
   .map((num) => daysConfig.find((day) => day.day === num))
   .filter(Boolean);
-
-const colors = ["#D6A45E", "#D9822B", "#6A5DA8", "#A3A56D"];
 
 function parseDate(input) {
   if (!input) return null;
@@ -42,6 +42,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const [notYet, setNotYet] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Schriftarten laden
   useEffect(() => {
     fontLinks.forEach((url) => {
       const link = document.createElement("link");
@@ -51,6 +52,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     });
   }, []);
 
+  // Unlock-Status je Tag berechnen
   const unlocked = useMemo(
     () =>
       Array.from({ length: 24 }, (_, i) =>
@@ -59,6 +61,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     [simulatedDate, year, monthIndex]
   );
 
+  // Geöffnete Türchen speichern
   useEffect(() => {
     localStorage.setItem("openedDays", JSON.stringify(openedDays));
   }, [openedDays]);
@@ -78,6 +81,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
   const openDay = openDayIndex !== null ? days[openDayIndex] : null;
 
+  // Automatisches Karussell
   useEffect(() => {
     if (!openDay || !openDay.images || openDay.images.length <= 1) return;
     const interval = setInterval(() => {
@@ -96,116 +100,90 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         fontFamily: "'Cinzel Decorative', serif",
       }}
     >
-      {/* HEADER */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2">
-        <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
-          FRAUKES ADVENTSKALENDER {year}
-        </h1>
+      {/* Header */}
+<header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2 overflow-visible">
+  <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
+    FRAUKES ADVENTSKALENDER {year}
+  </h1>
 
-        <div className="text-sm flex flex-col items-center gap-1">
-          <label htmlFor="simDate" className="text-white/80">
-            Simuliere Datum (TT.MM.JJJJ)
-          </label>
-          <input
-            id="simDate"
-            type="text"
-            placeholder="z. B. 12.12.2025"
-            value={simulatedDate}
-            onChange={(e) => setSimulatedDate(e.target.value)}
-            className="px-3 py-1 rounded text-black text-center w-40"
-          />
-        </div>
+  {/* Simulationsfeld */}
+  <div className="text-sm flex flex-col items-center gap-1">
+    <label htmlFor="simDate" className="text-white/80">
+      Simuliere Datum (TT.MM.JJJJ)
+    </label>
+    <input
+      id="simDate"
+      type="text"
+      placeholder="z. B. 12.12.2025"
+      value={simulatedDate}
+      onChange={(e) => setSimulatedDate(e.target.value)}
+      className="px-3 py-1 rounded text-black text-center w-40"
+    />
+  </div>
 
-        <button
-          onClick={() => {
-            localStorage.removeItem("openedDays");
-            setOpenedDays([]);
-          }}
-          className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
-        >
-          🔄 Alle Türchen schließen
-        </button>
-      </header>
+  {/* Reset-Button nur für Testphase */}
+  <button
+    onClick={() => {
+      localStorage.removeItem("openedDays");
+      setOpenedDays([]);
+    }}
+    className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
+  >
+    🔄 Alle Türchen schließen
+  </button>
+</header>
 
-      {/* CONTENT */}
+      {/* Abstand für Header */}
       <main className="pt-52 pb-10 px-4">
-
-        <div
-  className="gap-4 mx-auto max-w-[1100px]"
-  style={{
-    columnWidth: "250px",
-    columnGap: "16px"
-  }}
->
-
+        {/* Masonry-Layout mit Rahmen & Schatten */}
+        <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
-
             return (
               <div
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-    <button
-  onClick={() => handleOpenDay(dayNumber, index)}
-  className="relative w-full shadow-md hover:shadow-lg transition-all cursor-pointer"
-  style={{
-    clipPath:
-     "path('M3 5 Q10 0 50 2 Q90 0 97 5 L98 95 Q90 100 50 98 Q10 100 3 95 Z')",
-    padding: "12px",
-    border: "none",
-    backgroundColor: colors[index % colors.length],
-    backgroundImage: `
-    linear-gradient(rgba(255,255,250,0.9), rgba(255,255,245,0.9)),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,240,0.03) 0px,
-      rgba(255,255,240,0.03) 1px,
-      rgba(0,0,0,0.03) 2px
-    )
-  `,
-    backgroundBlendMode: "multiply",
-    backgroundSize: "cover",
-    aspectRatio:
-      day.aspect === "landscape"
-        ? "4 / 3"
-        : day.aspect === "portrait"
-        ? "3 / 4"
-        : day.aspect === "16x9-breit"
-        ? "16 / 9"
-        : day.aspect === "3x2-breit"
-        ? "3 / 2"
-        : day.aspect === "9x16-hoch"
-        ? "9 / 16"
-        : day.aspect === "2x3-hoch"
-        ? "2 / 3"
-        : "1 / 1",
-  }}
->
-  {isOpen ? (
-    <img
-      src={day.images?.[0]}
-      alt={day.title}
-      className="w-full h-full object-cover"
-      style={{ clipPath:
-        "path('M4 6 Q10 2 20 4 L80 3 Q92 4 96 10 L97 88 Q94 96 80 96 L18 97 Q8 96 4 88 Z')"
-      }}
-    />
-  ) : (
-    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
-      {dayNumber}
-    </span>
-  )}
-</button>
-
+                <button
+                  onClick={() => handleOpenDay(dayNumber, index)}
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer"
+                 style={{
+  aspectRatio:
+    day.aspect === "landscape"
+      ? "4 / 3"
+      : day.aspect === "portrait"
+      ? "3 / 4"
+      : day.aspect === "16x9-breit"
+      ? "16 / 9"
+      : day.aspect === "3x2-breit"
+      ? "3 / 2"
+      : day.aspect === "9x16-hoch"
+      ? "9 / 16"
+      : day.aspect === "2x3-hoch"
+      ? "2 / 3"
+      : "1 / 1"
+}}
+                >
+                  {isOpen ? (
+                    <img
+                      src={day.images?.[0]}
+                      alt={day.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span className="absolute inset-0 flex items-center justify-center text-3xl font-bold">
+                      {dayNumber}
+                    </span>
+                  )}
+                </button>
               </div>
             );
           })}
         </div>
       </main>
 
-      {/* MODAL */}
+      {/* Modal-Fenster */}
       {openDay && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
@@ -231,6 +209,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               {openDay.text}
             </p>
 
+            {/* Karussell */}
             {openDay.images && openDay.images.length > 0 && (
               <div className="relative">
                 <img
@@ -238,7 +217,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                   alt={`Türchen ${openDay.title}`}
                   className="w-full rounded-xl shadow mb-4 object-cover transition-opacity duration-500"
                 />
-
                 {openDay.images.length > 1 && (
                   <>
                     <button
@@ -253,7 +231,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                     >
                       ◀
                     </button>
-
                     <button
                       onClick={() =>
                         setCurrentImageIndex((prev) =>
@@ -274,7 +251,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       )}
 
-      {/* NOT-YET */}
+      {/* Not-yet Popup */}
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-black/80 text-white px-6 py-3 rounded-lg text-xl shadow-lg">
