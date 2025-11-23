@@ -160,11 +160,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-                <button
+               <button
   onClick={() => handleOpenDay(dayNumber, index)}
   className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md hover:shadow-lg transition-all cursor-pointer"
   style={{
-    backgroundColor: colors[index % colors.length], // Basisfarbe
+    backgroundColor: colors[index % colors.length],
     aspectRatio:
       day.aspect === "landscape"
         ? "4 / 3"
@@ -181,23 +181,18 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         : "1 / 1",
   }}
 >
-  {/* --- TEXTUR-OVERLAY (sichtbar!) --- */}
-{!isOpen && (
-  <div
-    className="absolute inset-0 pointer-events-none opacity-[0.25]"
-    style={{
-      backgroundImage:
-        'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABFklEQVR4nO3TMU7DMBiG4V8VrDJhE0gRUgAyQAJIgyQKjg0kHDA0H7FLEWLc32oTdJ+0r4FiF6u5y4xDGCAGH8mf9bzCTc3mYeZlVsWQgAAAAAAAAAAAAAAAPgF4h0McwT8b0mT9yqz6KkX4yE0xnNSm6OXa8lSZgNfr62NYijBCsUdC3lp2M65JtLEr9RYSbiV0lpSGAPqk4wx2bHCVuFD76Yb8K7RxCDMUJ7wpTqZcGkttYp2SZKzyeuYIrmTzIY1M0o+3uSYGoqLoTkk/rJZ8I/44zHPyfh4Ns7VnJtLnnknO8u5GzP70o2m6qZsMspjacOPLzYej8/YTU5WWMgAAAAAAAAAAAAAAAPgHoVgCmidzWAAAAABJRU5ErkJggg==")',
-      backgroundSize: "cover",
-      backgroundRepeat: "repeat",
-      zIndex: 2,
-    }}
-  />
-)}
 
+  {/* --- TEST-OVERLAY (soll 100% sichtbar sein) --- */}
+  {!isOpen && (
+    <div
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        backgroundColor: "rgba(0,255,0,0.6)",
+        zIndex: 3,
+      }}
+    />
+  )}
 
-
-  {/* --- INHALT --- */}
   {isOpen ? (
     <img
       src={day.images?.[0]}
@@ -208,7 +203,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   ) : (
     <span
       className="absolute inset-0 flex items-center justify-center text-3xl font-bold"
-      style={{ zIndex: 3 }}
+      style={{ zIndex: 4 }}
     >
       {dayNumber}
     </span>
