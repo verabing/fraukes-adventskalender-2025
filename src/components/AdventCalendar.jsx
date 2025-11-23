@@ -182,16 +182,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   }}
 >
   {/* --- TEXTUR-OVERLAY (sichtbar!) --- */}
- {!isOpen && (
+{!isOpen && (
   <div
-    className="absolute inset-0 pointer-events-none opacity-55"
+    className="absolute inset-0 pointer-events-none opacity-[0.25]"
     style={{
-      backgroundImage: `
-        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABFklEQVR4nO3TMU7DMBiG4V8VrDJhE0gRUgAyQAJIgyQKjg0kHDA0H7FLEWLc32oTdJ+0r4FiF6u5y4xDGCAGH8mf9bzCTc3mYeZlVsWQgAAAAAAAAAAAAAAAPgF4h0McwT8b0mT9yqz6KkX4yE0xnNSm6OXa8lSZgNfr62NYijBCsUdC3lp2M65JtLEr9RYSbiV0lpSGAPqk4wx2bHCVuFD76Yb8K7RxCDMUJ7wpTqZcGkttYp2SZKzyeuYIrmTzIY1M0o+3uSYGoqLoTkk/rJZ8I/44zHPyfh4Ns7VnJtLnnknO8u5GzP70o2m6qZsMspjacOPLzYej8/YTU5WWMgAAAAAAAAAAAAAAAPgHoVgCmidzWAAAAABJRU5ErkJggg==")
-      `,
+      backgroundImage:
+        'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABFklEQVR4nO3TMU7DMBiG4V8VrDJhE0gRUgAyQAJIgyQKjg0kHDA0H7FLEWLc32oTdJ+0r4FiF6u5y4xDGCAGH8mf9bzCTc3mYeZlVsWQgAAAAAAAAAAAAAAAPgF4h0McwT8b0mT9yqz6KkX4yE0xnNSm6OXa8lSZgNfr62NYijBCsUdC3lp2M65JtLEr9RYSbiV0lpSGAPqk4wx2bHCVuFD76Yb8K7RxCDMUJ7wpTqZcGkttYp2SZKzyeuYIrmTzIY1M0o+3uSYGoqLoTkk/rJZ8I/44zHPyfh4Ns7VnJtLnnknO8u5GzP70o2m6qZsMspjacOPLzYej8/YTU5WWMgAAAAAAAAAAAAAAAPgHoVgCmidzWAAAAABJRU5ErkJggg==")',
       backgroundSize: "cover",
+      backgroundRepeat: "repeat",
       zIndex: 2,
-      mixBlendMode: "multiply",
     }}
   />
 )}
