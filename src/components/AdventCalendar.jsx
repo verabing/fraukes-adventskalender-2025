@@ -183,7 +183,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   {/* --- TEXTUR-OVERLAY (sichtbar!) --- */}
   {!isOpen && (
     <div
-      className="absolute inset-0 pointer-events-none opacity-55"
+      className="absolute inset-0 pointer-events-none opacity-100"
       style={{
         backgroundImage: `
           url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABI0lEQVR4nO3WsU3DMBiG4Z8M5N5CYQAOqWWclACQo1t6LwA2JmfA7aD6H/1MlUVdvGkQYYGCAAAECBAgQIECAAAECPwn4K8YxkI5XM3GjPFgDo8LXziS5ywQRBaJK5wTdLWlq6sABoYz28wG0XrTZwA6uJqQ0QH0hpHTd8O8tsgf2mAbYTpkx2CW0vetj4kQjkjk2rf/tO9YzOlVjPtfRANtwNs2DXEWf4oRexZp0lJvXJKTkVWeQkS5ycZG9XKl0YKp0SUJk2meSVs0ldMmcYp0iyp46o8GmYTmS4aZLrkH5szH+rwyWmQ/VcWuqQXxVcF+qQTxN8l8CqQHh2AAECBAgQIEAAwCdmbgEFyPWyQAAAABJRU5ErkJggg==")
