@@ -26,6 +26,12 @@ const colors = [
   "#e38a3c", // kräftiges orange
 ];
 
+const paperTexture = `
+  linear-gradient(rgba(255,255,245,0.92), rgba(255,255,240,0.92)),
+  url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAABI0lEQVR4nO3WsU3DMBiG4Z8M5N5CYQAOqWWclACQo1t6LwA2JmfA7aD6H/1MlUVdvGkQYYGCAAAECBAgQIECAAAECPwn4K8YxkI5XM3GjPFgDo8LXziS5ywQRBaJK5wTdLWlq6sABoYz28wG0XrTZwA6uJqQ0QH0hpHTd8O8tsgf2mAbYTpkx2CW0vetj4kQjkjk2rf/tO9YzOlVjPtfRANtwNs2DXEWf4oRexZp0lJvXJKTkVWeQkS5ycZG9XKl0YKp0SUJk2meSVs0ldMmcYp0iyp46o8GmYTmS4aZLrkH5szH+rwyWmQ/VcWuqQXxVcF+qQTxN8l8CqQHh2AAECBAgQIEAAwCdmbgEFyPWyQAAAABJRU5ErkJggg==")
+`;
+
+
 function parseDate(input) {
   if (!input) return null;
   const [day, month, year] = input.split(".").map((x) => parseInt(x, 10));
@@ -173,6 +179,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       ? "2 / 3"
       : "1 / 1",
      backgroundColor: colors[index % colors.length],
+                    backgroundImage: paperTexture,
+  backgroundBlendMode: "multiply",
 
 }}
                 >
