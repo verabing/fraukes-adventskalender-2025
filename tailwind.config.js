@@ -20,7 +20,7 @@ export default {
         wobble: "wobble 0.25s ease-in-out",
 
         // Fade + Soft Zoom
-        fadeZoomIn: "fadeZoomIn 0.45s ease",
+        fadeZoomIn: "fadeZoomIn 0.8s ease",
       },
     },
   },
