@@ -227,13 +227,12 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       {/* Bilder + Buttons , Karussell */}
       {openDay.images && openDay.images.length > 0 && (
         <div className="relative">
-          <img
-            src={openDay.images[currentImageIndex]}
-            alt={`Türchen ${openDay.title}`}
-            className="w-full max-h-[80vh] object-contain border border-white/30
-                       object-cover shadow-lg"
-          />
-
+         
+<img
+  src={openDay.images[currentImageIndex]}
+  alt={`Türchen ${openDay.title}`}
+  className="w-full max-h-[80vh] object-contain border border-white/30 shadow-lg"
+/>
           {openDay.images.length > 1 && (
             <>
               <button
