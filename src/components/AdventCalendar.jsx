@@ -197,8 +197,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     }}
   >
     <div
-      className="relative bg-white/15 backdrop-blur-xl rounded-2xl p-8 
-                 border border-white/20 shadow-2xl max-w-lg w-full transition-all duration-300"
+      className="relative bg-white/15 backdrop-blur-xl rounded-1xl p-8 
+                 border-2 border-white/40 shadow-2xl max-w-lg w-full transition-all duration-300"
     >
       {/* Close Button */}
       <button
