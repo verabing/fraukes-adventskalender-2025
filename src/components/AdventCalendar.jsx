@@ -196,85 +196,106 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       </main>
 
-      {/* Modal */}
-      {openDay && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setOpenDayIndex(null);
-          }}
-        >
-        
-            <div
-  className="relative bg-white/10 backdrop-blur p-6 
-             w-full max-w-lg max-h-[90vh] 
-             border border-white/30 
-             shadow-[0_0_40px_rgba(255,255,255,0.15)]
-             overflow-y-auto"
->
-            <button
-              onClick={() => setOpenDayIndex(null)}
-              className="absolute right-3 top-3 text-white text-2xl"
-            >
-              ✕
-            </button>
+     {/* Modal */}
+{openDay && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
+    onClick={(e) => {
+      if (e.target === e.currentTarget) setOpenDayIndex(null);
+    }}
+  >
+    <div
+      className="relative bg-white/10 backdrop-blur p-6 
+                 w-full max-w-lg max-h-[90vh] 
+                 border border-white/30 
+                 shadow-[0_0_40px_rgba(255,255,255,0.15)]
+                 overflow-y-auto"
+    >
 
-            <h2 className="text-2xl font-bold mb-2 text-center">
-              {openDay.title}
-            </h2>
+      {/* Close Button */}
+      <button
+        onClick={() => setOpenDayIndex(null)}
+        className="absolute right-3 top-3 text-white text-2xl"
+      >
+        ✕
+      </button>
 
-            <p
-              className="text-center text-white/90 mb-4"
-              style={{ fontFamily: "'EB Garamond', serif" }}
-            >
-              {openDay.text}
-            </p>
+      {/* Title */}
+      <h2 className="text-2xl font-bold mb-2 text-center">
+        {openDay.title}
+      </h2>
 
-            {openDay.images && openDay.images.length > 1 && (
-              <button
-                onClick={() => {
-                  setSlideDirection("left");
-                  setCurrentImageIndex((prev) =>
-                    prev === 0
-                      ? openDay.images.length - 1
-                      : prev - 1
-                  );
-                  resetCarouselTimer();
-                }}
-                className="absolute left-2 top-1/2 -translate-y-1/2 
-                           bg-black/40 text-white p-2 rounded-full hover:bg-black/60 z-20"
-              >
-                ◀
-              </button>
-            )}
+      {/* Text */}
+      <p
+        className="text-center text-white/90 mb-4"
+        style={{ fontFamily: "'EB Garamond', serif" }}
+      >
+        {openDay.text}
+      </p>
 
-            {openDay.images && openDay.images.length > 1 && (
-              <button
-                onClick={() => {
-                  setSlideDirection("right");
-                  setCurrentImageIndex((prev) =>
-                    prev + 1 >= openDay.images.length ? 0 : prev + 1
-                  );
-                  resetCarouselTimer();
-                }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 
-                           bg-black/40 text-white p-2 rounded-full hover:bg-black/60 z-20"
-              >
-                ▶
-              </button>
-            )}
 
-            {openDay.images && (
-  <div className="relative w-full h-auto">
-    <div className="w-full transition-all duration-500">
-      <img
-        key={currentImageIndex}
-        src={openDay.images[currentImageIndex]}
-        alt=""
-        className={
-          `w-full shadow mb-4 object-contain border border-white/20 ` +
-          (slideDirection === "left"
+      {/* NAVIGATION BUTTONS */}
+      {openDay.images && openDay.images.length > 1 && (
+        <>
+          {/* LEFT */}
+          <button
+            onClick={() => {
+              setSlideDirection("left");
+              setCurrentImageIndex((prev) =>
+                prev === 0
+                  ? openDay.images.length - 1
+                  : prev - 1
+              );
+              resetCarouselTimer();
+            }}
+            className="absolute left-2 top-1/2 -translate-y-1/2 
+                       bg-black/40 text-white p-2 rounded-full 
+                       hover:bg-black/60 z-20"
+          >
+            ◀
+          </button>
 
+          {/* RIGHT */}
+          <button
+            onClick={() => {
+              setSlideDirection("right");
+              setCurrentImageIndex((prev) =>
+                prev + 1 >= openDay.images.length ? 0 : prev + 1
+              );
+              resetCarouselTimer();
+            }}
+            className="absolute right-2 top-1/2 -translate-y-1/2 
+                       bg-black/40 text-white p-2 rounded-full 
+                       hover:bg-black/60 z-20"
+          >
+            ▶
+          </button>
+        </>
+      )}
+
+
+      {/* IMAGE (WITH FADE + SLIDE) */}
+      {openDay.images && (
+        <div className="relative w-full h-auto mt-2">
+          <div className="w-full transition-all duration-500">
+            <img
+              key={currentImageIndex}
+              src={openDay.images[currentImageIndex]}
+              alt=""
+              className={
+                `w-full shadow mb-4 object-contain border border-white/20 ` +
+                (slideDirection === "left"
+                  ? "animate-fadeSlideLeft"
+                  : "animate-fadeSlideRight")
+              }
+            />
+          </div>
+        </div>
+      )}
+
+    </div>
+  </div>
+)}
 
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
