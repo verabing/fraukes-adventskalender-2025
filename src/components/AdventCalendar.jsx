@@ -189,71 +189,86 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
 
       {/* Modal-Fenster */}
       {openDay && (
-        <div
-          className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setOpenDayIndex(null);
-          }}
-        >
-          <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 max-w-lg w-full">
-            <button
-              onClick={() => setOpenDayIndex(null)}
-              className="absolute right-3 top-3 text-white text-2xl"
-            >
-              ✕
-            </button>
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50
+               opacity-100 transition-opacity duration-300"
+    onClick={(e) => {
+      if (e.target === e.currentTarget) setOpenDayIndex(null);
+    }}
+  >
+    <div
+      className="relative bg-white/15 backdrop-blur-xl rounded-2xl p-8 
+                 border border-white/20 shadow-2xl max-w-lg w-full transition-all duration-300"
+    >
+      {/* Close Button */}
+      <button
+        onClick={() => setOpenDayIndex(null)}
+        className="absolute right-4 top-4 bg-black/30 hover:bg-black/50 
+                   text-white rounded-full p-2 transition"
+      >
+        ✕
+      </button>
 
-            <h2 className="text-2xl font-bold mb-2 text-center">
-              {openDay.title}
-            </h2>
-            <p
-              className="text-center text-white/90 mb-4"
-              style={{ fontFamily: "'EB Garamond', serif" }}
-            >
-              {openDay.text}
-            </p>
+      {/* Titel */}
+      <h2 className="text-3xl font-bold mb-3 text-center tracking-wide">
+        {openDay.title}
+      </h2>
 
-            {/* Karussell */}
-            {openDay.images && openDay.images.length > 0 && (
-              <div className="relative">
-                <img
-                  src={openDay.images[currentImageIndex]}
-                  alt={`Türchen ${openDay.title}`}
-                  className="w-full rounded-xl shadow mb-4 object-cover transition-opacity duration-500"
-                />
-                {openDay.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={() =>
-                        setCurrentImageIndex((prev) =>
-                          prev === 0
-                            ? openDay.images.length - 1
-                            : prev - 1
-                        )
-                      }
-                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
-                    >
-                      ◀
-                    </button>
-                    <button
-                      onClick={() =>
-                        setCurrentImageIndex((prev) =>
-                          prev + 1 >= openDay.images.length
-                            ? 0
-                            : prev + 1
-                        )
-                      }
-                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
-                    >
-                      ▶
-                    </button>
-                  </>
-                )}
-              </div>
-            )}
-          </div>
+      {/* Text */}
+      <p
+        className="text-center text-white/90 mb-6 leading-relaxed"
+        style={{ fontFamily: "'EB Garamond', serif" }}
+      >
+        {openDay.text}
+      </p>
+
+      {/* Bilder + Buttons , Karussell */}
+      {openDay.images && openDay.images.length > 0 && (
+        <div className="relative">
+          <img
+            src={openDay.images[currentImageIndex]}
+            alt={`Türchen ${openDay.title}`}
+            className="w-full rounded-xl shadow-lg border border-white/20
+                       object-cover"
+          />
+
+          {openDay.images.length > 1 && (
+            <>
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev === 0
+                      ? openDay.images.length - 1
+                      : prev - 1
+                  )
+                }
+                className="absolute left-2 top-1/2 -translate-y-1/2 
+                           bg-black/40 hover:bg-black/60 text-white p-2 
+                           rounded-full transition"
+              >
+                ◀
+              </button>
+              <button
+                onClick={() =>
+                  setCurrentImageIndex((prev) =>
+                    prev + 1 >= openDay.images.length
+                      ? 0
+                      : prev + 1
+                  )
+                }
+                className="absolute right-2 top-1/2 -translate-y-1/2 
+                           bg-black/40 hover:bg-black/60 text-white p-2 
+                           rounded-full transition"
+              >
+                ▶
+              </button>
+            </>
+          )}
         </div>
       )}
+    </div>
+  </div>
+)}
 
       {/* Not-yet Popup */}
       {notYet && (
