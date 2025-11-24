@@ -201,13 +201,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                  border-2 border-white/40 shadow-2xl max-w-lg w-full transition-all duration-300"
     >
       {/* Close Button */}
-      <button
-        onClick={() => setOpenDayIndex(null)}
-        className="absolute right-4 top-4 bg-black/30 hover:bg-black/50 
-                   text-white rounded-full p-2 transition"
-      >
-        ✕
-      </button>
+   <button
+  onClick={() => setOpenDayIndex(null)}
+  className="absolute right-4 top-4 bg-black/30 hover:bg-black/50 
+             text-white rounded-full p-2 transition"
+>
+  ✕
+</button>
+
 
       {/* Titel */}
       <h2 className="text-3xl font-bold mb-3 text-center tracking-wide">
