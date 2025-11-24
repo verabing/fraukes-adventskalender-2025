@@ -9,27 +9,20 @@ export default {
           "75%": { transform: "rotate(-1.5deg)" },
         },
 
-        // NEU: Fade + Slide
-        fadeSlideLeft: {
-          "0%":   { opacity: 0, transform: "translateX(-40px)" },
-          "100%": { opacity: 1, transform: "translateX(0)" }
-        },
-        fadeSlideRight: {
-          "0%":   { opacity: 0, transform: "translateX(40px)" },
-          "100%": { opacity: 1, transform: "translateX(0)" }
+        // Fade + Soft Zoom
+        fadeZoomIn: {
+          "0%":   { opacity: 0, transform: "scale(0.97)" },
+          "100%": { opacity: 1, transform: "scale(1)" }
         },
       },
 
       animation: {
         wobble: "wobble 0.25s ease-in-out",
 
-        // NEU: Fade + Slide
-        fadeSlideLeft: "fadeSlideLeft 0.45s ease",
-        fadeSlideRight: "fadeSlideRight 0.45s ease",
+        // Fade + Soft Zoom
+        fadeZoomIn: "fadeZoomIn 0.45s ease",
       },
     },
   },
   plugins: [],
 };
-
-
