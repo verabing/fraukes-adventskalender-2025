@@ -145,11 +145,13 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
+                 {/* Button Farbe und Form */}
+                
                 <button
                   onClick={() => handleOpenDay(dayNumber, index)}
-                 className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md 
-hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer 
-hover:scale-[1.05] hover:animate-wobble"
+                  className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md 
+  hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer 
+  hover:animate-wobble"
                   style={{
   aspectRatio:
     day.aspect === "landscape"
