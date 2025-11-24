@@ -197,9 +197,10 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     }}
   >
     <div
-      className="relative bg-white/15 backdrop-blur-xl rounded-1xl p-8 
+      className="relative bg-white/15 backdrop-blur-xl p-8 
                  border-2 border-white/40 shadow-2xl max-w-lg w-full transition-all duration-300"
     >
+  
       {/* Close Button */}
    <button
   onClick={() => setOpenDayIndex(null)}
@@ -229,8 +230,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
           <img
             src={openDay.images[currentImageIndex]}
             alt={`Türchen ${openDay.title}`}
-            className="w-full rounded-xl shadow-lg border border-white/20
-                       object-cover"
+            className="w-full max-h-[80vh] object-contain border border-white/30
+                       object-cover shadow-lg"
           />
 
           {openDay.images.length > 1 && (
