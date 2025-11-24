@@ -197,6 +197,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       </main>
 
      {/* Modal */}
+
 {openDay && (
   <div
     className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
@@ -211,7 +212,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                  shadow-[0_0_40px_rgba(255,255,255,0.15)]
                  overflow-y-auto"
     >
-
       {/* Close Button */}
       <button
         onClick={() => setOpenDayIndex(null)}
@@ -233,20 +233,16 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         {openDay.text}
       </p>
 
-
-      {/* NAVIGATION BUTTONS */}
+      {/* Navigation */}
       {openDay.images && openDay.images.length > 1 && (
         <>
-          {/* LEFT */}
           <button
             onClick={() => {
-              setSlideDirection("left");
               setCurrentImageIndex((prev) =>
                 prev === 0
                   ? openDay.images.length - 1
                   : prev - 1
               );
-              resetCarouselTimer();
             }}
             className="absolute left-2 top-1/2 -translate-y-1/2 
                        bg-black/40 text-white p-2 rounded-full 
@@ -255,14 +251,13 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             ◀
           </button>
 
-          {/* RIGHT */}
           <button
             onClick={() => {
-              setSlideDirection("right");
               setCurrentImageIndex((prev) =>
-                prev + 1 >= openDay.images.length ? 0 : prev + 1
+                prev + 1 >= openDay.images.length
+                  ? 0
+                  : prev + 1
               );
-              resetCarouselTimer();
             }}
             className="absolute right-2 top-1/2 -translate-y-1/2 
                        bg-black/40 text-white p-2 rounded-full 
@@ -273,8 +268,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </>
       )}
 
-
-      {/* IMAGE (WITH FADE + SLIDE) */}
+      {/* IMAGE with Fade + Soft Zoom */}
       {openDay.images && (
         <div className="relative w-full h-auto mt-2">
           <div className="w-full transition-all duration-500">
@@ -282,12 +276,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
               key={currentImageIndex}
               src={openDay.images[currentImageIndex]}
               alt=""
-              className={
-                `w-full shadow mb-4 object-contain border border-white/20 ` +
-                (slideDirection === "left"
-                  ? "animate-fadeSlideLeft"
-                  : "animate-fadeSlideRight")
-              }
+              className="w-full shadow mb-4 object-contain border border-white/20 animate-fadeZoomIn"
             />
           </div>
         </div>
@@ -296,6 +285,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     </div>
   </div>
 )}
+
 
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
