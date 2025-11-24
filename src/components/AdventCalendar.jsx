@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import daysConfig from "../data/daysConfig";
 
 // Hintergrundbild und Schrift
 const backgroundUrl = "/bilder/hintergrund.jpg";
 
-// Schriftarten laden
 const fontLinks = [
   "https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap",
   "https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap",
 ];
 
-// Feste globale Shuffle-Reihenfolge (gleich für alle Nutzer)
+// Feste globale Shuffle-Reihenfolge
 const shuffleOrder = [
   5, 17, 2, 8, 1, 23, 12, 3, 14, 19, 9, 4, 16, 6, 13, 24, 11, 20, 7, 10, 15, 18, 21, 22,
 ];
@@ -41,6 +40,21 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const [simulatedDate, setSimulatedDate] = useState("");
   const [notYet, setNotYet] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState("right");
+
+  // Timer-Ref für Karussell
+  const timerRef = useRef(null);
+
+  function resetCarouselTimer() {
+    if (timerRef.current) clearInterval(timerRef.current);
+
+    timerRef.current = setInterval(() => {
+      setSlideDirection("right");
+      setCurrentImageIndex((prev) =>
+        prev + 1 >= openDay.images.length ? 0 : prev + 1
+      );
+    }, 3000);
+  }
 
   // Schriftarten laden
   useEffect(() => {
@@ -52,7 +66,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     });
   }, []);
 
-  // Unlock-Status je Tag berechnen
   const unlocked = useMemo(
     () =>
       Array.from({ length: 24 }, (_, i) =>
@@ -61,7 +74,6 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     [simulatedDate, year, monthIndex]
   );
 
-  // Geöffnete Türchen speichern
   useEffect(() => {
     localStorage.setItem("openedDays", JSON.stringify(openedDays));
   }, [openedDays]);
@@ -74,6 +86,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     }
     setOpenDayIndex(index);
     setCurrentImageIndex(0);
+
     if (!openedDays.includes(dayNumber)) {
       setOpenedDays((prev) => [...prev, dayNumber]);
     }
@@ -82,16 +95,15 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const openDay = openDayIndex !== null ? days[openDayIndex] : null;
 
   // Automatisches Karussell
- useEffect(() => {
-  if (!openDay || !openDay.images || openDay.images.length <= 1) return;
+  useEffect(() => {
+    if (!openDay || !openDay.images || openDay.images.length <= 1) return;
 
-  resetCarouselTimer();   // <--- neuer Start
+    resetCarouselTimer();
 
-  return () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-  };
-}, [openDay]);
-
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [openDay]);
 
   return (
     <div
@@ -102,73 +114,69 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       }}
     >
       {/* Header */}
-<header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2 overflow-visible">
-  <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
-    FRAUKES ADVENTSKALENDER {year}
-  </h1>
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2">
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
+          FRAUKES ADVENTSKALENDER {year}
+        </h1>
 
-  {/* Simulationsfeld */}
-  <div className="text-sm flex flex-col items-center gap-1">
-    <label htmlFor="simDate" className="text-white/80">
-      Simuliere Datum (TT.MM.JJJJ)
-    </label>
-    <input
-      id="simDate"
-      type="text"
-      placeholder="z. B. 12.12.2025"
-      value={simulatedDate}
-      onChange={(e) => setSimulatedDate(e.target.value)}
-      className="px-3 py-1 rounded text-black text-center w-40"
-    />
-  </div>
+        <div className="text-sm flex flex-col items-center gap-1">
+          <label htmlFor="simDate" className="text-white/80">
+            Simuliere Datum (TT.MM.JJJJ)
+          </label>
+          <input
+            id="simDate"
+            type="text"
+            placeholder="z. B. 12.12.2025"
+            value={simulatedDate}
+            onChange={(e) => setSimulatedDate(e.target.value)}
+            className="px-3 py-1 rounded text-black text-center w-40"
+          />
+        </div>
 
-  {/* Reset-Button nur für Testphase */}
-  <button
-    onClick={() => {
-      localStorage.removeItem("openedDays");
-      setOpenedDays([]);
-    }}
-    className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
-  >
-    🔄 Alle Türchen schließen
-  </button>
-</header>
+        <button
+          onClick={() => {
+            localStorage.removeItem("openedDays");
+            setOpenedDays([]);
+          }}
+          className="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
+        >
+          🔄 Alle Türchen schließen
+        </button>
+      </header>
 
       {/* Abstand für Header */}
       <main className="pt-52 pb-10 px-4">
-        {/* Masonry-Layout mit Rahmen & Schatten */}
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 mx-auto max-w-[1000px]">
           {days.map((day, index) => {
             const dayNumber = day.day;
             const isOpen = openedDays.includes(dayNumber);
+
             return (
               <div
                 key={dayNumber}
                 className="break-inside-avoid mb-4 flex justify-center"
               >
-                 {/* Button Farbe und Form */}
-                
                 <button
                   onClick={() => handleOpenDay(dayNumber, index)}
                   className="relative w-full overflow-hidden rounded-lg border border-white/10 shadow-md 
-  hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer 
-  hover:animate-wobble"
+                             hover:shadow-lg transition-all bg-[#8b0000] hover:bg-[#a80000] cursor-pointer 
+                             hover:animate-wobble"
                   style={{
-  aspectRatio:
-    day.aspect === "landscape"
-      ? "4 / 3"
-      : day.aspect === "portrait"
-      ? "3 / 4"
-      : day.aspect === "16x9-breit"
-      ? "16 / 9"
-      : day.aspect === "3x2-breit"
-      ? "3 / 2"
-      : day.aspect === "9x16-hoch"
-      ? "9 / 16"
-      : day.aspect === "2x3-hoch"
-      ? "2 / 3"
-      : "1 / 1"
-}}
+                    aspectRatio:
+                      day.aspect === "landscape"
+                        ? "4 / 3"
+                        : day.aspect === "portrait"
+                        ? "3 / 4"
+                        : day.aspect === "16x9-breit"
+                        ? "16 / 9"
+                        : day.aspect === "3x2-breit"
+                        ? "3 / 2"
+                        : day.aspect === "9x16-hoch"
+                        ? "9 / 16"
+                        : day.aspect === "2x3-hoch"
+                        ? "2 / 3"
+                        : "1 / 1",
+                  }}
                 >
                   {isOpen ? (
                     <img
@@ -188,89 +196,87 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         </div>
       </main>
 
-      {/* Modal-Fenster */}
-     {openDay && (
-  <div
-    className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
-    onClick={(e) => {
-      if (e.target === e.currentTarget) setOpenDayIndex(null);
-    }}
-  >
-     <div
-  className="relative bg-white/10 backdrop-blur p-6 max-w-lg w-full
-             border border-white/30 
-             shadow-[0_0_40px_rgba(255,255,255,0.15)]"
->
-      
-      {/* Close Button */}
-      <button
-        onClick={() => setOpenDayIndex(null)}
-        className="absolute right-3 top-3 text-white text-2xl"
-      >
-        ✕
-      </button>
+      {/* Modal */}
+      {openDay && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setOpenDayIndex(null);
+          }}
+        >
+          <div
+            className="relative bg-white/10 backdrop-blur p-6 max-w-lg w-full
+                       border border-white/30
+                       shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+          >
+            <button
+              onClick={() => setOpenDayIndex(null)}
+              className="absolute right-3 top-3 text-white text-2xl"
+            >
+              ✕
+            </button>
 
-      {/* Titel */}
-      <h2 className="text-2xl font-bold mb-2 text-center">
-        {openDay.title}
-      </h2>
+            <h2 className="text-2xl font-bold mb-2 text-center">
+              {openDay.title}
+            </h2>
 
-      {/* Text */}
-      <p
-        className="text-center text-white/90 mb-4"
-        style={{ fontFamily: "'EB Garamond', serif" }}
-      >
-        {openDay.text}
-      </p>
+            <p
+              className="text-center text-white/90 mb-4"
+              style={{ fontFamily: "'EB Garamond', serif" }}
+            >
+              {openDay.text}
+            </p>
 
-      {/* Karussell */}
-      {openDay.images && openDay.images.length > 0 && (
-        <div className="relative">
-          
-          <img
-            src={openDay.images[currentImageIndex]}
-            alt={`Türchen ${openDay.title}`}
-            className="w-full shadow mb-4 object-contain transition-opacity duration-500 border border-white/20"
-          />
-
-          {openDay.images.length > 1 && (
-            <>
+            {openDay.images && openDay.images.length > 1 && (
               <button
-                onClick={() =>
+                onClick={() => {
+                  setSlideDirection("left");
                   setCurrentImageIndex((prev) =>
                     prev === 0
                       ? openDay.images.length - 1
                       : prev - 1
-                  )
-                }
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+                  );
+                  resetCarouselTimer();
+                }}
+                className="absolute left-2 top-1/2 -translate-y-1/2 
+                           bg-black/40 text-white p-2 rounded-full hover:bg-black/60 z-20"
               >
                 ◀
               </button>
+            )}
 
+            {openDay.images && openDay.images.length > 1 && (
               <button
-                onClick={() =>
+                onClick={() => {
+                  setSlideDirection("right");
                   setCurrentImageIndex((prev) =>
-                    prev + 1 >= openDay.images.length
-                      ? 0
-                      : prev + 1
-                  )
-                }
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+                    prev + 1 >= openDay.images.length ? 0 : prev + 1
+                  );
+                  resetCarouselTimer();
+                }}
+                className="absolute right-2 top-1/2 -translate-y-1/2 
+                           bg-black/40 text-white p-2 rounded-full hover:bg-black/60 z-20"
               >
                 ▶
               </button>
-            </>
-          )}
+            )}
 
+            {openDay.images && (
+              <img
+                src={openDay.images[currentImageIndex]}
+                alt=""
+                className={
+                  `w-full shadow mb-4 object-contain border border-white/20 ` +
+                  (slideDirection === "left"
+                    ? "animate-fadeSlideLeft"
+                    : "animate-fadeSlideRight")
+                }
+              />
+            )}
+          </div>
         </div>
       )}
-    </div>
-  </div>
-)}
 
-
-      {/* Not-yet Popup */}
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-black/80 text-white px-6 py-3 rounded-lg text-xl shadow-lg">
