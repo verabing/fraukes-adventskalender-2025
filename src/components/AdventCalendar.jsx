@@ -190,26 +190,24 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       {/* Modal-Fenster */}
       {openDay && (
   <div
-    className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50
-               opacity-100 transition-opacity duration-300"
+    className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50"
     onClick={(e) => {
       if (e.target === e.currentTarget) setOpenDayIndex(null);
     }}
   >
     <div
       className="relative bg-white/15 backdrop-blur-xl p-8 
-                 border-2 border-white/40 shadow-2xl max-w-lg w-full transition-all duration-300"
+                 border border-white/30 shadow-2xl 
+                 max-w-[90vw] w-full max-h-[90vh] overflow-y-auto"
     >
-  
       {/* Close Button */}
-   <button
-  onClick={() => setOpenDayIndex(null)}
-  className="absolute right-4 top-4 bg-black/30 hover:bg-black/50 
-             text-white rounded-full p-2 transition"
->
-  ✕
-</button>
-
+      <button
+        onClick={() => setOpenDayIndex(null)}
+        className="absolute right-4 top-4 bg-black/30 hover:bg-black/50 
+                   text-white rounded-full p-2 transition"
+      >
+        ✕
+      </button>
 
       {/* Titel */}
       <h2 className="text-3xl font-bold mb-3 text-center tracking-wide">
@@ -224,42 +222,40 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
         {openDay.text}
       </p>
 
-      {/* Bilder + Buttons , Karussell */}
+      {/* Bild + Navigation */}
       {openDay.images && openDay.images.length > 0 && (
-        <div className="relative">
-         
-<img
-  src={openDay.images[currentImageIndex]}
-  alt={`Türchen ${openDay.title}`}
-  className="w-full max-h-[80vh] object-contain border border-white/30 shadow-lg"
-/>
+        <div className="relative flex justify-center">
+          <img
+            src={openDay.images[currentImageIndex]}
+            alt={`Türchen ${openDay.title}`}
+            className="w-full max-h-[70vh] object-contain 
+                       border border-white/30 shadow-lg p-2 bg-black/20"
+          />
+
           {openDay.images.length > 1 && (
             <>
               <button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev === 0
-                      ? openDay.images.length - 1
-                      : prev - 1
+                    prev === 0 ? openDay.images.length - 1 : prev - 1
                   )
                 }
-                className="absolute left-2 top-1/2 -translate-y-1/2 
+                className="absolute left-4 top-1/2 -translate-y-1/2 
                            bg-black/40 hover:bg-black/60 text-white p-2 
-                           rounded-full transition"
+                           rounded-full transition z-10"
               >
                 ◀
               </button>
+
               <button
                 onClick={() =>
                   setCurrentImageIndex((prev) =>
-                    prev + 1 >= openDay.images.length
-                      ? 0
-                      : prev + 1
+                    prev + 1 >= openDay.images.length ? 0 : prev + 1
                   )
                 }
-                className="absolute right-2 top-1/2 -translate-y-1/2 
+                className="absolute right-4 top-1/2 -translate-y-1/2 
                            bg-black/40 hover:bg-black/60 text-white p-2 
-                           rounded-full transition"
+                           rounded-full transition z-10"
               >
                 ▶
               </button>
@@ -270,6 +266,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
     </div>
   </div>
 )}
+
 
       {/* Not-yet Popup */}
       {notYet && (
