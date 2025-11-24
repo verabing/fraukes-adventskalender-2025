@@ -82,15 +82,16 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
   const openDay = openDayIndex !== null ? days[openDayIndex] : null;
 
   // Automatisches Karussell
-  useEffect(() => {
-    if (!openDay || !openDay.images || openDay.images.length <= 1) return;
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) =>
-        prev + 1 >= openDay.images.length ? 0 : prev + 1
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [openDay]);
+ useEffect(() => {
+  if (!openDay || !openDay.images || openDay.images.length <= 1) return;
+
+  resetCarouselTimer();   // <--- neuer Start
+
+  return () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  };
+}, [openDay]);
+
 
   return (
     <div
@@ -195,7 +196,11 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       if (e.target === e.currentTarget) setOpenDayIndex(null);
     }}
   >
-    <div className="relative bg-white/10 backdrop-blur p-6 max-w-lg w-full">
+     <div
+  className="relative bg-white/10 backdrop-blur p-6 max-w-lg w-full
+             border border-white/30 
+             shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+>
       
       {/* Close Button */}
       <button
