@@ -204,11 +204,14 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             if (e.target === e.currentTarget) setOpenDayIndex(null);
           }}
         >
-          <div
-            className="relative bg-white/10 backdrop-blur p-6 max-w-lg w-full
-                       border border-white/30
-                       shadow-[0_0_40px_rgba(255,255,255,0.15)]"
-          >
+        
+            <div
+  className="relative bg-white/10 backdrop-blur p-6 
+             w-full max-w-lg max-h-[90vh] 
+             border border-white/30 
+             shadow-[0_0_40px_rgba(255,255,255,0.15)]
+             overflow-y-auto"
+>
             <button
               onClick={() => setOpenDayIndex(null)}
               className="absolute right-3 top-3 text-white text-2xl"
@@ -262,20 +265,16 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             )}
 
             {openDay.images && (
-              <img
-                src={openDay.images[currentImageIndex]}
-                alt=""
-                className={
-                  `w-full shadow mb-4 object-contain border border-white/20 ` +
-                  (slideDirection === "left"
-                    ? "animate-fadeSlideLeft"
-                    : "animate-fadeSlideRight")
-                }
-              />
-            )}
-          </div>
-        </div>
-      )}
+  <div className="relative w-full h-auto">
+    <div className="w-full transition-all duration-500">
+      <img
+        key={currentImageIndex}
+        src={openDay.images[currentImageIndex]}
+        alt=""
+        className={
+          `w-full shadow mb-4 object-contain border border-white/20 ` +
+          (slideDirection === "left"
+
 
       {notYet && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
