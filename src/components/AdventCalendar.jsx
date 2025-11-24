@@ -119,7 +119,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
       }}
     >
       {/* Header */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-5 backdrop-blur flex flex-col items-center space-y-2">
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 text-center py-2 backdrop-blur flex flex-col items-center space-y-1">
+
         <h1 className="text-3xl sm:text-5xl font-bold tracking-wide">
           FRAUKES ADVENTSKALENDER {year}
         </h1>
