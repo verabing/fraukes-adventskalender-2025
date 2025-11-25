@@ -1,4 +1,4 @@
-import AdventCalendar from "./components/AdventCalendar";
+import AdventCalendar from "./components/AdventCalendar.jsx";
 
 
 export default function App() {
