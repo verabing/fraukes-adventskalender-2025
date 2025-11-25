@@ -179,7 +179,7 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 </button>
               </div>
             );
-          })}
+          })}  
         </div>
       </main>
 
@@ -191,7 +191,8 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
             if (e.target === e.currentTarget) setOpenDayIndex(null);
           }}
         >
-          <div className="relative bg-white/10 backdrop-blur rounded-2xl p-6 max-w-lg w-full">
+          <div className="relative bg-white/10 backdrop-blur p-4 max-w-lg w-full">
+
             <button
               onClick={() => setOpenDayIndex(null)}
               className="absolute right-3 top-3 text-white text-2xl"
@@ -215,7 +216,9 @@ export default function AdventCalendar({ year = 2025, monthIndex = 11 }) {
                 <img
                   src={openDay.images[currentImageIndex]}
                   alt={`Türchen ${openDay.title}`}
-                  className="w-full rounded-xl shadow mb-4 object-cover transition-opacity duration-500"
+              className="w-full shadow mb-4 object-cover animate-fadeZoomIn"
+                  
+                  
                 />
                 {openDay.images.length > 1 && (
                   <>
