@@ -232,15 +232,17 @@ main {
   <!-- HEADER -->
   <header id="header">
     <h1>Fraukes Adventskalender 2025</h1>
-<div id="calendar" class="calendar-grid"></div>
+
     <label for="simDate">Simuliertes Datum:</label>
     <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
 
     <button id="resetOpen">Alle Türchen schließen</button>
   </header>
 
-  <!-- GRID -->
-  <main id="calendar"></main>
+  <!-- GRID (richtige Position) -->
+  <main>
+    <div id="calendar" class="calendar-grid"></div>
+  </main>
 
   <!-- MODAL -->
   <div id="modal" class="hidden">
@@ -262,4 +264,5 @@ main {
   </script>
 
 </body>
+
 </html>
