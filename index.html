@@ -1,16 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="icon-192.png">
 
-    <title>Fraukes Adventskalender 2025</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraukes Adventskalender 2025</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+
+  <style>
+    /* CSS kommt in Schritt 3 */
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <h1>Fraukes Adventskalender 2025</h1>
+
+    <label for="simDate">Simuliertes Datum:</label>
+    <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
+
+    <button id="resetOpen">Alle Türchen schließen</button>
+  </header>
+
+  <!-- GRID -->
+  <main id="calendar"></main>
+
+  <!-- MODAL -->
+  <div id="modal" class="hidden">
+    <div id="modalContent">
+      <button id="modalClose">✕</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalText"></p>
+
+      <div id="modalImageWrapper">
+        <img id="modalImage" src="" alt="">
+        <button id="prevImage" class="navBtn">◀</button>
+        <button id="nextImage" class="navBtn">▶</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* JavaScript kommt in Schritt 4 */
+  </script>
+
+</body>
 </html>
