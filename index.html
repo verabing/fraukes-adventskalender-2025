@@ -260,7 +260,146 @@ main {
   </div>
 
   <script>
-    /* JavaScript kommt in Schritt 4 */
+    <script>
+/* ===========================
+   DATEN FÜR 24 TÜRCHEN
+   =========================== */
+const days = [
+  {
+    title: "1. Dezember",
+    text: "Ein funkelnder Start in die Adventszeit.",
+    images: ["/bilder/1.jpg"]
+  },
+  {
+    title: "2. Dezember",
+    text: "Winterruhe und leiser Zauber.",
+    images: ["/bilder/2.jpg", "/bilder/2b.jpg"]
+  },
+  {
+    title: "3. Dezember",
+    text: "Ein Moment für dich.",
+    images: ["/bilder/3.jpg"]
+  },
+  // … bis Tag 24 – später können wir mehr einfügen
+];
+
+// Fallback: Wenn weniger als 24 Einträge → Dummy-Einträge
+while (days.length < 24) {
+  days.push({
+    title: `${days.length + 1}. Dezember`,
+    text: "Noch kein Inhalt eingetragen.",
+    images: ["/bilder/platzhalter.jpg"]
+  });
+}
+
+/* ===========================
+   GRID AUFBAUEN
+   =========================== */
+const calendar = document.getElementById("calendar");
+
+days.forEach((day, index) => {
+  const card = document.createElement("div");
+  card.className = "dayCard";
+  card.dataset.index = index;
+
+  const number = document.createElement("div");
+  number.className = "dayNumber";
+  number.textContent = index + 1;
+
+  card.appendChild(number);
+  calendar.appendChild(card);
+
+  // Klick -> Modal öffnen
+  card.addEventListener("click", () => openModal(index));
+});
+
+/* ===========================
+   MODAL
+   =========================== */
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalImage = document.getElementById("modalImage");
+
+let currentIndex = 0;
+let currentImageIndex = 0;
+let slideshowTimer = null;
+
+function openModal(i) {
+  currentIndex = i;
+  currentImageIndex = 0;
+
+  modalTitle.textContent = days[i].title;
+  modalText.textContent = days[i].text;
+
+  showImage();
+
+  modal.classList.remove("hidden");
+
+  startSlideshow();
+}
+
+function closeModal() {
+  modal.classList.add("hidden");
+  stopSlideshow();
+}
+document.getElementById("modalClose").addEventListener("click", closeModal);
+
+/* ===========================
+   NAVIGATION & SLIDESHOW
+   =========================== */
+
+function showImage() {
+  modalImage.src = days[currentIndex].images[currentImageIndex];
+}
+
+function nextImage() {
+  currentImageIndex =
+    (currentImageIndex + 1) % days[currentIndex].images.length;
+  showImage();
+}
+
+function prevImage() {
+  currentImageIndex =
+    (currentImageIndex - 1 + days[currentIndex].images.length) %
+    days[currentIndex].images.length;
+  showImage();
+}
+
+document.getElementById("nextImage").onclick = () => {
+  nextImage();
+  restartSlideshow();
+};
+
+document.getElementById("prevImage").onclick = () => {
+  prevImage();
+  restartSlideshow();
+};
+
+/* ===========================
+   SLIDESHOW TIMER
+   =========================== */
+function startSlideshow() {
+  stopSlideshow(); 
+  slideshowTimer = setInterval(nextImage, 3000);
+}
+
+function stopSlideshow() {
+  if (slideshowTimer) clearInterval(slideshowTimer);
+}
+
+function restartSlideshow() {
+  stopSlideshow();
+  startSlideshow();
+}
+
+/* ===========================
+   “Alle Türchen schließen”
+   =========================== */
+document.getElementById("resetOpen").addEventListener("click", closeModal);
+
+</script>
+
   </script>
 
 </body>
