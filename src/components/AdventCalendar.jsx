@@ -1,6 +1,6 @@
 // AdventCalendar.tsx
 import React, { useEffect, useMemo, useState } from "react";
-
+console.log("ICH WERDE VERWENDET");
 // 1. Konfiguration aller Türchen (aus deinem Build 1:1 übernommen)
 const daysConfig = [
   { day: 1, title: "1. December – Welcome", text: "... to my doodle advents calender!", images: ["/bilder/tuer1.jpg"] },
