@@ -70,7 +70,35 @@ main {
   column-count: 2;
   column-gap: 12px;
 }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+}
 
+.calendar-door {
+  background: #8b0000;
+  color: white;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.calendar-door:hover {
+  transform: scale(1.04);
+  background: #a40000;
+}
+    
 @media (min-width: 600px) {
   #calendar { column-count: 3; }
 }
@@ -204,7 +232,7 @@ main {
   <!-- HEADER -->
   <header id="header">
     <h1>Fraukes Adventskalender 2025</h1>
-
+<div id="calendar" class="calendar-grid"></div>
     <label for="simDate">Simuliertes Datum:</label>
     <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
 
