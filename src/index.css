@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Festliche Serifenschrift */
-.font-cinzel {
-  font-family: 'Cinzel Decorative', serif;
-}
