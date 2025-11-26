@@ -92,6 +92,8 @@
       max-width: 100%;
       object-fit: contain;
       display: block;
+      padding: 4px;
+      border-radius: 10px;
     }
 
     #modal.hidden { display: none; }
@@ -137,7 +139,9 @@
    #modalImageWrapper {
   position: relative;
   margin-top: 15px;
-  text-align: center;    /* NEU */
+  display: flex;
+     algin-items: center;
+  justify-content: center;
 }
 
 #modalImage {
@@ -206,25 +210,25 @@
 
 const daysConfig = [
   { day:1, title:"1. Dezember", text:"...", images:["bilder/tuer1.jpg"] },
-  { day:2, title:"2. Dezember", text:"...", images:["bilder/tuer2.jpg","bilder/tuer2b.jpg"] },
-  { day:3, title:"3. Dezember", text:"...", images:["bilder/tuer3.jpg","bilder/tuer3b.jpg" ] },
-   { day:4, title:"4. Dezember", text:"...", images:["bilder/tuer4.jpg","bilder/tuer4b.jpg" ] },
-   { day:5, title:"5. Dezember", text:"...", images:["bilder/tuer5.jpg"] },
-   { day:6, title:"6. Dezember", text:"...", images:["bilder/tuer6.jpg"] },
-   { day:7, title:"7. Dezember", text:"...", images:["bilder/tuer7.jpg"] },
-   { day:8, title:"8. Dezember", text:"...", images:["bilder/tuer8.jpg"] },
-   { day:9, title:"9. Dezember", text:"...", images:["bilder/tuer9.jpg"] },
-   { day:10, title:"10. Dezember", text:"...", images:["bilder/tuer10.jpg"] },
-   { day:11, title:"11. Dezember", text:"...", images:["bilder/tuer11.jpg"] },
-   { day:12, title:"12. Dezember", text:"...", images:["bilder/tuer12.jpg"] },
-   { day:13, title:"13. Dezember", text:"...", images:["bilder/tuer13.jpg"] },
-   { day:14, title:"14. Dezember", text:"...", images:["bilder/tuer14.jpg"] },
-   { day:15, title:"15. Dezember", text:"...", images:["bilder/tuer15.jpg"] },
-   { day:16, title:"16. Dezember", text:"...", images:["bilder/tuer16.jpg"] },
-   { day:17, title:"17. Dezember", text:"...", images:["bilder/tuer17.jpg", "bilder/tuer17b.jpg" ] },
-    { day:18, title:"18. Dezember", text:"...", images:["bilder/tuer18.jpg", "bilder/tuer18b.jpg" ] },
-    { day:19, title:"19. Dezember", text:"...", images:["bilder/tuer19.jpg"] },
-    { day:20, title:"20. Dezember", text:"...", images:["bilder/tuer20.jpg"] },
+  { day:2, title:"2. Dezember", text:"...", images:["bilder/tuer2.jpg","bilder/tuer2b.jpg", "bilder/tuer2c.jpg" ] },
+  { day:3, title:"3. Dezember", text:"...", images:["bilder/tuer3.jpg","bilder/tuer3b.jpg", "bilder/tuer3c.jpg" ] },
+   { day:4, title:"4. Dezember", text:"...", images:["bilder/tuer4.jpg","bilder/tuer4b.jpg", "bilder/tuer4c.jpg" ] },
+   { day:5, title:"5. Dezember", text:"...", images:["bilder/tuer5.jpg", "bilder/tuer5b.jpg", "bilder/tuer5c.jpg" ] },
+   { day:6, title:"6. Dezember", text:"...", images:["bilder/tuer6.jpg", "bilder/tuer6b.jpg", "bilder/tuer6c.jpg" ] },
+   { day:7, title:"7. Dezember", text:"...", images:["bilder/tuer7.jpg", "bilder/tuer7b.jpg", "bilder/tuer7c.jpg"] },
+   { day:8, title:"8. Dezember", text:"...", images:["bilder/tuer8.jpg", "bilder/tuer8b.jpg", "bilder/tuer8c.jpg"] },
+   { day:9, title:"9. Dezember", text:"...", images:["bilder/tuer9.jpg", "bilder/tuer9b.jpg", "bilder/tuer9c.jpg"] },
+   { day:10, title:"10. Dezember", text:"...", images:["bilder/tuer10.jpg", "bilder/tuer10b.jpg", "bilder/tuer10c.jpg"] },
+   { day:11, title:"11. Dezember", text:"...", images:["bilder/tuer11.jpg", "bilder/tuer11b.jpg", "bilder/tuer11c.jpg"] },
+   { day:12, title:"12. Dezember", text:"...", images:["bilder/tuer12.jpg", "bilder/tuer12b.jpg", "bilder/tuer12c.jpg"] },
+   { day:13, title:"13. Dezember", text:"...", images:["bilder/tuer13.jpg", "bilder/tuer13b.jpg", "bilder/tuer13c.jpg"] },
+   { day:14, title:"14. Dezember", text:"...", images:["bilder/tuer14.jpg", "bilder/tuer14b.jpg", "bilder/tuer14c.jpg"] },
+   { day:15, title:"15. Dezember", text:"...", images:["bilder/tuer15.jpg", "bilder/tuer15b.jpg", "bilder/tuer15c.jpg"] },
+   { day:16, title:"16. Dezember", text:"...", images:["bilder/tuer16.jpg", "bilder/tuer16b.jpg", "bilder/tuer16c.jpg"] },
+   { day:17, title:"17. Dezember", text:"...", images:["bilder/tuer17.jpg", "bilder/tuer17b.jpg", "bilder/tuer17c.jpg" ] },
+    { day:18, title:"18. Dezember", text:"...", images:["bilder/tuer18.jpg", "bilder/tuer18b.jpg", "bilder/tuer.18c.jpg" ] },
+    { day:19, title:"19. Dezember", text:"...", images:["bilder/tuer19.jpg", "bilder/tuer19b.jpg", "bilder/tuer19c.jpg"] },
+    { day:20, title:"20. Dezember", text:"...", images:["bilder/tuer20.jpg", "bilder/tuer10b.jpg", "bilder/tuer10c.jpg"] },
     { day:21, title:"21. Dezember", text:"...", images:["bilder/tuer21.jpg"] },
     { day:22, title:"22. Dezember", text:"...", images:["bilder/tuer20.jpg"] },
     { day:23, title:"23. Dezember", text:"...", images:["bilder/tuer23.jpg"] },
