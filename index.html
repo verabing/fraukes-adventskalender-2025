@@ -51,9 +51,21 @@
       width: 100%;
       max-width: min(70vw, 1100px);
       margin: 0 auto 40px;
-      column-count: 3;
+      column-count: 4;
       column-gap: 16px;
     }
+    
+@media (min-width: 1200px) {
+  #calendar { column-count: 5; }
+}
+
+@media (max-width: 900px) {
+  #calendar { column-count: 3; }
+}
+
+@media (max-width: 600px) {
+  #calendar { column-count: 2; }
+}
 
     .dayCard {
       break-inside: avoid;
@@ -76,6 +88,8 @@
 
     .dayThumb {
       width: 100%;
+      max-height: 180px;
+      object-fit: cover;
       display: block;
     }
 
@@ -125,8 +139,10 @@
     }
 
     #modalImage {
-      width: 100%;
-      border-radius: 10px;
+     max-width: 100%;
+  max-height: 70vh;    /* Höhe auf 70 % des Viewports begrenzen */
+  object-fit: contain; /* Bild komplett sichtbar, nichts abgeschnitten */
+  border-radius: 10px;
     }
 
     .navBtn {
