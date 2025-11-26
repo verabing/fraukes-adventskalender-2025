@@ -11,7 +11,191 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS kommt in Schritt 3 */
+   /* Grundlayout */
+body {
+  margin: 0;
+  color: white;
+  font-family: 'Cinzel Decorative', serif;
+  background: url('/bilder/hintergrund.jpg') center/cover fixed no-repeat;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.65);
+  padding: 15px 10px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  z-index: 20;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header input {
+  margin-top: 5px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+}
+
+header button {
+  margin-top: 5px;
+  padding: 6px 10px;
+  background: #b30000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+header button:hover {
+  background: #d00000;
+}
+
+/* Abstand unterhalb des Headers */
+main {
+  padding-top: 160px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Masonry Grid */
+#calendar {
+  column-count: 2;
+  column-gap: 12px;
+}
+
+@media (min-width: 600px) {
+  #calendar { column-count: 3; }
+}
+
+@media (min-width: 900px) {
+  #calendar { column-count: 4; }
+}
+
+@media (min-width: 1200px) {
+  #calendar { column-count: 5; }
+}
+
+/* Jede Kachel */
+.dayCard {
+  break-inside: avoid;
+  background: #7a0000;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  height: auto;
+  margin-bottom: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dayCard:hover {
+  transform: scale(1.02);
+}
+
+/* Tagesnummer */
+.dayNumber {
+  width: 100%;
+  padding: 30px 0;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Bild in einem geöffneten Türchen */
+.dayThumb {
+  width: 100%;
+  display: block;
+}
+
+/* MODAL */
+#modal.hidden { display: none; }
+
+#modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 50;
+}
+
+#modalContent {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+}
+
+/* Modal Close Button */
+#modalClose {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Modal Bilder */
+#modalImageWrapper {
+  position: relative;
+  margin-top: 20px;
+}
+
+#modalImage {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Slideshow Navigation */
+.navBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#prevImage { left: 8px; }
+#nextImage { right: 8px; }
+
+.navBtn:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Modal Text */
+#modalTitle {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#modalText {
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  line-height: 1.4;
+}
+
   </style>
 </head>
 
