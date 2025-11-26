@@ -14,7 +14,7 @@
     /* Hintergrund & Grundlayout */
     body {
       margin: 0;
-      background: url("bilder/hintergrund.jpg") center/cover fixed no-repeat;
+      background: url("public/bilder/hintergrund.jpg") center/cover fixed no-repeat;
       color: white;
       font-family: 'Cinzel Decorative', serif;
     }
@@ -224,13 +224,13 @@
 
     // Inhalt pro Tag – aktuell: ein Bild pro Tag
     // Wenn du später mehrere Bilder willst, einfach z.B.
-    // images: ["bilder/tuer1.jpg", "bilder/tuer1b.jpg"]
+    // images: ["public/bilder/tuer1.jpg", "public/bilder/tuer1b.jpg"]
     const days = [];
     for (let i = 1; i <= 24; i++) {
       days.push({
         title: `${i}. Dezember`,
         text: "Ein Adventsmoment für dich.",
-        images: [`bilder/tuer${i}.jpg`]
+        images: [`public/bilder/tuer${i}.jpg`]
       });
     }
 
