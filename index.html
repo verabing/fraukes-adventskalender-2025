@@ -2,8 +2,8 @@
 <html lang="de">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fraukes Adventskalender 2025</title>
 
   <!-- Google Fonts -->
@@ -11,235 +11,139 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
   <style>
-   /* Grundlayout */
-body {
-  margin: 0;
-  color: white;
-  font-family: 'Cinzel Decorative', serif;
-  background: url('/bilder/hintergrund.jpg') center/cover fixed no-repeat;
-}
+    body {
+      margin: 0;
+      background: url("public/bilder/hintergrund.jpg") center/cover fixed no-repeat;
+      color: white;
+      font-family: 'Cinzel Decorative', serif;
+    }
 
-/* Header */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.65);
-  padding: 15px 10px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-  z-index: 20;
-}
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 15px 10px;
+      text-align: center;
+      backdrop-filter: blur(6px);
+      z-index: 20;
+    }
 
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
 
-header input {
-  margin-top: 5px;
-  padding: 4px 6px;
-  border-radius: 4px;
-  border: none;
-  text-align: center;
-}
+    main {
+      padding-top: 160px;
+      width: 90%;
+      margin: 0 auto;
+    }
 
-header button {
-  margin-top: 5px;
-  padding: 6px 10px;
-  background: #b30000;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+    .calendar-grid {
+      display: grid;
+      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      max-width: 1200px;
+      margin: 40px auto;
+    }
 
-header button:hover {
-  background: #d00000;
-}
+    .dayCard {
+      background: #8b0000;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      height: 120px;
+      font-size: 2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
-/* Abstand unterhalb des Headers */
-main {
-  padding-top: 160px;
-  width: 90%;
-  margin: 0 auto;
-}
+    .dayCard:hover {
+      transform: scale(1.05);
+      background: #a40000;
+    }
 
-/* Masonry Grid */
-#calendar {
-  column-count: 2;
-  column-gap: 12px;
-}
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 40px auto;
-}
+    /* Modal */
+    #modal.hidden {
+      display: none;
+    }
 
-.calendar-door {
-  background: #8b0000;
-  color: white;
-  border-radius: 10px;
-  font-size: 2rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 150px;
-  cursor: pointer;
-  border: 1px solid rgba(255,255,255,0.2);
-  transition: transform 0.2s, background 0.2s;
-}
+    #modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 50;
+    }
 
-.calendar-door:hover {
-  transform: scale(1.04);
-  background: #a40000;
-}
-    
-@media (min-width: 600px) {
-  #calendar { column-count: 3; }
-}
+    #modalContent {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+      backdrop-filter: blur(8px);
+    }
 
-@media (min-width: 900px) {
-  #calendar { column-count: 4; }
-}
+    #modalClose {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
 
-@media (min-width: 1200px) {
-  #calendar { column-count: 5; }
-}
+    #modalImageWrapper {
+      position: relative;
+      margin-top: 20px;
+    }
 
-/* Jede Kachel */
-.dayCard {
-  break-inside: avoid;
-  background: #7a0000;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 10px;
-  height: auto;
-  margin-bottom: 12px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
+    #modalImage {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-.dayCard:hover {
-  transform: scale(1.02);
-}
+    .navBtn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.4);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+    }
 
-/* Tagesnummer */
-.dayNumber {
-  width: 100%;
-  padding: 30px 0;
-  font-size: 2rem;
-  text-align: center;
-  font-weight: bold;
-}
+    #prevImage {
+      left: 8px;
+    }
 
-/* Bild in einem geöffneten Türchen */
-.dayThumb {
-  width: 100%;
-  display: block;
-}
-
-/* MODAL */
-#modal.hidden { display: none; }
-
-#modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 50;
-}
-
-#modalContent {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(8px);
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  position: relative;
-}
-
-/* Modal Close Button */
-#modalClose {
-  position: absolute;
-  top: 8px;
-  right: 12px;
-  font-size: 26px;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* Modal Bilder */
-#modalImageWrapper {
-  position: relative;
-  margin-top: 20px;
-}
-
-#modalImage {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* Slideshow Navigation */
-.navBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-#prevImage { left: 8px; }
-#nextImage { right: 8px; }
-
-.navBtn:hover {
-  background: rgba(0,0,0,0.6);
-}
-
-/* Modal Text */
-#modalTitle {
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-#modalText {
-  text-align: center;
-  font-family: 'EB Garamond', serif;
-  line-height: 1.4;
-}
-
+    #nextImage {
+      right: 8px;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header id="header">
+  <header>
     <h1>Fraukes Adventskalender 2025</h1>
-
-    <label for="simDate">Simuliertes Datum:</label>
-    <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
-
-    <button id="resetOpen">Alle Türchen schließen</button>
   </header>
 
-  <!-- GRID (richtige Position) -->
   <main>
     <div id="calendar" class="calendar-grid"></div>
   </main>
@@ -260,146 +164,115 @@ main {
   </div>
 
   <script>
-  
-/* ===========================
-   DATEN FÜR 24 TÜRCHEN
-   =========================== */
-const days = [
-  {
-    title: "1. Dezember",
-    text: "Ein funkelnder Start in die Adventszeit.",
-    images: ["/public/bilder/tuer1.jpg"]
-  },
-  {
-    title: "2. Dezember",
-    text: "Winterruhe und leiser Zauber.",
-    images: ["/public/bilder/tuer2.jpg", "/public/bilder/tuer2b.jpg"]
-  },
-  {
-    title: "3. Dezember",
-    text: "Ein Moment für dich.",
-    images: ["/public/bilder/tuer3.jpg"]
-  },
-  // … bis Tag 24 – später können wir mehr einfügen
-];
+    /* ==============================
+       DATEN FÜR 24 TÜREN
+       ============================== */
 
-// Fallback: Wenn weniger als 24 Einträge → Dummy-Einträge
-while (days.length < 24) {
-  days.push({
-    title: `${days.length + 1}. Dezember`,
-    text: "Noch kein Inhalt eingetragen.",
-    images: ["/bilder/platzhalter.jpg"]
-  });
-}
+    const days = [];
 
-/* ===========================
-   GRID AUFBAUEN
-   =========================== */
-const calendar = document.getElementById("calendar");
+    for (let i = 1; i <= 24; i++) {
+      days.push({
+        title: `${i}. Dezember`,
+        text: "Ein schöner Adventsmoment.",
+        images: [
+          `public/bilder/tuer${i}.jpg`,
+          `public/bilder/tuer${i}b.jpg` // optional, falls vorhanden
+        ]
+      });
+    }
 
-days.forEach((day, index) => {
-  const card = document.createElement("div");
-  card.className = "dayCard";
-  card.dataset.index = index;
+    /* ==============================
+       GRID ERZEUGEN
+       ============================== */
 
-  const number = document.createElement("div");
-  number.className = "dayNumber";
-  number.textContent = index + 1;
+    const calendar = document.getElementById("calendar");
 
-  card.appendChild(number);
-  calendar.appendChild(card);
+    days.forEach((day, index) => {
+      const card = document.createElement("div");
+      card.className = "dayCard";
+      card.textContent = index + 1;
+      card.addEventListener("click", () => openModal(index));
+      calendar.appendChild(card);
+    });
 
-  // Klick -> Modal öffnen
-  card.addEventListener("click", () => openModal(index));
-});
+    /* ==============================
+       MODAL
+       ============================== */
 
-/* ===========================
-   MODAL
-   =========================== */
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modalTitle");
-const modalText = document.getElementById("modalText");
-const modalImage = document.getElementById("modalImage");
+    const modal = document.getElementById("modal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalText = document.getElementById("modalText");
+    const modalImage = document.getElementById("modalImage");
 
-let currentIndex = 0;
-let currentImageIndex = 0;
-let slideshowTimer = null;
+    let currentIndex = 0;
+    let currentImageIndex = 0;
+    let timer = null;
 
-function openModal(i) {
-  currentIndex = i;
-  currentImageIndex = 0;
+    function openModal(i) {
+      currentIndex = i;
+      currentImageIndex = 0;
 
-  modalTitle.textContent = days[i].title;
-  modalText.textContent = days[i].text;
+      modalTitle.textContent = days[i].title;
+      modalText.textContent = days[i].text;
 
-  showImage();
+      showImage();
+      modal.classList.remove("hidden");
 
-  modal.classList.remove("hidden");
+      startSlideshow();
+    }
 
-  startSlideshow();
-}
+    function closeModal() {
+      modal.classList.add("hidden");
+      stopSlideshow();
+    }
 
-function closeModal() {
-  modal.classList.add("hidden");
-  stopSlideshow();
-}
-document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalClose").addEventListener("click", closeModal);
 
-/* ===========================
-   NAVIGATION & SLIDESHOW
-   =========================== */
+    /* ==============================
+       SLIDESHOW
+       ============================== */
 
-function showImage() {
-  modalImage.src = days[currentIndex].images[currentImageIndex];
-}
+    function showImage() {
+      const imgs = days[currentIndex].images.filter(src => src);
+      modalImage.src = imgs[currentImageIndex];
+    }
 
-function nextImage() {
-  currentImageIndex =
-    (currentImageIndex + 1) % days[currentIndex].images.length;
-  showImage();
-}
+    function nextImage() {
+      const imgs = days[currentIndex].images.filter(src => src);
+      currentImageIndex = (currentImageIndex + 1) % imgs.length;
+      showImage();
+    }
 
-function prevImage() {
-  currentImageIndex =
-    (currentImageIndex - 1 + days[currentIndex].images.length) %
-    days[currentIndex].images.length;
-  showImage();
-}
+    function prevImage() {
+      const imgs = days[currentIndex].images.filter(src => src);
+      currentImageIndex =
+        (currentImageIndex - 1 + imgs.length) % imgs.length;
+      showImage();
+    }
 
-document.getElementById("nextImage").onclick = () => {
-  nextImage();
-  restartSlideshow();
-};
+    document.getElementById("nextImage").onclick = () => {
+      nextImage();
+      restartSlideshow();
+    };
 
-document.getElementById("prevImage").onclick = () => {
-  prevImage();
-  restartSlideshow();
-};
+    document.getElementById("prevImage").onclick = () => {
+      prevImage();
+      restartSlideshow();
+    };
 
-/* ===========================
-   SLIDESHOW TIMER
-   =========================== */
-function startSlideshow() {
-  stopSlideshow(); 
-  slideshowTimer = setInterval(nextImage, 3000);
-}
+    function startSlideshow() {
+      stopSlideshow();
+      timer = setInterval(nextImage, 3000);
+    }
 
-function stopSlideshow() {
-  if (slideshowTimer) clearInterval(slideshowTimer);
-}
+    function stopSlideshow() {
+      if (timer) clearInterval(timer);
+    }
 
-function restartSlideshow() {
-  stopSlideshow();
-  startSlideshow();
-}
-
-/* ===========================
-   “Alle Türchen schließen”
-   =========================== */
-document.getElementById("resetOpen").addEventListener("click", closeModal);
-
-
-
+    function restartSlideshow() {
+      stopSlideshow();
+      startSlideshow();
+    }
   </script>
 
 </body>
