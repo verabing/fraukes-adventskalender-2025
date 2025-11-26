@@ -11,9 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
   <style>
+    /* Hintergrund & Grundlayout */
     body {
       margin: 0;
-      background: url("public/bilder/hintergrund.jpg") center/cover fixed no-repeat;
+      background: url("bilder/hintergrund.jpg") center/cover fixed no-repeat;
       color: white;
       font-family: 'Cinzel Decorative', serif;
     }
@@ -23,7 +24,7 @@
       top: 0;
       width: 100%;
       background: rgba(0, 0, 0, 0.65);
-      padding: 15px 10px;
+      padding: 20px 10px 15px;
       text-align: center;
       backdrop-filter: blur(6px);
       z-index: 20;
@@ -31,41 +32,51 @@
 
     header h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 2.4rem;
+      letter-spacing: 0.08em;
     }
 
     main {
-      padding-top: 160px;
-      width: 90%;
-      margin: 0 auto;
+      padding-top: 140px;
+      display: flex;
+      justify-content: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-sizing: border-box;
+    }
+
+    .calendar-wrapper {
+      max-width: 900px; /* schmaler, mehr Luft rechts/links */
+      width: 100%;
     }
 
     .calendar-grid {
       display: grid;
-      gap: 15px;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      max-width: 1200px;
-      margin: 40px auto;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); /* 4–5 Karten */
+      gap: 22px;
+      margin: 50px auto 60px;
     }
 
     .dayCard {
       background: #8b0000;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: white;
-      height: 120px;
-      font-size: 2rem;
+      height: 160px;                 /* größer, damit später mehr Bild sichtbar ist */
+      font-size: 2.4rem;
       font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
     }
 
     .dayCard:hover {
-      transform: scale(1.05);
+      transform: translateY(-3px) scale(1.03);
       background: #a40000;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
     }
 
     /* Modal */
@@ -85,19 +96,20 @@
     }
 
     #modalContent {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 600px;
+      background: rgba(15, 15, 15, 0.9);
+      padding: 20px 20px 28px;
+      border-radius: 14px;
+      max-width: 640px;
       width: 100%;
       position: relative;
       backdrop-filter: blur(8px);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
     }
 
     #modalClose {
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: 12px;
       background: none;
       border: none;
       font-size: 26px;
@@ -105,25 +117,43 @@
       cursor: pointer;
     }
 
+    #modalTitle {
+      margin: 0 32px 10px 0;
+      text-align: left;
+      font-size: 1.6rem;
+    }
+
+    #modalText {
+      margin: 0 0 14px 0;
+      text-align: left;
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
     #modalImageWrapper {
       position: relative;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
     #modalImage {
       width: 100%;
       border-radius: 10px;
+      display: block;
+      max-height: 70vh;
+      object-fit: contain; /* passt Hoch- und Querformat gut ein */
+      background: rgba(0, 0, 0, 0.6);
     }
 
     .navBtn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       color: white;
       border: none;
       padding: 8px 12px;
-      border-radius: 50%;
+      border-radius: 999px;
       cursor: pointer;
       font-size: 18px;
     }
@@ -135,17 +165,33 @@
     #nextImage {
       right: 8px;
     }
+
+    .navBtn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.7rem;
+      }
+
+      .dayCard {
+        height: 130px;
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-
   <header>
-    <h1>Fraukes Adventskalender 2025</h1>
+    <h1>FRAUKES ADVENTSKALENDER 2025</h1>
   </header>
 
   <main>
-    <div id="calendar" class="calendar-grid"></div>
+    <div class="calendar-wrapper">
+      <div id="calendar" class="calendar-grid"></div>
+    </div>
   </main>
 
   <!-- MODAL -->
@@ -164,60 +210,70 @@
   </div>
 
   <script>
-    /* ==============================
-       DATEN FÜR 24 TÜREN
-       ============================== */
+    /* ===========================
+       Türchen-Daten
+       =========================== */
 
+    // Feste „zufällige“ Reihenfolge der Zahlen (1–24, jede Zahl genau einmal)
+    const doorOrder = [
+      5, 17, 2, 8, 1, 23,
+      12, 3, 14, 19, 9, 4,
+      16, 6, 13, 21, 20, 7,
+      18, 10, 11, 15, 22, 24
+    ];
+
+    // Inhalt pro Tag – aktuell: ein Bild pro Tag
+    // Wenn du später mehrere Bilder willst, einfach z.B.
+    // images: ["bilder/tuer1.jpg", "bilder/tuer1b.jpg"]
     const days = [];
-
     for (let i = 1; i <= 24; i++) {
       days.push({
         title: `${i}. Dezember`,
-        text: "Ein schöner Adventsmoment.",
-        images: [
-          `public/bilder/tuer${i}.jpg`,
-          `public/bilder/tuer${i}b.jpg` // optional, falls vorhanden
-        ]
+        text: "Ein Adventsmoment für dich.",
+        images: [`bilder/tuer${i}.jpg`]
       });
     }
 
-    /* ==============================
-       GRID ERZEUGEN
-       ============================== */
+    /* ===========================
+       Kalender aufbauen
+       =========================== */
 
     const calendar = document.getElementById("calendar");
 
-    days.forEach((day, index) => {
+    doorOrder.forEach((dayNumber) => {
+      const dayIndex = dayNumber - 1; // Index im days-Array
+
       const card = document.createElement("div");
       card.className = "dayCard";
-      card.textContent = index + 1;
-      card.addEventListener("click", () => openModal(index));
+      card.textContent = dayNumber;
+      card.addEventListener("click", () => openModal(dayIndex));
+
       calendar.appendChild(card);
     });
 
-    /* ==============================
-       MODAL
-       ============================== */
+    /* ===========================
+       Modal & Slideshow
+       =========================== */
 
     const modal = document.getElementById("modal");
     const modalTitle = document.getElementById("modalTitle");
     const modalText = document.getElementById("modalText");
     const modalImage = document.getElementById("modalImage");
 
-    let currentIndex = 0;
+    let currentDayIndex = 0;
     let currentImageIndex = 0;
-    let timer = null;
+    let slideshowTimer = null;
 
-    function openModal(i) {
-      currentIndex = i;
+    function openModal(dayIndex) {
+      currentDayIndex = dayIndex;
       currentImageIndex = 0;
 
-      modalTitle.textContent = days[i].title;
-      modalText.textContent = days[i].text;
+      const day = days[dayIndex];
+      modalTitle.textContent = day.title;
+      modalText.textContent = day.text;
 
       showImage();
       modal.classList.remove("hidden");
-
       startSlideshow();
     }
 
@@ -228,26 +284,41 @@
 
     document.getElementById("modalClose").addEventListener("click", closeModal);
 
-    /* ==============================
-       SLIDESHOW
-       ============================== */
+    // optional: Klick auf Hintergrund schließt Modal
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    function getCurrentImages() {
+      // Filtert leere Einträge raus, falls du später mal was leer lässt
+      return days[currentDayIndex].images.filter(Boolean);
+    }
 
     function showImage() {
-      const imgs = days[currentIndex].images.filter(src => src);
+      const imgs = getCurrentImages();
+      if (!imgs.length) {
+        modalImage.src = "";
+        return;
+      }
+      currentImageIndex = (currentImageIndex + imgs.length) % imgs.length;
       modalImage.src = imgs[currentImageIndex];
     }
 
     function nextImage() {
-      const imgs = days[currentIndex].images.filter(src => src);
+      const imgs = getCurrentImages();
+      if (!imgs.length) return;
       currentImageIndex = (currentImageIndex + 1) % imgs.length;
-      showImage();
+      modalImage.src = imgs[currentImageIndex];
     }
 
     function prevImage() {
-      const imgs = days[currentIndex].images.filter(src => src);
+      const imgs = getCurrentImages();
+      if (!imgs.length) return;
       currentImageIndex =
         (currentImageIndex - 1 + imgs.length) % imgs.length;
-      showImage();
+      modalImage.src = imgs[currentImageIndex];
     }
 
     document.getElementById("nextImage").onclick = () => {
@@ -262,11 +333,16 @@
 
     function startSlideshow() {
       stopSlideshow();
-      timer = setInterval(nextImage, 3000);
+      const imgs = getCurrentImages();
+      if (imgs.length <= 1) return; // keine Slideshow, wenn nur ein Bild
+      slideshowTimer = setInterval(nextImage, 3000);
     }
 
     function stopSlideshow() {
-      if (timer) clearInterval(timer);
+      if (slideshowTimer) {
+        clearInterval(slideshowTimer);
+        slideshowTimer = null;
+      }
     }
 
     function restartSlideshow() {
