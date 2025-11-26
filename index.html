@@ -5,20 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fraukes Adventskalender 2025</title>
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
   <style>
-    /* Grundlayout */
     body {
       margin: 0;
       color: white;
       font-family: 'Cinzel Decorative', serif;
-      background: url('/bilder/hintergrund.jpg') center/cover fixed no-repeat;
+      background: url('bilder/hintergrund.jpg') center/cover fixed no-repeat;
     }
 
-    /* Header */
     header {
       position: fixed;
       top: 0;
@@ -42,97 +39,46 @@
       justify-content: center;
       align-items: center;
       font-family: 'EB Garamond', serif;
-      font-size: 0.95rem;
     }
 
-    label {
-      margin-right: 4px;
-    }
-
-    header input {
-      padding: 4px 6px;
-      border-radius: 4px;
-      border: none;
-      text-align: center;
-    }
-
-    header button {
-      padding: 6px 10px;
-      background: #b30000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-family: 'EB Garamond', serif;
-    }
-
-    header button:hover {
-      background: #d00000;
-    }
-
-    /* Abstand unterhalb des Headers */
     main {
       padding-top: 160px;
       display: flex;
       justify-content: center;
     }
 
-    /* Masonry Grid */
     #calendar {
       width: 100%;
-      max-width: min(70vw, 1100px); /* 60–70% der Breite, zentriert */
+      max-width: min(70vw, 1100px);
       margin: 0 auto 40px;
-      column-count: 2;
+      column-count: 3;
       column-gap: 16px;
     }
 
-    @media (min-width: 600px) {
-      #calendar { column-count: 3; }
-    }
-
-    @media (min-width: 900px) {
-      #calendar { column-count: 4; }
-    }
-
-    @media (min-width: 1200px) {
-      #calendar { column-count: 5; }
-    }
-
-    /* Jede Kachel */
     .dayCard {
       break-inside: avoid;
       background: #7a0000;
-      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 12px;
       margin-bottom: 16px;
       overflow: hidden;
-      position: relative;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease;
     }
 
-    .dayCard:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
-    }
+    .dayCard:hover { transform: scale(1.02); }
 
-    /* Tagesnummer */
     .dayNumber {
-      width: 100%;
       padding: 40px 0;
       font-size: 2.2rem;
       text-align: center;
       font-weight: bold;
     }
 
-    /* Bild in einem geöffneten Türchen (Kachel) */
     .dayThumb {
       width: 100%;
       display: block;
-      height: auto;
     }
 
-    /* MODAL */
     #modal.hidden { display: none; }
 
     #modal {
@@ -154,11 +100,8 @@
       max-width: 650px;
       width: 100%;
       position: relative;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      font-family: 'EB Garamond', serif;
     }
 
-    /* Modal Close Button */
     #modalClose {
       position: absolute;
       top: 8px;
@@ -170,34 +113,22 @@
       cursor: pointer;
     }
 
-    /* Modal Titel + Text */
-    #modalTitle {
-      margin: 10px 0 6px;
-      text-align: center;
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1.4rem;
-    }
-
+    #modalTitle,
     #modalText {
       text-align: center;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      padding: 0 6px;
+      font-family: 'EB Garamond', serif;
     }
 
-    /* Modal Bilder */
     #modalImageWrapper {
       position: relative;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     #modalImage {
       width: 100%;
       border-radius: 10px;
-      display: block;
     }
 
-    /* Slideshow Navigation */
     .navBtn {
       position: absolute;
       top: 50%;
@@ -213,303 +144,172 @@
 
     #prevImage { left: 8px; }
     #nextImage { right: 8px; }
-
-    .navBtn:hover {
-      background: rgba(0,0,0,0.7);
-    }
-
-    /* Kleiner Hinweistext unter Bild (optional) */
-    #modalHint {
-      margin-top: 6px;
-      text-align: center;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
-  <header id="header">
-    <h1>Fraukes Adventskalender 2025</h1>
-    <div class="header-controls">
-      <label for="simDate">Simuliertes Datum:</label>
-      <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
-      <button id="applySimDate">Datum setzen</button>
-      <button id="resetOpen">Alle Türchen schließen</button>
-    </div>
-  </header>
 
-  <!-- GRID -->
-  <main>
-    <div id="calendar"></div>
-  </main>
+<header>
+  <h1>Fraukes Adventskalender 2025</h1>
 
-  <!-- MODAL -->
-  <div id="modal" class="hidden">
-    <div id="modalContent">
-      <button id="modalClose">✕</button>
-      <h2 id="modalTitle"></h2>
-      <p id="modalText"></p>
+  <div class="header-controls">
+    <label for="simDate">Test-Datum:</label>
+    <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
+    <button id="applySimDate">Setzen</button>
+    <button id="resetOpen">Reset</button>
+  </div>
+</header>
 
-      <div id="modalImageWrapper">
-        <button id="prevImage" class="navBtn">◀</button>
-        <img id="modalImage" src="" alt="">
-        <button id="nextImage" class="navBtn">▶</button>
-      </div>
-      <div id="modalHint">(Klick auf ◀ / ▶ oder einfach abwarten – Slideshow läuft automatisch.)</div>
+<main>
+  <div id="calendar"></div>
+</main>
+
+<div id="modal" class="hidden">
+  <div id="modalContent">
+    <button id="modalClose">✕</button>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+
+    <div id="modalImageWrapper">
+      <button id="prevImage" class="navBtn">◀</button>
+      <img id="modalImage" src="" alt="">
+      <button id="nextImage" class="navBtn">▶</button>
     </div>
   </div>
+</div>
 
-  <script>
-    /* ===========================
-       KONFIG – 24 TAGE
-       =========================== */
-    const daysConfig = [
-      { day: 1,  title: "1. Dezember",  text: "Ein leiser Anfang der Adventszeit.", images: ["/bilder/tuer1.jpg", "/bilder/tuer1b.jpg" ] },
-      { day: 2,  title: "2. Dezember",  text: "Ein Bild für einen ruhigen Atemzug.", images: ["/bilder/tuer2.jpg"] },
-      { day: 3,  title: "3. Dezember",  text: "Ein Moment nur für dich.", images: ["/bilder/tuer3.jpg"] },
-      { day: 4,  title: "4. Dezember",  text: "Ein Schritt langsamer als gestern.", images: ["/bilder/tuer4.jpg"] },
-      { day: 5,  title: "5. Dezember",  text: "Zwischen Alltag und Advent ein kleiner Riss im Vorhang.", images: ["/bilder/tuer5.jpg"] },
-      { day: 6,  title: "6. Dezember",  text: "Ein Gruß an das innere Kind.", images: ["/bilder/tuer6.jpg"] },
-      { day: 7,  title: "7. Dezember",  text: "Vielleicht heute nur schauen, nicht leisten.", images: ["/bilder/tuer7.jpg"] },
-      { day: 8,  title: "8. Dezember",  text: "Ein Lichtstrahl im Seitenblick.", images: ["/bilder/tuer8.jpg"] },
-      { day: 9,  title: "9. Dezember",  text: "Ein stilles Ja zum Unperfekten.", images: ["/bilder/tuer9.jpg"] },
-      { day:10,  title: "10. Dezember", text: "Zehn Tage, zehn kleine Zwischenräume.", images: ["/bilder/tuer10.jpg"] },
-      { day:11,  title: "11. Dezember", text: "Dieses Bild gehört nur dir – für einen Augenblick.", images: ["/bilder/tuer11.jpg"] },
-      { day:12,  title: "12. Dezember", text: "Halbzeit in Sicht, aber heute zählt nur dieser Tag.", images: ["/bilder/tuer12.jpg"] },
-      { day:13,  title: "13. Dezember", text: "Ein Bild als Störung im Autopiloten.", images: ["/bilder/tuer13.jpg"] },
-      { day:14,  title: "14. Dezember", text: "Vielleicht ein kleiner Umweg im Kopf.", images: ["/bilder/tuer14.jpg"] },
-      { day:15,  title: "15. Dezember", text: "Noch neun Tage. Kein Grund zur Eile.", images: ["/bilder/tuer15.jpg"] },
-      { day:16,  title: "16. Dezember", text: "Ein Platz, um innerlich kurz hinzusitzen.", images: ["/bilder/tuer16.jpg"] },
-      { day:17,  title: "17. Dezember", text: "Ein Farbklecks gegen das Funktionieren.", images: ["/bilder/tuer17.jpg"] },
-      { day:18,  title: "18. Dezember", text: "Vielleicht ist das genug für heute.", images: ["/bilder/tuer18.jpg"] },
-      { day:19,  title: "19. Dezember", text: "Ein Bild wie ein Seitenweg.", images: ["/bilder/tuer19.jpg"] },
-      { day:20,  title: "20. Dezember", text: "Noch vier Tage – und dieser hier.", images: ["/bilder/tuer20.jpg"] },
-      { day:21,  title: "21. Dezember", text: "Die längste Nacht, ein leiser Kern.", images: ["/bilder/tuer21.jpg"] },
-      { day:22,  title: "22. Dezember", text: "Zwischen Erwartung und Wirklichkeit: du.", images: ["/bilder/tuer22.jpg"] },
-      { day:23,  title: "23. Dezember", text: "Fast da, aber noch nicht – ein Zwischenbild.", images: ["/bilder/tuer23.jpg"] },
-      { day:24,  title: "24. Dezember", text: "Hier endet der Kalender, nicht die Geschichte.", images: ["/bilder/tuer24.jpg"] }
-    ];
+<script>
+/* ======================
+   TÜRCHEN: BILDER
+   ====================== */
 
-    /* Hier kannst du für einzelne Tage zusätzliche Bilder ergänzen,
-       z.B.: daysConfig[1].images.push("/bilder/tuer2b.jpg", "/bilder/tuer2c.jpg"); */
+const daysConfig = [
+  { day:1, title:"1. Dezember", text:"...", images:["bilder/tuer1.jpg"] },
+  { day:2, title:"2. Dezember", text:"...", images:["bilder/tuer2.jpg","bilder/tuer2b.jpg"] },
+  { day:3, title:"3. Dezember", text:"...", images:["bilder/tuer3.jpg"] },
+];
 
-    // Feste, zufällige Reihenfolge der Tage im Grid
-    const shuffledDays = [5,12,1,19,7,24,3,16,9,22,14,2,18,11,6,21,4,17,8,23,10,13,15,20];
+while (daysConfig.length < 24) {
+  const n = daysConfig.length + 1;
+  daysConfig.push({
+    day: n,
+    title: `${n}. Dezember`,
+    text: "Noch kein Inhalt.",
+    images:["bilder/platzhalter.jpg"]
+  });
+}
 
-    /* ===========================
-       DATUM / SIMULATION
-       =========================== */
-    const simInput = document.getElementById("simDate");
-    const applySimBtn = document.getElementById("applySimDate");
+/* SHUFFLE Reihenfolge */
+const shuffled = [5,12,1,19,7,24,3,16,9,22,14,2,18,11,6,21,4,17,8,23,10,13,15,20];
 
-    function parseSimDate() {
-      const value = simInput.value.trim();
-      if (!value) return null;
-      const parts = value.split(".");
-      if (parts.length !== 3) return null;
-      const [dd, mm, yyyy] = parts.map(p => parseInt(p, 10));
-      if (!dd || !mm || !yyyy) return null;
-      if (mm < 1 || mm > 12 || dd < 1 || dd > 31) return null;
-      return new Date(yyyy, mm - 1, dd);
-    }
+const STORAGE_PREFIX = "advent2025_";
+function isOpened(d) { return localStorage.getItem(STORAGE_PREFIX+d)==="1"; }
+function markOpened(d) { localStorage.setItem(STORAGE_PREFIX+d,"1"); }
 
-    function getCurrentDate() {
-      const sim = parseSimDate();
-      return sim || new Date();
-    }
+const calendar = document.getElementById("calendar");
 
-    applySimBtn.addEventListener("click", () => {
-      // Nichts Neuaufbauendes nötig – die Logik prüft das Datum beim Klick.
-      alert("Simuliertes Datum gesetzt (bzw. geprüft). Türchen richten sich jetzt danach.");
-    });
+/* SIMULIERTES DATUM */
+function parseSim() {
+  const v = document.getElementById("simDate").value.trim();
+  if (!v) return null;
+  const p = v.split(".");
+  if (p.length!==3) return null;
+  return new Date(+p[2], +p[1]-1, +p[0]);
+}
+function today() {
+  return parseSim() || new Date();
+}
 
-    /* ===========================
-       GRID AUFBAUEN
-       =========================== */
-    const calendar = document.getElementById("calendar");
+/* GRID BAUEN */
+shuffled.forEach(dayNum => {
+  const cfg = daysConfig.find(d => d.day === dayNum);
+  const card = document.createElement("div");
+  card.className = "dayCard";
+  card.dataset.day = dayNum;
 
-    // Map Tag -> Config
-    const configByDay = {};
-    daysConfig.forEach(cfg => { configByDay[cfg.day] = cfg; });
+  if (isOpened(dayNum)) {
+    const img = document.createElement("img");
+    img.className = "dayThumb";
+    img.src = cfg.images[0];
+    card.appendChild(img);
+  } else {
+    const num = document.createElement("div");
+    num.className = "dayNumber";
+    num.textContent = dayNum;
+    card.appendChild(num);
+  }
 
-    // LocalStorage Schlüssel
-    const STORAGE_PREFIX = "frauke_advent_2025_opened_";
+  card.addEventListener("click", () => openDoor(dayNum, card));
+  calendar.appendChild(card);
+});
 
-    function isDoorOpened(dayNumber) {
-      return localStorage.getItem(STORAGE_PREFIX + dayNumber) === "1";
-    }
+/* MODAL */
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+const modalImage = document.getElementById("modalImage");
 
-    function markDoorOpened(dayNumber) {
-      localStorage.setItem(STORAGE_PREFIX + dayNumber, "1");
-    }
+let currentDay = null;
+let currentIndex = 0;
 
-    // Karten erzeugen – in der festen gemischten Reihenfolge
-    shuffledDays.forEach(dayNumber => {
-      const cfg = configByDay[dayNumber];
-      if (!cfg) return;
+function canOpen(day) {
+  const d = today();
+  const lock = new Date(d.getFullYear(), 11, day);
+  return d >= lock;
+}
 
-      const card = document.createElement("div");
-      card.className = "dayCard";
-      card.dataset.day = dayNumber.toString();
+function openDoor(day, card) {
+  const cfg = daysConfig.find(d => d.day === day);
 
-      if (isDoorOpened(dayNumber) && cfg.images && cfg.images.length > 0) {
-        // Bereits geöffnet → Bild anzeigen
-        const img = document.createElement("img");
-        img.className = "dayThumb";
-        img.src = cfg.images[0]; // Original-Bild ohne a/b/c
-        img.alt = cfg.title || `Tag ${dayNumber}`;
-        card.appendChild(img);
-      } else {
-        // Noch nicht geöffnet → Nummer zeigen
-        const number = document.createElement("div");
-        number.className = "dayNumber";
-        number.textContent = dayNumber;
-        card.appendChild(number);
-      }
+  if (!canOpen(day)) {
+    modalTitle.textContent = "Not yet!";
+    modalText.textContent = "";
+    modalImage.src = "";
+    document.getElementById("prevImage").style.display="none";
+    document.getElementById("nextImage").style.display="none";
+    modal.classList.remove("hidden");
+    return;
+  }
 
-      card.addEventListener("click", () => handleDoorClick(dayNumber, card));
+  currentDay = day;
+  currentIndex = 0;
+  modalTitle.textContent = cfg.title;
+  modalText.textContent = cfg.text;
+  modalImage.src = cfg.images[0];
+  modal.classList.remove("hidden");
 
-      calendar.appendChild(card);
-    });
+  markOpened(day);
 
-    /* ===========================
-       MODAL & SLIDESHOW
-       =========================== */
-    const modal = document.getElementById("modal");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalText = document.getElementById("modalText");
-    const modalImage = document.getElementById("modalImage");
-    const closeBtn = document.getElementById("modalClose");
-    const nextBtn = document.getElementById("nextImage");
-    const prevBtn = document.getElementById("prevImage");
+  // Karte umwandeln
+  card.innerHTML = "";
+  const img = document.createElement("img");
+  img.className = "dayThumb";
+  img.src = cfg.images[0];
+  card.appendChild(img);
+}
 
-    let currentDay = null;
-    let currentImageIndex = 0;
-    let slideshowTimer = null;
+function closeModal() {
+  modal.classList.add("hidden");
+}
 
-    function canOpenDay(dayNumber) {
-      const today = getCurrentDate();
-      const year = today.getFullYear();
-      const doorDate = new Date(year, 11, dayNumber); // Dezember = 11
-      const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-      return todayOnly >= doorDate;
-    }
+document.getElementById("modalClose").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if (e.target===modal) closeModal(); });
 
-    function handleDoorClick(dayNumber, card) {
-      if (!canOpenDay(dayNumber)) {
-        alert("Dieses Türchen ist noch geschlossen.");
-        return;
-      }
+document.getElementById("nextImage").onclick = () => slide(+1);
+document.getElementById("prevImage").onclick = () => slide(-1);
 
-      const cfg = configByDay[dayNumber];
-      if (!cfg) return;
+function slide(dir) {
+  const cfg = daysConfig.find(d => d.day === currentDay);
+  currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
+  modalImage.src = cfg.images[currentIndex];
+}
 
-      currentDay = dayNumber;
-      currentImageIndex = 0;
+/* RESET */
+document.getElementById("resetOpen").onclick = () => {
+  for (let i=1;i<=24;i++) localStorage.removeItem(STORAGE_PREFIX+i);
+  location.reload();
+};
+</script>
 
-      modalTitle.textContent = cfg.title || `${dayNumber}. Dezember`;
-      modalText.textContent = cfg.text || "";
-
-      if (!cfg.images || cfg.images.length === 0) {
-        cfg.images = ["/bilder/platzhalter.jpg"];
-      }
-
-      showCurrentImage();
-      modal.classList.remove("hidden");
-      startSlideshow();
-
-      // Türchen als "geöffnet" merken und Bild in der Kachel anzeigen
-      markDoorOpened(dayNumber);
-      updateCardToOpened(card, cfg);
-    }
-
-    function updateCardToOpened(card, cfg) {
-      card.innerHTML = "";
-      const img = document.createElement("img");
-      img.className = "dayThumb";
-      img.src = cfg.images[0]; // Original-Bild
-      img.alt = cfg.title || "";
-      card.appendChild(img);
-    }
-
-    function showCurrentImage() {
-      const cfg = configByDay[currentDay];
-      if (!cfg || !cfg.images || cfg.images.length === 0) return;
-      modalImage.src = cfg.images[currentImageIndex];
-      modalImage.alt = cfg.title || "";
-    }
-
-    function nextImage() {
-      const cfg = configByDay[currentDay];
-      if (!cfg || !cfg.images || cfg.images.length === 0) return;
-      currentImageIndex = (currentImageIndex + 1) % cfg.images.length;
-      showCurrentImage();
-    }
-
-    function prevImage() {
-      const cfg = configByDay[currentDay];
-      if (!cfg || !cfg.images || cfg.images.length === 0) return;
-      currentImageIndex =
-        (currentImageIndex - 1 + cfg.images.length) % cfg.images.length;
-      showCurrentImage();
-    }
-
-    function startSlideshow() {
-      stopSlideshow();
-      slideshowTimer = setInterval(nextImage, 3000);
-    }
-
-    function stopSlideshow() {
-      if (slideshowTimer) {
-        clearInterval(slideshowTimer);
-        slideshowTimer = null;
-      }
-    }
-
-    function restartSlideshow() {
-      stopSlideshow();
-      startSlideshow();
-    }
-
-    nextBtn.addEventListener("click", () => {
-      nextImage();
-      restartSlideshow();
-    });
-
-    prevBtn.addEventListener("click", () => {
-      prevImage();
-      restartSlideshow();
-    });
-
-    function closeModal() {
-      modal.classList.add("hidden");
-      stopSlideshow();
-    }
-
-    closeBtn.addEventListener("click", closeModal);
-
-    // Klick auf den dunklen Hintergrund schließt das Modal
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-
-    /* ===========================
-       ALLE TÜRCHEN SCHLIESSEN
-       =========================== */
-    const resetBtn = document.getElementById("resetOpen");
-
-    resetBtn.addEventListener("click", () => {
-      // LocalStorage leeren
-      for (let day = 1; day <= 24; day++) {
-        localStorage.removeItem(STORAGE_PREFIX + day);
-      }
-      // Seite neu laden, damit wieder nur Zahlen angezeigt werden
-      location.reload();
-    });
-  </script>
 </body>
 </html>
