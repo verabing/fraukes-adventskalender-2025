@@ -80,6 +80,12 @@
   #calendar { column-count: 2; }
 }
 
+    .modal-icon {
+  height: 3rem; 
+  width: auto;
+  margin-right: 6px;
+  vertical-align: middle;
+}
     .dayCard {
       break-inside: avoid;
       background: #7a0000;
@@ -329,7 +335,10 @@ function openDoor(day, card) {
   const cfg = daysConfig.find(d => d.day === day);
 
   if (!canOpen(day)) {
-    modalTitle.textContent =  "🎁 Not yet! 🎅";
+    modalTitle.innerHTML = `
+  <img src="bilder/reindeer_blank.png" class="modal-icon"> 
+  Noch nicht! 
+`;
     modalText.innerHTML = "";
     modalImage.src = "";
     document.getElementById("prevImage").style.display="none";
