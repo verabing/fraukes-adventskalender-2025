@@ -310,8 +310,8 @@ function openDoor(day, card) {
   const cfg = daysConfig.find(d => d.day === day);
 
   if (!canOpen(day)) {
-    modalTitle.textContent = "Not yet!";
-    modalText.textContent = "";
+    modalTitle.textContent =  "🎁 Not yet! 🎅";
+    modalText.innerHTML = "";
     modalImage.src = "";
     document.getElementById("prevImage").style.display="none";
     document.getElementById("nextImage").style.display="none";
@@ -322,7 +322,7 @@ function openDoor(day, card) {
   currentDay = day;
   currentIndex = 0;
   modalTitle.textContent = cfg.title;
-  modalText.textContent = cfg.text;
+  modalText.innerHTML = cfg.text;
   modalImage.src = cfg.images[0];
   modal.classList.remove("hidden");
 
