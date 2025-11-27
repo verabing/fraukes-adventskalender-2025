@@ -81,10 +81,12 @@
 }
 
     .modal-icon {
-  height: 5rem; 
-  width: auto;
-  margin-right: 6px;
-  vertical-align: middle;
+ max-width: 70%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  horizontal-align: middle;
 }
     .dayCard {
       break-inside: avoid;
@@ -336,8 +338,7 @@ function openDoor(day, card) {
 
   if (!canOpen(day)) {
     modalTitle.innerHTML = `
-  <img src="bilder/reindeer_blank.png" class="modal-icon"> 
-  Not Yet! 
+  <img src="bilder/reindeer_blank.png" class="modal-icon" alt="Not Yet!"> 
 `;
     modalText.innerHTML = "";
     modalImage.src = "";
