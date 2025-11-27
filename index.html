@@ -213,7 +213,7 @@ const daysConfig = [
   Velkommen til julekalenderen min!
   Welcome to my christmas calendar!`, images:["bilder/tuer1.jpg","bilder/tuer1b.jpg", "bilder/tuer1c.jpg"] },
   { day:2, title:"2. Dezember", text:"text <br> text. <br> texty", images:["bilder/tuer2.jpg","bilder/tuer2b.jpg", "bilder/tuer2c.jpg" ] },
-  { day:3, title:"3. Dezember", text:"...", images:["bilder/tuer3.jpg","bilder/tuer3b.jpg", "bilder/tuer3c.jpg" ] },
+  { day:3, title:"3. Dezember", text:"text 1","text 2 <br> umbruch","text 3", images:["bilder/tuer3.jpg","bilder/tuer3b.jpg", "bilder/tuer3c.jpg" ] },
    { day:4, title:"4. Dezember", text:"...", images:["bilder/tuer4.jpg","bilder/tuer4b.jpg", "bilder/tuer4c.jpg" ] },
    { day:5, title:"5. Dezember", text:"...", images:["bilder/tuer5.jpg", "bilder/tuer5b.jpg", "bilder/tuer5c.jpg" ] },
    { day:6, title:"6. Dezember", text:"...", images:["bilder/tuer6.jpg", "bilder/tuer6b.jpg", "bilder/tuer6c.jpg" ] },
@@ -322,13 +322,21 @@ function openDoor(day, card) {
   currentDay = day;
   currentIndex = 0;
   modalTitle.textContent = cfg.title;
-  modalText.innerHTML = cfg.text;
+  
+ // TEXT: String oder Array automatisch, ob ein Text oder mehrere
+  
+  if (Array.isArray(cfg.text)) {
+    modalText.innerHTML = cfg.text[0] || "";
+  } else {
+    modalText.innerHTML = cfg.text || "";
+  }
+
   modalImage.src = cfg.images[0];
   modal.classList.remove("hidden");
 
   markOpened(day);
 
-  // Karte umwandeln
+  // Türchen im thumbnail umwandeln
   card.innerHTML = "";
   const img = document.createElement("img");
   img.className = "dayThumb";
@@ -349,7 +357,15 @@ document.getElementById("prevImage").onclick = () => slide(-1);
 function slide(dir) {
   const cfg = daysConfig.find(d => d.day === currentDay);
   currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
+  
   modalImage.src = cfg.images[currentIndex];
+
+  // TEXT: String oder Array automatisch, ob ein Text oder mehrere
+  if (Array.isArray(cfg.text)) {
+    modalText.innerHTML = cfg.text[currentIndex] || "";
+  } else {
+    modalText.innerHTML = cfg.text || "";
+  }  
 }
 
 /* RESET */
