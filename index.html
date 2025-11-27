@@ -34,7 +34,11 @@
 
     header h1 {
       margin: 0 0 8px;
+       display: flex;
+  align-items: center;
+  justify-content: center;
       font-size: 2rem;
+       gap: 8px;     /* kleiner Abstand zwischen Rentier und Text */
     }
 
     .header-controls {
@@ -182,8 +186,8 @@
 <body>
 
 <header>
-    <img src="bilder/reindeer_blank.png" alt="" class="header-icon">
-  <h1>Fraukes Adventskalender 2025</h1>
+  <h1>  <img src="bilder/reindeer_blank.png" alt="" class="header-icon">
+  Fraukes Adventskalender 2025</h1>
 
   <div class="header-controls">
     <label for="simDate">Willkommen ** Velkommen ** Welcome to my christmas calender! Test-Datum:</label>
