@@ -252,11 +252,11 @@
 </div>
 
  
-
 <script>
 // =====================================
 // SPRACHFUNKTIONEN
 // =====================================
+
 let currentLang = localStorage.getItem("calendar_lang") || "de";
 
 function getLangData() {
@@ -370,7 +370,89 @@ let currentIndex = 0;
 
 function canOpen(day) {
   const d = today();
-  const lock = new Date(d.getFullYear(), 11,
+  const lock = new Date(d.getFullYear(), 11, day);
+  return d >= lock;
+}
+
+function openDoor(day, card) {
+  const cfg = daysConfig.find(d => d.day === day);
+
+  if (!canOpen(day)) {
+    modalTitle.innerHTML = `<img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!">`;
+    modalText.innerHTML = "";
+    modalImage.src = "";
+    document.getElementById("prevImage").style.display = "none";
+    document.getElementById("nextImage").style.display = "none";
+    modal.classList.remove("hidden");
+    return;
+  }
+
+  currentDay = day;
+  currentIndex = 0;
+
+  const L = getLangData();
+  const dayData = L.days[day];
+
+  modalTitle.innerHTML = dayData.title;
+  modalText.innerHTML = Array.isArray(dayData.text)
+    ? dayData.text[0] || ""
+    : dayData.text || "";
+
+  modalImage.src = cfg.images[0];
+  modal.classList.remove("hidden");
+
+  markOpened(day);
+
+  card.innerHTML = "";
+  const img = document.createElement("img");
+  img.className = "dayThumb";
+  img.src = cfg.images[0];
+  card.appendChild(img);
+}
+
+document.getElementById("modalClose").addEventListener("click", () => modal.classList.add("hidden"));
+modal.addEventListener("click", e => { if (e.target === modal) modal.classList.add("hidden"); });
+
+document.getElementById("nextImage").onclick = () => slide(+1);
+document.getElementById("prevImage").onclick = () => slide(-1);
+
+function slide(dir) {
+  const cfg = daysConfig.find(d => d.day === currentDay);
+  currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
+
+  modalImage.src = cfg.images[currentIndex];
+
+  const L = getLangData();
+  const dayData = L.days[currentDay];
+
+  modalText.innerHTML = Array.isArray(dayData.text)
+    ? dayData.text[currentIndex] || ""
+    : dayData.text || "";
+}
+
+// =====================================
+// RESET
+// =====================================
+document.getElementById("resetOpen").onclick = () => {
+  for (let i=1; i<=24; i++) localStorage.removeItem(STORAGE_PREFIX+i);
+  location.reload();
+};
+
+// =====================================
+// SWIPE NAVIGATION
+// =====================================
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+modalImage.addEventListener("touchstart", e => touchStartX = e.changedTouches[0].screenX);
+modalImage.addEventListener("touchend", e => {
+  touchEndX = e.changedTouches[0].screenX;
+  const diff = touchEndX - touchStartX;
+  if (Math.abs(diff) < 40) return;
+  slide(diff > 0 ? -1 : +1);
+});
+</script>
 
 
 </body>
