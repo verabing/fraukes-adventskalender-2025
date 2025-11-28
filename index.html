@@ -254,10 +254,9 @@
  
 
 <script>
- // =====================================
-// SPRACHFUNKTIONEN (GANZ WICHTIG)
 // =====================================
-
+// SPRACHFUNKTIONEN
+// =====================================
 let currentLang = localStorage.getItem("calendar_lang") || "de";
 
 function getLangData() {
@@ -273,40 +272,16 @@ function setLanguage(lang) {
   const L = getLangData();
   document.querySelector("header h1").textContent = L.headerTitle;
 }
-// ===========================
-// SPRACH-BUTTON KLICKS
-// ===========================
 
 document.querySelectorAll("#langSelect button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    setLanguage(btn.dataset.lang);
-  });
-});
-
-// Sprache beim Laden setzen
-setLanguage(currentLang);
-  /* ======================
-   TÜRCHEN: BILDER
-   ====================== */
-let currentLang = localStorage.getItem("calendar_lang") || "de";
-
-function getLangData() {
-  return currentLang === "de" ? lang_de :
-         currentLang === "en" ? lang_en :
-         lang_no;
-}
-
-function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("calendar_lang", lang);
-}
-document.querySelectorAll("#langSelect button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    setLanguage(btn.dataset.lang);
-  });
+  btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
 });
 
 setLanguage(currentLang);
+
+// =====================================
+// TÜRCHEN: BILDER
+// =====================================
 
 const daysConfig = [
   { day: 1,  images: ["bilder/tuer1.jpg","bilder/tuer1b.jpg","bilder/tuer1c.jpg"] },
@@ -335,17 +310,18 @@ const daysConfig = [
   { day: 24, images: ["bilder/tuer24.jpg","bilder/tuer24b.jpg","bilder/tuer24c.jpg"] }
 ];
 
+// =====================================
+// SHUFFLE + GRID BAUEN
+// =====================================
 
-/* SHUFFLE Reihenfolge */
 const shuffled = [5,12,1,19,7,24,3,16,9,22,14,2,18,11,6,21,4,17,8,23,10,13,15,20];
-
 const STORAGE_PREFIX = "advent2025_";
+
 function isOpened(d) { return localStorage.getItem(STORAGE_PREFIX+d)==="1"; }
 function markOpened(d) { localStorage.setItem(STORAGE_PREFIX+d,"1"); }
 
 const calendar = document.getElementById("calendar");
 
-/* SIMULIERTES DATUM */
 function parseSim() {
   const v = document.getElementById("simDate").value.trim();
   if (!v) return null;
@@ -353,11 +329,11 @@ function parseSim() {
   if (p.length!==3) return null;
   return new Date(+p[2], +p[1]-1, +p[0]);
 }
+
 function today() {
   return parseSim() || new Date();
 }
 
-/* GRID BAUEN */
 shuffled.forEach(dayNum => {
   const cfg = daysConfig.find(d => d.day === dayNum);
   const card = document.createElement("div");
@@ -380,7 +356,10 @@ shuffled.forEach(dayNum => {
   calendar.appendChild(card);
 });
 
-/* MODAL */
+// =====================================
+// MODAL
+// =====================================
+
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
 const modalText = document.getElementById("modalText");
@@ -391,111 +370,8 @@ let currentIndex = 0;
 
 function canOpen(day) {
   const d = today();
-  const lock = new Date(d.getFullYear(), 11, day);
-  return d >= lock;
-}
+  const lock = new Date(d.getFullYear(), 11,
 
-function openDoor(day, card) {
-  const cfg = daysConfig.find(d => d.day === day);
-
-  if (!canOpen(day)) {
-    modalTitle.innerHTML = `<img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!">`;
-    modalText.innerHTML = "";
-    modalImage.src = "";
-    document.getElementById("prevImage").style.display = "none";
-    document.getElementById("nextImage").style.display = "none";
-    modal.classList.remove("hidden");
-    return;
-  }
-
-  currentDay = day;
-  currentIndex = 0;
-
-  const L = getLangData();
-  const dayData = L.days[day];
-
-  modalTitle.innerHTML = dayData.title;
-
-  if (Array.isArray(dayData.text)) {
-    modalText.innerHTML = dayData.text[0] || "";
-  } else {
-    modalText.innerHTML = dayData.text || "";
-  }
-
-  modalImage.src = cfg.images[0];
-  modal.classList.remove("hidden");
-
-  markOpened(day);
-
-  card.innerHTML = "";
-  const img = document.createElement("img");
-  img.className = "dayThumb";
-  img.src = cfg.images[0];
-  card.appendChild(img);
-}
-function closeModal() {
-  modal.classList.add("hidden");
-}
-
-document.getElementById("modalClose").addEventListener("click", closeModal);
-modal.addEventListener("click", e => { if (e.target===modal) closeModal(); });
-
-document.getElementById("nextImage").onclick = () => slide(+1);
-document.getElementById("prevImage").onclick = () => slide(-1);
-
-function slide(dir) {
-  const cfg = daysConfig.find(d => d.day === currentDay);
-  currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
-
-  modalImage.src = cfg.images[currentIndex];
-
-  const L = getLangData();
-  const dayData = L.days[currentDay];
-
-  if (Array.isArray(dayData.text)) {
-    modalText.innerHTML = dayData.text[currentIndex] || "";
-  } else {
-    modalText.innerHTML = dayData.text || "";
-  }
-}
-
-/* RESET */
-document.getElementById("resetOpen").onclick = () => {
-  for (let i=1;i<=24;i++) localStorage.removeItem(STORAGE_PREFIX+i);
-  location.reload();
-};
-  /* ===========================
-   SWIPE NAVIGATION (Handy)
-   =========================== */
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-modalImage.addEventListener("touchstart", function(e) {
-  touchStartX = e.changedTouches[0].screenX;
-});
-
-modalImage.addEventListener("touchend", function(e) {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
-
-function handleSwipe() {
-  const diff = touchEndX - touchStartX;
-
-  // minimale Wischstrecke (sonst löst jeder Tap aus)
-  if (Math.abs(diff) < 40) return;
-
-  if (diff > 0) {
-    // rechts -> links = vorheriges Bild
-    slide(-1);
-  } else {
-    // links -> rechts = nächstes Bild
-    slide(+1);
-  }
-}
-
-</script>
 
 </body>
 </html>
