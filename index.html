@@ -49,6 +49,7 @@
       align-items: center;
       font-family: 'EB Garamond', serif;
     }
+    
 .header-icon {
   height: 1.8rem;       /* gleiche Höhe wie die Schrift */
   width: auto;
@@ -200,9 +201,7 @@
 
 <header>
   <h1>    Fraukes Adventskalender 2025</h1>
-<a href="https://verabing.github.io/fraukes-adventskalender-2025/frauke_advent_calendar_english_outlook_compatible.ics"
-   class="calendar-link">
-  📅 Add daily Advent Calendar reminders
+ 
 </a>
   <div class="header-controls">
     <label for="simDate"> Test-Datum:</label>
@@ -210,6 +209,11 @@
     <button id="applySimDate">Setzen</button>
     <button id="resetOpen">Reset</button>
   </div>
+   <div id="langSelect">
+  <button data-lang="de">🇩🇪</button>
+  <button data-lang="en">🇬🇧</button>
+  <button data-lang="no">🇳🇴</button>
+</div>
 </header>
 
 <main>
