@@ -1,0 +1,341 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//Frauke Advent Calendar//EN
+BEGIN:VEVENT
+UID:20251201T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251201T090000
+DTEND;TZID=Europe/Berlin:20251201T090100
+SUMMARY:🎄 Your Advent Calendar Door 1 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251202T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251202T090000
+DTEND;TZID=Europe/Berlin:20251202T090100
+SUMMARY:🎄 Your Advent Calendar Door 2 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251203T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251203T090000
+DTEND;TZID=Europe/Berlin:20251203T090100
+SUMMARY:🎄 Your Advent Calendar Door 3 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251204T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251204T090000
+DTEND;TZID=Europe/Berlin:20251204T090100
+SUMMARY:🎄 Your Advent Calendar Door 4 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251205T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251205T090000
+DTEND;TZID=Europe/Berlin:20251205T090100
+SUMMARY:🎄 Your Advent Calendar Door 5 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251206T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251206T090000
+DTEND;TZID=Europe/Berlin:20251206T090100
+SUMMARY:🎄 Your Advent Calendar Door 6 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251207T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251207T090000
+DTEND;TZID=Europe/Berlin:20251207T090100
+SUMMARY:🎄 Your Advent Calendar Door 7 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251208T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251208T090000
+DTEND;TZID=Europe/Berlin:20251208T090100
+SUMMARY:🎄 Your Advent Calendar Door 8 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251209T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251209T090000
+DTEND;TZID=Europe/Berlin:20251209T090100
+SUMMARY:🎄 Your Advent Calendar Door 9 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251210T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251210T090000
+DTEND;TZID=Europe/Berlin:20251210T090100
+SUMMARY:🎄 Your Advent Calendar Door 10 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251211T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251211T090000
+DTEND;TZID=Europe/Berlin:20251211T090100
+SUMMARY:🎄 Your Advent Calendar Door 11 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251212T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251212T090000
+DTEND;TZID=Europe/Berlin:20251212T090100
+SUMMARY:🎄 Your Advent Calendar Door 12 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251213T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251213T090000
+DTEND;TZID=Europe/Berlin:20251213T090100
+SUMMARY:🎄 Your Advent Calendar Door 13 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251214T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251214T090000
+DTEND;TZID=Europe/Berlin:20251214T090100
+SUMMARY:🎄 Your Advent Calendar Door 14 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251215T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251215T090000
+DTEND;TZID=Europe/Berlin:20251215T090100
+SUMMARY:🎄 Your Advent Calendar Door 15 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251216T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251216T090000
+DTEND;TZID=Europe/Berlin:20251216T090100
+SUMMARY:🎄 Your Advent Calendar Door 16 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251217T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251217T090000
+DTEND;TZID=Europe/Berlin:20251217T090100
+SUMMARY:🎄 Your Advent Calendar Door 17 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251218T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251218T090000
+DTEND;TZID=Europe/Berlin:20251218T090100
+SUMMARY:🎄 Your Advent Calendar Door 18 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251219T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251219T090000
+DTEND;TZID=Europe/Berlin:20251219T090100
+SUMMARY:🎄 Your Advent Calendar Door 19 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251220T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251220T090000
+DTEND;TZID=Europe/Berlin:20251220T090100
+SUMMARY:🎄 Your Advent Calendar Door 20 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251221T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251221T090000
+DTEND;TZID=Europe/Berlin:20251221T090100
+SUMMARY:🎄 Your Advent Calendar Door 21 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251222T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251222T090000
+DTEND;TZID=Europe/Berlin:20251222T090100
+SUMMARY:🎄 Your Advent Calendar Door 22 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251223T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251223T090000
+DTEND;TZID=Europe/Berlin:20251223T090100
+SUMMARY:🎄 Your Advent Calendar Door 23 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20251224T090000-advent@verabing
+DTSTAMP:20251120T080000Z
+DTSTART;TZID=Europe/Berlin:20251224T090000
+DTEND;TZID=Europe/Berlin:20251224T090100
+SUMMARY:🎄 Your Advent Calendar Door 24 is now open!
+DESCRIPTION:Open today’s door:\nhttps://verabing.github.io/fraukes-adventskalender-2025/
+ORGANIZER;CN=Frauke's Advent Calendar:mailto:no-reply@verabing.github.io
+BEGIN:VALARM
+TRIGGER:PT0M
+ACTION:DISPLAY
+DESCRIPTION:Reminder: today’s Advent Calendar door is now available.
+END:VALARM
+END:VEVENT
+END:VCALENDAR
