@@ -251,10 +251,61 @@
   </div>
 </div>
 
+  // =====================================
+// SPRACHFUNKTIONEN (GANZ WICHTIG)
+// =====================================
+
+let currentLang = localStorage.getItem("calendar_lang") || "de";
+
+function getLangData() {
+  return currentLang === "de" ? lang_de :
+         currentLang === "en" ? lang_en :
+         lang_no;
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("calendar_lang", lang);
+
+  const L = getLangData();
+  document.querySelector("header h1").textContent = L.headerTitle;
+}
+// ===========================
+// SPRACH-BUTTON KLICKS
+// ===========================
+
+document.querySelectorAll("#langSelect button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    setLanguage(btn.dataset.lang);
+  });
+});
+
+// Sprache beim Laden setzen
+setLanguage(currentLang);
+
 <script>
 /* ======================
    TÜRCHEN: BILDER
    ====================== */
+let currentLang = localStorage.getItem("calendar_lang") || "de";
+
+function getLangData() {
+  return currentLang === "de" ? lang_de :
+         currentLang === "en" ? lang_en :
+         lang_no;
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("calendar_lang", lang);
+}
+document.querySelectorAll("#langSelect button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    setLanguage(btn.dataset.lang);
+  });
+});
+
+setLanguage(currentLang);
 
 const daysConfig = [
   { day: 1,  images: ["bilder/tuer1.jpg","bilder/tuer1b.jpg","bilder/tuer1c.jpg"] },
@@ -347,27 +398,27 @@ function openDoor(day, card) {
   const cfg = daysConfig.find(d => d.day === day);
 
   if (!canOpen(day)) {
-    modalTitle.innerHTML = `
-  <img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!"> 
-`;
+    modalTitle.innerHTML = `<img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!">`;
     modalText.innerHTML = "";
     modalImage.src = "";
-    document.getElementById("prevImage").style.display="none";
-    document.getElementById("nextImage").style.display="none";
+    document.getElementById("prevImage").style.display = "none";
+    document.getElementById("nextImage").style.display = "none";
     modal.classList.remove("hidden");
     return;
   }
 
   currentDay = day;
   currentIndex = 0;
-  modalTitle.textContent = cfg.title;
-  
- // TEXT: String oder Array automatisch, ob ein Text oder mehrere
-  
-  if (Array.isArray(cfg.text)) {
-    modalText.innerHTML = cfg.text[0] || "";
+
+  const L = getLangData();
+  const dayData = L.days[day];
+
+  modalTitle.innerHTML = dayData.title;
+
+  if (Array.isArray(dayData.text)) {
+    modalText.innerHTML = dayData.text[0] || "";
   } else {
-    modalText.innerHTML = cfg.text || "";
+    modalText.innerHTML = dayData.text || "";
   }
 
   modalImage.src = cfg.images[0];
@@ -375,14 +426,12 @@ function openDoor(day, card) {
 
   markOpened(day);
 
-  // Türchen im thumbnail umwandeln
   card.innerHTML = "";
   const img = document.createElement("img");
   img.className = "dayThumb";
   img.src = cfg.images[0];
   card.appendChild(img);
 }
-
 function closeModal() {
   modal.classList.add("hidden");
 }
@@ -396,15 +445,17 @@ document.getElementById("prevImage").onclick = () => slide(-1);
 function slide(dir) {
   const cfg = daysConfig.find(d => d.day === currentDay);
   currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
-  
+
   modalImage.src = cfg.images[currentIndex];
 
-  // TEXT: String oder Array automatisch, ob ein Text oder mehrere
-  if (Array.isArray(cfg.text)) {
-    modalText.innerHTML = cfg.text[currentIndex] || "";
+  const L = getLangData();
+  const dayData = L.days[currentDay];
+
+  if (Array.isArray(dayData.text)) {
+    modalText.innerHTML = dayData.text[currentIndex] || "";
   } else {
-    modalText.innerHTML = cfg.text || "";
-  }  
+    modalText.innerHTML = dayData.text || "";
+  }
 }
 
 /* RESET */
