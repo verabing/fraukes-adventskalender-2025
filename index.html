@@ -117,6 +117,18 @@
   object-fit: contain;
   
 }
+.modal-reminder-link {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  color: #fff;
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
+.modal-reminder-link:hover {
+  opacity: 1;
+}
+
     .dayCard {
       break-inside: avoid;
       background: #7a0000;
@@ -253,6 +265,12 @@
     <button id="modalClose">✕</button>
     <h2 id="modalTitle"></h2>
     <p id="modalText"></p>
+    <div id="modalReminder" style="text-align:center; margin-top:12px; display:none;">
+  <a href="reminder/advent2025.ics" class="modal-reminder-link">
+    📅 Add daily reminder
+  </a>
+</div>
+
 
     <div id="modalImageWrapper">
       <button id="prevImage" class="navBtn">◀</button>
@@ -400,6 +418,13 @@ function openDoor(day, card) {
 
   currentDay = day;
   currentIndex = 0;
+  // Reminder nur bei Tag 1 anzeigen
+if (day === 1) {
+  document.getElementById("modalReminder").style.display = "block";
+} else {
+  document.getElementById("modalReminder").style.display = "none";
+}
+
 
   const L = getLangData();
   const dayData = L.days[day];
