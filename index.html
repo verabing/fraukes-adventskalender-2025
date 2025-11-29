@@ -490,6 +490,23 @@ modalImage.addEventListener("touchend", e => {
   if (Math.abs(diff) < 40) return;
   slide(diff > 0 ? -1 : +1);
 });
+
+  // ===========================
+// KEYBOARD NAVIGATION (Laptop)
+// ===========================
+
+document.addEventListener("keydown", function (e) {
+  if (modal.classList.contains("hidden")) return; // nur wenn Modal offen
+
+  if (e.key === "ArrowRight") {
+    slide(+1);
+  } else if (e.key === "ArrowLeft") {
+    slide(-1);
+  } else if (e.key === "Escape") {
+    closeModal();
+  }
+});
+
 </script>
 
 
