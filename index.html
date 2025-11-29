@@ -384,9 +384,9 @@ function openDoor(day, card) {
     modalTitle.innerHTML = `<img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!">`;
     modalText.innerHTML = "";
     modalImage.src = "";
-    document.getElementById("prevImage").style.display = "none";
-    document.getElementById("nextImage").style.display = "none";
     modal.classList.remove("hidden");
+    document.getElementById("prevImage").style.display = "block";
+    document.getElementById("nextImage").style.display = "block";
     return;
   }
 
