@@ -50,6 +50,13 @@
       font-family: 'EB Garamond', serif;
     }
     
+    .header-reminder a {
+  color: #fff;
+  font-family: 'EB Garamond', serif;
+  text-decoration: underline;
+  font-size: 1rem;
+}
+
 .header-icon {
   height: 1.8rem;       /* gleiche Höhe wie die Schrift */
   width: auto;
@@ -221,8 +228,9 @@
 
 <header>
   <h1>    Fraukes Adventskalender 2025</h1>
- 
-</a>
+ <div class="header-reminder">
+  <a href="reminder/advent2025.ics">📅 Daily reminder (2–24 Dec)</a>
+</div>
   <div class="header-controls">
     <label for="simDate"> Test-Datum:</label>
     <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
