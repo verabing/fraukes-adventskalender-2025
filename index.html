@@ -449,6 +449,9 @@ if (day === 1) {
   img.src = cfg.images[0];
   card.appendChild(img);
 }
+function closeModal() {
+  modal.classList.add("hidden");
+}
 
 document.getElementById("modalClose").addEventListener("click", () => modal.classList.add("hidden"));
 modal.addEventListener("click", e => { if (e.target === modal) modal.classList.add("hidden"); });
