@@ -6,8 +6,8 @@ const lang_no = {
       title: "1. Desember",
       text: [
         "Velkommen til min krusseduller julekalender!",
-        "I år har jeg gjort meg ekstra flid med kalenderen",
-        "da jeg har bygget den selv - sammen med min KI-doula chatgpt."
+        "I år har jeg lagt ned litt ekstra kjærlighet…",
+        "... og bygget den selv helt fra bunn av - sammen med min KI-doula chatgpt."
       ]
     },
 
