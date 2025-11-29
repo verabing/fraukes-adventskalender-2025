@@ -1,4 +1,4 @@
-const lang_de = {
+const lang_no = {
   headerTitle: "Fraukes Adventskalender 2025",
 
   days: {
