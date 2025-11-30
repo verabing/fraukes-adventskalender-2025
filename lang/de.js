@@ -5,19 +5,19 @@ const lang_de = {
     1: {
       title: "1. Dezember",
       text: [
-        "Willkommen bei meinem Kritzelei Adventskalender 2025!",
-        "Dieses Jahr habe ich mir besonders viel Mühe für euch gemacht,",
-        "…und ihn von Grund auf selbst gebaut... HTML, CSS, JavaScript… und viel ¤#%“#“#¤&%¤¤ !! ",
-        "Zusammen mit meiner KI-Doula chatGPT hab ich’s dann noch rechtzeitig zum 1.12. geschafft, euch diesen Adventskalender fertigzustellen. <br> Viel Vergnügen!"
+        "Willkommen bei meinem <b>Kritzelei Adventskalender 2025!</b> ➜ (weiterklicken)",
+        "Jeden Tag gibt es eine von mir gestaltete Kritzelei (↓), die einer von euch mir <i>geschenkt</i> hat",
+        "Wenn du kein Türchen verpassen willst, sag mir Bescheid, ...➜",
+        "...dann nehme ich dich in meinen unformellen Adventsverteiler auf und du bekommst eine tägliche Erinnerung. ✨📅✨"
       ]
     },
 
     2: {
       title: "2. Dezember",
       text: [
-        "",
-        "Viele liebe Menschen haben zu diesem Kalender mit ihren Kritzeln beigetragen.",
-        "Danke für diesen Kritzel, Kristoffer."
+        "Die Zeit rast auf Weihnachten zu.",
+        "Zeit zum Innehalten und Kritzelkunst betrachten und ...➜",
+        "... Dankbarkeit zelebrieren, denn ohne eure Kritzelbeiträge, gäb es diesen Kalender nicht. Also: Danke für diesen Kritzel, Kristoffer."
       ]
     },
 
