@@ -8,7 +8,7 @@ const lang_de = {
         "Willkommen bei meinem <b>Kritzelei Adventskalender 2025!</b> ➜ (weiterklicken)",
         "Jeden Tag gibt es eine von mir gestaltete Kritzelei (↓), die einer von euch mir <i>geschenkt</i> hat",
         "Wenn du kein Türchen verpassen willst, sag mir Bescheid, ...➜",
-        "...dann nehme ich dich in meinen unformellen Adventsverteiler auf und du bekommst eine tägliche Erinnerung. ✨📅✨"
+        "...dann nehme ich dich in meinen unformellen Adventsverteiler auf und du bekommst bis zum 24. jeden Tag eine kleine Erinnerung. ✨📅✨"
       ]
     },
 
