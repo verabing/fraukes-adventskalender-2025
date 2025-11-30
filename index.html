@@ -138,6 +138,14 @@
       z-index: 50;
     }
 
+    #modalNotYet {
+  max-width: 80vw;
+  max-height: 50vh;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
     #modalContent {
       background: rgba(0,0,0,0.75);
       backdrop-filter: blur(8px);
@@ -365,7 +373,7 @@ function openDoor(day, card) {
   const cfg = daysConfig.find(d => d.day === day);
 
   if (!canOpen(day)) {
-    modalTitle.innerHTML = `<img src="bilder/notyet.gif" class="modal-icon" alt="Not Yet!">`;
+    modalTitle.innerHTML = `<img id="modalNotYet" src="bilder/notyet.gif" alt="Not Yet!">`;
     modalText.innerHTML = "";
     modalImage.src = "";
     modal.classList.remove("hidden");
