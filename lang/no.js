@@ -1,5 +1,5 @@
 const lang_no = {
-  headerTitle: "Fraukes Adventskalender 2025",
+  headerTitle: "Fraukes Julekalender 2025",
 
   days: {
     1: {
