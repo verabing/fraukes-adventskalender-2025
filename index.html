@@ -9,10 +9,12 @@
   <link rel="apple-touch-icon" href="icon-192.png">
 
   <title>Fraukes Adventskalender 2025</title>
-<script src="lang/de.js"></script>
-<script src="lang/en.js"></script>
-<script src="lang/no.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+
+  <script src="lang/de.js"></script>
+  <script src="lang/en.js"></script>
+  <script src="lang/no.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght=700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
 
   <style>
@@ -36,11 +38,11 @@
 
     header h1 {
       margin: 0 0 8px;
-       display: flex;
-  align-items: center;
-  justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 2rem;
-       gap: 8px;     /* kleiner Abstand zwischen Rentier und Text */
+      gap: 8px;
     }
 
     .header-controls {
@@ -51,35 +53,22 @@
       align-items: center;
       font-family: 'EB Garamond', serif;
     }
-    
-    .header-reminder a {
-  color: #fff;
-  font-family: 'EB Garamond', serif;
-  text-decoration: underline;
-  font-size: 1rem;
-}
 
-.header-icon {
-  height: 1.8rem;       /* gleiche Höhe wie die Schrift */
-  width: auto;
-  vertical-align: middle;
-}
-    .language-flags {
-  margin-top: 8px;
-  text-align: center;
-}
+    .flag-icon {
+      width: 28px;
+      height: 20px;
+      object-fit: cover;
+      border-radius: 3px;
+      border: 1px solid #999;
+    }
 
-.language-flags button {
-  font-size: 1.6rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin: 0 4px;
-}
-
-.language-flags button:hover {
-  transform: scale(1.1);
-}
+    #langSelect button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 4px;
+      padding: 3px;
+    }
 
     main {
       padding-top: 160px;
@@ -89,47 +78,21 @@
 
     #calendar {
       width: 100%;
-     max-width: 750px;   /* ideale Breite für Laptop */ ;
+      max-width: 750px;
       margin: 0 auto 40px;
       column-count: 4;
       column-gap: 16px;
     }
-    
-@media (min-width: 1400px) {
-  #calendar { column-count: 5; }
-}
 
-@media (max-width: 900px) {
-  #calendar { column-count: 3; }
-}
-
-@media (max-width: 600px) {
-  #calendar { column-count: 2; 
-   padding-left: 16px;
-   padding-right: 16px;
-   }
-}
-
-
-    .modal-icon {
- max-width: 70%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  object-fit: contain;
-  
-}
-.modal-reminder-link {
-  font-family: 'EB Garamond', serif;
-  font-size: 1rem;
-  color: #fff;
-  text-decoration: underline;
-  opacity: 0.9;
-}
-
-.modal-reminder-link:hover {
-  opacity: 1;
-}
+    @media (min-width: 1400px) {
+      #calendar { column-count: 5; }
+    }
+    @media (max-width: 900px) {
+      #calendar { column-count: 3; }
+    }
+    @media (max-width: 600px) {
+      #calendar { column-count: 2; padding: 0 16px; }
+    }
 
     .dayCard {
       break-inside: avoid;
@@ -138,14 +101,14 @@
       margin-bottom: 16px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.2s ease box-shadow 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.35),
-                  0 1px 3px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.5);
     }
 
-    .dayCard:hover { transform: scale(1.02);
-                   box-shadow: 0 10px 22px rgba(0,0,0,0.45);
-                   }
+    .dayCard:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.45);
+    }
 
     .dayNumber {
       padding: 40px 0;
@@ -156,7 +119,7 @@
 
     .dayThumb {
       width: 100%;
-      heigt: auto;
+      height: auto;
       object-fit: contain;
       display: block;
       border-radius: 10px;
@@ -201,24 +164,26 @@
       text-align: center;
       font-family: 'EB Garamond', serif;
     }
-#modalText {
-  font-size: 1.3rem;   /* größerer Text */
-  line-height: 1.5;    /* bessere Lesbarkeit */
-}
-   #modalImageWrapper {
-  position: relative;
-  margin-top: 15px;
-  display: flex;
-     align-items: center;
-  justify-content: center;
-}
 
-#modalImage {
-  max-width: 90vw;        /* NEU */
-  max-height: 80vh;       /* NEU: Modal-Bild niemals höher als Fenster */
- object-fit: contain;
-  border-radius: 10px;
-}
+    #modalText {
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+
+    #modalImageWrapper {
+      position: relative;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #modalImage {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 10px;
+    }
 
     .navBtn {
       position: absolute;
@@ -241,40 +206,32 @@
 <body>
 
 <header>
-  <h1>    Fraukes Adventskalender 2025</h1>
- <div class="header-reminder">
+  <h1>Fraukes Adventskalender 2025</h1>
 
-</div>
   <div class="header-controls">
-    <label for="simDate"> Test-Datum:</label>
+    <label for="simDate">Test-Datum:</label>
     <input id="simDate" type="text" placeholder="TT.MM.JJJJ">
     <button id="applySimDate">Setzen</button>
     <button id="resetOpen">Reset</button>
   </div>
- 
-  <div id="langSelect">
-  <button data-lang="de"><img src="flags/de.png" class="flag-icon" alt="DE"></button>
-  <button data-lang="en"><img src="flags/gb.png" class="flag-icon" alt="EN"></button>
-  <button data-lang="no"><img src="flags/no.png" class="flag-icon" alt="NO"></button>
-</div>
 
+  <div id="langSelect">
+    <button data-lang="de"><img src="flags/de.png" class="flag-icon" alt="DE"></button>
+    <button data-lang="en"><img src="flags/gb.png" class="flag-icon" alt="EN"></button>
+    <button data-lang="no"><img src="flags/no.png" class="flag-icon" alt="NO"></button>
+  </div>
 </header>
 
 <main>
   <div id="calendar"></div>
 </main>
 
+<!-- KORREKTES MODAL -->
 <div id="modal" class="hidden">
   <div id="modalContent">
     <button id="modalClose">✕</button>
     <h2 id="modalTitle"></h2>
     <p id="modalText"></p>
-    <div id="modalReminder" style="text-align:center; margin-top:12px; display:none;">
-  <a href="reminder/advent2025.ics" class="modal-reminder-link">
-    📅 Add daily reminder
-  </a>
-</div>
-
 
     <div id="modalImageWrapper">
       <button id="prevImage" class="navBtn">◀</button>
@@ -284,11 +241,10 @@
   </div>
 </div>
 
- 
 <script>
-// =====================================
-// SPRACHFUNKTIONEN
-// =====================================
+/* ======================
+   SPRACHFUNKTIONEN
+====================== */
 
 let currentLang = localStorage.getItem("calendar_lang") || "de";
 
@@ -301,31 +257,29 @@ function getLangData() {
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem("calendar_lang", lang);
-
-  const L = getLangData();
-  document.querySelector("header h1").textContent = L.headerTitle;
+  document.querySelector("header h1").textContent = getLangData().headerTitle;
 }
 
-document.querySelectorAll("#langSelect button").forEach(btn => {
-  btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-});
+document.querySelectorAll("#langSelect button").forEach(btn =>
+  btn.addEventListener("click", () => setLanguage(btn.dataset.lang))
+);
 
 setLanguage(currentLang);
 
-// =====================================
-// TÜRCHEN: BILDER
-// =====================================
+/* ======================
+   BILDER-KONFIG
+====================== */
 
 const daysConfig = [
-  { day: 1,  images: ["bilder/tuer1.jpg","bilder/tuer1b.jpg","bilder/tuer1c.jpg","bilder/tuer1d.jpg"] },
-  { day: 2,  images: ["bilder/tuer2.jpg","bilder/tuer2b.jpg","bilder/tuer2c.jpg"] },
-  { day: 3,  images: ["bilder/tuer3.jpg","bilder/tuer3b.jpg","bilder/tuer3c.jpg"] },
-  { day: 4,  images: ["bilder/tuer4.jpg","bilder/tuer4b.jpg","bilder/tuer4c.jpg"] },
-  { day: 5,  images: ["bilder/tuer5.jpg","bilder/tuer5b.jpg","bilder/tuer5c.jpg"] },
-  { day: 6,  images: ["bilder/tuer6.jpg","bilder/tuer6b.jpg","bilder/tuer6c.jpg"] },
-  { day: 7,  images: ["bilder/tuer7.jpg","bilder/tuer7b.jpg","bilder/tuer7c.jpg"] },
-  { day: 8,  images: ["bilder/tuer8.jpg","bilder/tuer8b.jpg","bilder/tuer8c.jpg"] },
-  { day: 9,  images: ["bilder/tuer9.jpg","bilder/tuer9b.jpg","bilder/tuer9c.jpg"] },
+  { day: 1, images: ["bilder/tuer1.jpg","bilder/tuer1b.jpg","bilder/tuer1c.jpg","bilder/tuer1d.jpg"] },
+  { day: 2, images: ["bilder/tuer2.jpg","bilder/tuer2b.jpg","bilder/tuer2c.jpg"] },
+  { day: 3, images: ["bilder/tuer3.jpg","bilder/tuer3b.jpg","bilder/tuer3c.jpg"] },
+  { day: 4, images: ["bilder/tuer4.jpg","bilder/tuer4b.jpg","bilder/tuer4c.jpg"] },
+  { day: 5, images: ["bilder/tuer5.jpg","bilder/tuer5b.jpg","bilder/tuer5c.jpg"] },
+  { day: 6, images: ["bilder/tuer6.jpg","bilder/tuer6b.jpg","bilder/tuer6c.jpg"] },
+  { day: 7, images: ["bilder/tuer7.jpg","bilder/tuer7b.jpg","bilder/tuer7c.jpg"] },
+  { day: 8, images: ["bilder/tuer8.jpg","bilder/tuer8b.jpg","bilder/tuer8c.jpg"] },
+  { day: 9, images: ["bilder/tuer9.jpg","bilder/tuer9b.jpg","bilder/tuer9c.jpg"] },
   { day: 10, images: ["bilder/tuer10.jpg","bilder/tuer10b.jpg","bilder/tuer10c.jpg"] },
   { day: 11, images: ["bilder/tuer11.jpg","bilder/tuer11b.jpg","bilder/tuer11c.jpg","bilder/tuer11d.jpg","bilder/tuer11e.jpg"] },
   { day: 12, images: ["bilder/tuer12.jpg","bilder/tuer12b.jpg","bilder/tuer12c.jpg"] },
@@ -343,15 +297,15 @@ const daysConfig = [
   { day: 24, images: ["bilder/tuer24.jpg","bilder/tuer24b.jpg","bilder/tuer24c.jpg"] }
 ];
 
-// =====================================
-// SHUFFLE + GRID BAUEN
-// =====================================
+/* ======================
+   SHUFFLE + GRID
+====================== */
 
 const shuffled = [5,12,1,19,7,24,3,16,9,22,14,2,18,11,6,21,4,17,8,23,10,13,15,20];
 const STORAGE_PREFIX = "advent2025_";
 
-function isOpened(d) { return localStorage.getItem(STORAGE_PREFIX+d)==="1"; }
-function markOpened(d) { localStorage.setItem(STORAGE_PREFIX+d,"1"); }
+function isOpened(d) { return localStorage.getItem(STORAGE_PREFIX + d) === "1"; }
+function markOpened(d) { localStorage.setItem(STORAGE_PREFIX + d, "1"); }
 
 const calendar = document.getElementById("calendar");
 
@@ -359,8 +313,8 @@ function parseSim() {
   const v = document.getElementById("simDate").value.trim();
   if (!v) return null;
   const p = v.split(".");
-  if (p.length!==3) return null;
-  return new Date(+p[2], +p[1]-1, +p[0]);
+  if (p.length !== 3) return null;
+  return new Date(+p[2], +p[1] - 1, +p[0]);
 }
 
 function today() {
@@ -389,9 +343,9 @@ shuffled.forEach(dayNum => {
   calendar.appendChild(card);
 });
 
-// =====================================
-// MODAL
-// =====================================
+/* ======================
+   MODAL
+====================== */
 
 const modal = document.getElementById("modal");
 const modalTitle = document.getElementById("modalTitle");
@@ -415,28 +369,17 @@ function openDoor(day, card) {
     modalText.innerHTML = "";
     modalImage.src = "";
     modal.classList.remove("hidden");
-    document.getElementById("prevImage").style.display = "block";
-    document.getElementById("nextImage").style.display = "block";
     return;
   }
 
   currentDay = day;
   currentIndex = 0;
-  // Reminder nur bei Tag 1 anzeigen
-if (day === 1) {
-  document.getElementById("modalReminder").style.display = "block";
-} else {
-  document.getElementById("modalReminder").style.display = "none";
-}
-
 
   const L = getLangData();
   const dayData = L.days[day];
 
   modalTitle.innerHTML = dayData.title;
-  modalText.innerHTML = Array.isArray(dayData.text)
-    ? dayData.text[0] || ""
-    : dayData.text || "";
+  modalText.innerHTML = Array.isArray(dayData.text) ? dayData.text[0] : dayData.text;
 
   modalImage.src = cfg.images[0];
   modal.classList.remove("hidden");
@@ -449,9 +392,6 @@ if (day === 1) {
   img.src = cfg.images[0];
   card.appendChild(img);
 }
-function closeModal() {
-  modal.classList.add("hidden");
-}
 
 document.getElementById("modalClose").addEventListener("click", () => modal.classList.add("hidden"));
 modal.addEventListener("click", e => { if (e.target === modal) modal.classList.add("hidden"); });
@@ -462,29 +402,26 @@ document.getElementById("prevImage").onclick = () => slide(-1);
 function slide(dir) {
   const cfg = daysConfig.find(d => d.day === currentDay);
   currentIndex = (currentIndex + dir + cfg.images.length) % cfg.images.length;
-
   modalImage.src = cfg.images[currentIndex];
 
   const L = getLangData();
   const dayData = L.days[currentDay];
-
   modalText.innerHTML = Array.isArray(dayData.text)
     ? dayData.text[currentIndex] || ""
-    : dayData.text || "";
+    : dayData.text;
 }
 
-// =====================================
-// RESET
-// =====================================
+/* ======================
+   RESET
+====================== */
 document.getElementById("resetOpen").onclick = () => {
-  for (let i=1; i<=24; i++) localStorage.removeItem(STORAGE_PREFIX+i);
+  for (let i = 1; i <= 24; i++) localStorage.removeItem(STORAGE_PREFIX + i);
   location.reload();
 };
 
-// =====================================
-// SWIPE NAVIGATION
-// =====================================
-
+/* ======================
+   SWIPE NAVIGATION
+====================== */
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -496,24 +433,17 @@ modalImage.addEventListener("touchend", e => {
   slide(diff > 0 ? -1 : +1);
 });
 
-  // ===========================
-// KEYBOARD NAVIGATION (Laptop)
-// ===========================
+/* ======================
+   KEYBOARD NAVIGATION
+====================== */
+document.addEventListener("keydown", e => {
+  if (modal.classList.contains("hidden")) return;
 
-document.addEventListener("keydown", function (e) {
-  if (modal.classList.contains("hidden")) return; // nur wenn Modal offen
-
-  if (e.key === "ArrowRight") {
-    slide(+1);
-  } else if (e.key === "ArrowLeft") {
-    slide(-1);
-  } else if (e.key === "Escape") {
-    closeModal();
-  }
+  if (e.key === "ArrowRight") slide(+1);
+  else if (e.key === "ArrowLeft") slide(-1);
+  else if (e.key === "Escape") modal.classList.add("hidden");
 });
-
 </script>
-
 
 </body>
 </html>
