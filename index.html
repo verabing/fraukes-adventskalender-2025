@@ -314,17 +314,10 @@ function markOpened(d) { localStorage.setItem(STORAGE_PREFIX + d, "1"); }
 
 const calendar = document.getElementById("calendar");
 
-function parseSim() {
-  const v = document.getElementById("simDate").value.trim();
-  if (!v) return null;
-  const p = v.split(".");
-  if (p.length !== 3) return null;
-  return new Date(+p[2], +p[1] - 1, +p[0]);
+function today() {
+  return new Date();
 }
 
-function today() {
-  return parseSim() || new Date();
-}
 
 shuffled.forEach(dayNum => {
   const cfg = daysConfig.find(d => d.day === dayNum);
