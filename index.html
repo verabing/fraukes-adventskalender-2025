@@ -410,13 +410,7 @@ function slide(dir) {
     : dayData.text;
 }
 
-/* ======================
-   RESET
-====================== */
-document.getElementById("resetOpen").onclick = () => {
-  for (let i = 1; i <= 24; i++) localStorage.removeItem(STORAGE_PREFIX + i);
-  location.reload();
-};
+
 
 /* ======================
    SWIPE NAVIGATION
