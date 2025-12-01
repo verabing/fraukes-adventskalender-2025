@@ -5,7 +5,7 @@ const lang_de = {
     1: {
       title: "1. Dezember",
       text: [
-        "Willkommen bei meinem <b>Kritzelei Adventskalender 2025!</b> ➜ (weiterklicken)",
+        "Willkommen bei meinem <b>Kritzelei Adventskalender 2025!</b> ➜ (weiterklicken, swipe, oder Tastatur: ← →)",
         "Jeden Tag gibt es eine von mir gestaltete Kritzelei (↓), die einer von euch mir <i>geschenkt</i> hat",
         "Wenn du kein Türchen verpassen willst, sag mir Bescheid, ...➜",
         "...dann nehme ich dich in meinen unformellen Adventsverteiler auf und du bekommst bis zum 24. jeden Tag eine kleine Erinnerung. ✨📅✨"
