@@ -8,7 +8,7 @@ const lang_en = {
         "Welcome to my <b>Doodle Advent Calendar 2025!</b> ➜ (click to continue, swipe, or: ← →)",
         "Each day you’ll see a drawing I made from one of your <i>scribbles</i> (↓).",
         "If you don’t want to miss a single door, just let me know … ➜",
-        "...and I’ll add you to my informal advent reminder list, so you’ll get a tiny daily nudge until Christmas Eve. ✨📅✨"
+        "...and I’ll add you to my informal advent reminder list, so you’ll get a tiny daily nudge until Christmas Eve. ✨📅✨ <br> You may share this calendar with your friends."
       ]
     },
 
