@@ -5,7 +5,7 @@ const lang_no = {
     1: {
       title: "1. desember",
       text: [
-        "Velkommen til min <b>Krusedull-Julekalender 2025!</b> ➜ (klikk videre)",
+        "Velkommen til min <b>Krusedull-Julekalender 2025!</b> ➜ (klikk videre, swipe or ← →)",
         "Hver dag kommer en liten tegning jeg har laget, basert på en av deres <i> kruseduller</i> (↓).",
         "Hvis du ikke vil gå glipp av en eneste luke, si bare ifra … ➜",
         "...så setter jeg deg på min uformelle adventsliste, og du får en liten påminnelse hver dag fram til julaften. ✨📅✨"
