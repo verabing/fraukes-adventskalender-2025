@@ -24,9 +24,9 @@ const lang_no = {
     3: {
       title: "3. desember",
       text: [
-        "Stor krusedull-moro!",
-        "Jeg blir ofte selv overrasket over hva som dukker opp i tegningene …",
-        "… alene hadde jeg aldri kommet på alt dette!"
+        "I stearinlystida er det gull å ha en brannmann på vakt!",
+        "Derfor ble jeg ekstra glad da jeg oppdaget at én dukket opp i en krusedull.",
+        "Dagens luke byr derfor på både flammer, farger og et snev av pekefinger."
       ]
     },
 
