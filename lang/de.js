@@ -24,9 +24,9 @@ const lang_de = {
     3: {
       title: "3. Dezember",
       text: [
-        "Grosser Kritzelspass",
-        "Und auch ich wundere mich oft, was so dabei herauskommt…",
-        "…wäre ich allein ja nie drauf gekommen!"
+        "Grosser Kritzelspass, doch wie kommt sie bloß darauf?",
+        "... ich wundere mich oft, was so dabei herauskommt…",
+        "…auf diese Motive wäre ich ohne die Kritzel-Vorgaben ja nie drauf gekommen!"
       ]
     },
 
