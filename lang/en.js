@@ -24,10 +24,10 @@ const lang_en = {
     3: {
       title: "3 December",
       text: [
-        "Big scribble fun!",
-        "And I’m often surprised myself by what appears in these drawings…",
-        "...on my own I would never have come up with half of it!"
-      ]
+        "In candle season, it’s pure gold to have a firefighter on duty!",
+        "So I was delighted when one suddenly appeared in my doodles…",
+        "A touch of fire, a touch of colour, a touch of caution"
+        ]
     },
 
     4: {
