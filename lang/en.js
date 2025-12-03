@@ -60,9 +60,9 @@ const lang_en = {
     7: {
       title: "7 December",
       text: [
-        "‘They remind me of Piggeldy and Frederick,’ said Katrin,",
+        "‘They remind me of Piggeldy and Frederick,’ said Katrin, (German children's book characters)",
         "who gave me this scribble.",
-        "‘Thanks for the compliment,’ I said – and I meant it."
+        "‘Thanks for the compliment,’ I said – and I felled blessed. They are both cute and cool. Look them up, you'll find some English videos with them on Youtube."
       ]
     },
 
