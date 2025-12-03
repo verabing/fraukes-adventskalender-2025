@@ -24,8 +24,8 @@ const lang_no = {
     3: {
       title: "3. desember",
       text: [
-        "I stearinlystida er det gull å ha en brannmann på vakt!",
-        "Derfor ble jeg ekstra glad da jeg oppdaget at én dukket opp i en krusedull.",
+        "Husket å slukke alle sterinlyd?!",
+        "I denne sterin-lys tida er det gull å oppdage en brannmann i en krusedull.",
         "Dagens luke byr derfor på både flammer, farger og et snev av pekefinger."
       ]
     },
