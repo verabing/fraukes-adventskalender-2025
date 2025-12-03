@@ -26,7 +26,7 @@ const lang_de = {
       text: [
         "Brennt der Baum jetzt schon?",
         "...na, ich bin froh, dass sich die Feuerwehr rechtzeitig in einem Kritzel zeigte …",
-        "...und ummer schön dsran denken, die Kerzen zu löschen."
+        "...und immer schön dran denken, die Kerzen zu löschen."
       ]
     },
 
