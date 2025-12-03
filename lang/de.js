@@ -62,7 +62,7 @@ const lang_de = {
       text: [
         "'Sie erinnern mich an Piggeldy und Frederick', sagte Katrin,",
         "die mir diesen Kritzel gemacht hatte.",
-        "'Danke für das Kompliment', antwortete ich und freute mich über diesen Vergleich."
+        "'Danke', antwortete ich und freute mich über diesen Vergleich. Und um es mit Piggeldys Worten zu sagen: 'Ein kleines Schwein kann großes Glück tragen – besonders, wenn es teilt.'"
       ]
     },
 
