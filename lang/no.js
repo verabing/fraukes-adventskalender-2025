@@ -60,9 +60,9 @@ const lang_no = {
     7: {
       title: "7. desember",
       text: [
-        "'De minner meg om Piggeldy og Frederick', sa Katrin,",
+        "'De minner meg om Piggeldy og Frederick', sa Katrin, (Tyske barnebok tegninger)",
         "som ga meg denne krusedullen.",
-        "'Takk for komplimentet', svarte jeg – og ble faktisk litt rørt."
+        "'Takk for komplimentet', svarte jeg – og ble faktisk veldig rørt, fordi Piggeldy og Frederick er veldig kule og vise. Du kan lete dem opp på Youtube, der finnes det noen engelske videoer med dem."
       ]
     },
 
