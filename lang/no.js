@@ -52,8 +52,8 @@ const lang_no = {
       title: "6. desember",
       text: [
         "En mark med … solbriller?",
-        "Jeg aner heller ikke hvorfor! Det fine med disse krusedullene er …",
-        "… siden de ikke kommer fra meg, trenger jeg heller ikke forklare dem.<br> Takk, Thomas, for denne krusedullen."
+        "Jeg aner heller ikke hvorfor! Det fine med disse krusedullene er at …",
+        "… de ikke trenger å gi mening. <br> Takk, Thomas, for denne krusedullen."
       ]
     },
 
@@ -78,17 +78,17 @@ const lang_no = {
     9: {
       title: "9. desember",
       text: [
-        "Hvordan var ordtaket igjen: ‘Sag ikke av greina du sitter på’?",
-        "Men krusedullen var jo tydelig: En mann står på en hai og bøyer seg ned mot den.",
-        "Takk, Markus, for denne krusedullen."
+        "Hvordan var ordtaket igjen: ‘Sag ikke over grenen du sitter på’?",
+        "Tja, krusedullen var entydig: En mann står på en hai og bøyer seg ned mot den...",
+        "En lurer jo litt på hva som er det neste som skjer her. <br> Takk, Markus, for denne krusedullen."
       ]
     },
 
     10: {
       title: "10. desember",
       text: [
-        "Noen kruseduller blir liggende lenge før jeg skjønner hva som skjuler seg i dem:",
-        "Denne tok det litt tid før jeg kunne ‘se’ riktig.",
+        "Noen kruseduller blir liggende leeeeenge før jeg skjønner hva som skjuler seg i dem:",
+        "Denne tok det litt tid før jeg kunne ‘se’ løven som skjulte seg.",
         "Takk, Bård, for denne krusedullen."
       ]
     },
@@ -100,7 +100,7 @@ const lang_no = {
         "… utrolig hva som kan oppstå i et virvar av streker …",
         "En havfrue, et spøkelse og en liten blekksprut …",
         "Og hvem fanger hvem – eller hvem er redd for hvem?",
-        "Takk, Emilie, for denne lag-på-lag-krusedullen."
+        "Takk, Emilie, for denne lag-på-lag-krusedullen som kunne blitt en hel barnebok."
       ]
     },
 
