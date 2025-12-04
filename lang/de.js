@@ -152,7 +152,10 @@ const lang_de = {
       ]
     },
 
-    18: { title: "18. Dezember", text: [""] },
+    18: { title: "18. Dezember", text: [
+      "Glückliche Kuh im Rettungsring - dazu braucht man nichts weiter zu sagen, oder?",
+    "Dieser Kritzel blieb auch eine Weile liegen, bevor ich erkannte, was drin steckte.",
+    "Danke, Hedda, für diesen Kritzel."] },
     19: { title: "19. Dezember", text: [""] },
 
     20: {
