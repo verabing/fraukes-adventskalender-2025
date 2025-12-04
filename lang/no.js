@@ -155,7 +155,11 @@ const lang_no = {
       ]
     },
 
-    18: { title: "18. desember", text: [""] },
+    18: { title: "18. desember", text: [
+      "Lykkelig ku i redningsring - trenger ingen ytterligere forklaring, eller?",
+    "Denne krusedullen ble også liggende en stund, før jeg fant ut hva som gjemte seg i den...",
+      "Takk til Hedda for krusedullen."
+    ] },
     19: { title: "19. desember", text: [""] },
 
     20: {
