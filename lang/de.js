@@ -179,7 +179,7 @@ const lang_de = {
     22: {
       title: "22. Dezember",
       text: [
-        "Kamelkarawane… gehört doch auch irgendwie zu Weihnachten...,"
+        "Kamelkarawane… gehört doch auch irgendwie zu Weihnachten...",
         "sie trägt bestimmt Gold, Weihrauch und Myrrhe für die drei Könige mit sich.",
         "… ich sehe jetzt, dass genauso gut eine Gespensterprozession daraus hätte werden können… <br> Danke Gunna für diesen Kritzel!"
       ]
