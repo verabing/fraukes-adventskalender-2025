@@ -185,12 +185,16 @@ const lang_en = {
       ]
     },
 
-    23: { title: "23 December", text: [""] },
+    23: { title: "23 December", text: [
+      "'Hohoho', this fellow wanted to check in on you allerede today, just to...",
+      "...ensure you that Christmas is coming. In case you haven't noticed.",
+      "Thank you, Hendrik, for this doodle."
+    ] },
 
     24: {
       title: "24 December",
       text: [
-        "Merry Christmas!"
+        "An alternative Christmas story.Isn't it always? <br> Merry Christmas!"
       ]
     }
   }
