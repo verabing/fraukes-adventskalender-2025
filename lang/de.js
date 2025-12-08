@@ -171,26 +171,30 @@ const lang_de = {
       title: "21. Dezember",
       text: [
         "Diese Kritzelei ergab sich aus den Kritzeln von zwei lieben Kolleginnen – Teamarbeit ist unser Motto!",
-        "Danke an Marit und",
-        "Danke an Marianne, für die gute Zusammenarbeit."
+        "Danke an Marit und Marianne...",
+        "...für die gute Zusammenarbeit."
       ]
     },
 
     22: {
       title: "22. Dezember",
       text: [
-        "Kamelkarawane… es trägt bestimmt Gold, Weihrauch und Myrrhe für die drei Könige",
-        "… ich sehe jetzt, dass genauso gut eine Gespensterprozession daraus hätte werden können…",
-        ""
+        "Kamelkarawane… gehört doch auch irgendwie zu Weihnachten...,"
+        "sie trägt bestimmt Gold, Weihrauch und Myrrhe für die drei Könige mit sich.",
+        "… ich sehe jetzt, dass genauso gut eine Gespensterprozession daraus hätte werden können… <br> Danke Gunna für diesen Kritzel!"
       ]
     },
 
-    23: { title: "23. Dezember", text: [""] },
+    23: { title: "23. Dezember", text: [
+      "Hoho, die Vorbereitungen laufen heiss, der weissbärtige Kumpel hier will schonmal versichern,...",
+      "...dass auch dieses Jahr wieder Weihnachten wird.",
+      "Danke für diesen Weihnachtsmann-kritzel, Hendrik."
+      ] },
 
     24: {
       title: "24. Dezember",
       text: [
-        "Frohe Weihnachten!"
+        "Alternative Weihnachtsgeschichte <br> Frohe Weihnachten!"
       ]
     }
   }
