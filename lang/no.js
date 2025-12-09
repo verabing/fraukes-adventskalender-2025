@@ -134,7 +134,11 @@ const lang_no = {
 
     15: { 
       title: "15. desember", 
-      text: [""] 
+      text: [
+        "Jeg har tydeligvis en svakhet for stripete redningsringer.",
+      "Ser jeg et dyr som dupper rundt i vannet, våkner redningsinstinktet mitt umiddelbart.",
+        "Men denne kua ser jo slett ikke bekymret ut. Takk, Hedda, for denne krusedullen."
+      ] 
     },
 
     16: {
