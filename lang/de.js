@@ -132,7 +132,11 @@ const lang_de = {
       ]
     },
 
-    15: { title: "15. Dezember", text: [""] },
+    15: { title: "15. Dezember", text: [
+      "Offenbar habe ich eine Schwäche für gestreifte Rettungsreifen.",
+    "Tiere in Seenot? Da springt mein innerer Rettungsdienst sofort an.",
+      "Wobei – diese Kuh sieht kein bisschen besorgt aus. Danke, Hedda, für diesen Kritzel."
+    ] },
 
     16: {
       title: "16. Dezember",
