@@ -155,7 +155,13 @@ const lang_en = {
       ]
     },
 
-    18: { title: "18 December", text: [""] },
+    18: { title: "18 December", text: [
+      "Apparently I have a soft spot for striped lifebuoys.",
+      "Whenever a creature is bobbing around in the water, my inner rescue team kicks in.",
+      "Though this cow doesn’t look worried at all. Thanks, Hedda, for this doodle."
+    ] 
+    },
+    
     19: { title: "19 December", text: [""] },
 
     20: {
