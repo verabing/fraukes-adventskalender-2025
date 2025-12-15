@@ -132,16 +132,12 @@ const lang_no = {
       ]
     },
 
-15: {
-  title: "15. desember",
-  text: [
-    "'Ouch!' – nå begynner jeg å gå tom for kruseduller! <br>Jeg trenger virkelig noen nye ....!",
-    "Har du lyst til å hjelpe meg litt? <br> Nå som du vet hvordan dette fungerer?",
-    "Send meg gjerne en «fjernkritzel»! <br> Det ville gjort meg veldig glad!",
-    "Men hvordan?",
-    "Tusen takk! Jeg sender deg det som kom ut av det.<br> … og ikke vær redd – jeg har klart å ‘løse’ alle kritzelene hittil."
-  ]
-},
+   15: { title: "15. desember", text: [
+      "Lykkelig ku i redningsring - trenger ingen ytterligere forklaring, eller?",
+    "Denne krusedullen ble også liggende en stund, før jeg fant ut hva som gjemte seg i den...",
+      "Takk til Hedda for krusedullen."
+    ] },
+
 
     16: {
       title: "16. desember",
@@ -161,11 +157,18 @@ const lang_no = {
       ]
     },
 
-    18: { title: "18. desember", text: [
-      "Lykkelig ku i redningsring - trenger ingen ytterligere forklaring, eller?",
-    "Denne krusedullen ble også liggende en stund, før jeg fant ut hva som gjemte seg i den...",
-      "Takk til Hedda for krusedullen."
-    ] },
+ 
+    18: {
+  title: "18. desember",
+  text: [
+    "'Ouch!' – nå begynner jeg å gå tom for kruseduller! <br>Jeg trenger virkelig noen nye ....!",
+    "Har du lyst til å hjelpe meg litt? <br> Nå som du vet hvordan dette fungerer?",
+    "Send meg gjerne en «fjernkritzel»! <br> Det ville gjort meg veldig glad!",
+    "Men hvordan?",
+    "Tusen takk! Jeg sender deg det som kom ut av det.<br> … og ikke vær redd – jeg har klart å ‘løse’ alle kritzelene hittil."
+  ]
+},
+    
     19: { title: "19. desember", text: [""] },
 
     20: {
