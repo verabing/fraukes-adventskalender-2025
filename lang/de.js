@@ -133,7 +133,7 @@ const lang_de = {
     },
 
     15: { title: "15. Dezember", text: [
-      "'Ouch!' - mir gehen langsam die Kritzel-Vorlagen aus!<b>Ich bräuchte ein paar neue Kritzel! ",
+      "'Ouch!' - mir gehen langsam die Kritzel-Vorlagen aus!<br>Ich bräuchte ein paar neue Kritzel! ",
     "Magst du mir aushelfen? <br> Jetzt, wo du weisst, wie das funktioniert?",
       "Dann schick mir doch einen 'Fernkritzel'! <br> Damir würdest du mir eine grosse Freude machen! ",
       "Aber wie?",
