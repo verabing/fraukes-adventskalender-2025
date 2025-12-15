@@ -133,9 +133,11 @@ const lang_de = {
     },
 
     15: { title: "15. Dezember", text: [
-      "Offenbar habe ich eine Schwäche für gestreifte Rettungsreifen.",
-    "Tiere in Seenot? Da springt mein innerer Rettungsdienst sofort an.",
-      "Wobei – diese Kuh sieht kein bisschen besorgt aus. Danke, Hedda, für diesen Kritzel."
+      "'Ouch!' - mir gehen langsam die Kritzel-Vorlagen aus!<b>Ich bräuchte ein paar neue Kritzel! ",
+    "Magst du mir aushelfen? <br> Jetzt, wo du weisst, wie das funktioniert?",
+      "Dann schick mir doch einen 'Fernkritzel'! <br> Damir würdest du mir eine grosse Freude machen! ",
+      "Aber wie?",
+      "Vielen Dank! Ich schicke dir dann, was dabei herauskam.<br> ... und keine Sorge, ich habe bisher alle Kritzel 'gelöst'. "
     ] },
 
     16: {
