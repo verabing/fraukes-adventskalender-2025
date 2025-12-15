@@ -132,14 +132,16 @@ const lang_no = {
       ]
     },
 
-    15: { 
-      title: "15. desember", 
-      text: [
-        "Jeg har tydeligvis en svakhet for stripete redningsringer.",
-      "Ser jeg et dyr som dupper rundt i vannet, våkner redningsinstinktet mitt umiddelbart.",
-        "Men denne kua ser jo slett ikke bekymret ut. Takk, Hedda, for denne krusedullen."
-      ] 
-    },
+15: {
+  title: "15. desember",
+  text: [
+    "'Ouch!' – nå begynner jeg å gå tom for kruseduller! <br>Jeg trenger virkelig noen nye ....!",
+    "Har du lyst til å hjelpe meg litt? <br> Nå som du vet hvordan dette fungerer?",
+    "Send meg gjerne en «fjernkritzel»! <br> Det ville gjort meg veldig glad!",
+    "Men hvordan?",
+    "Tusen takk! Jeg sender deg det som kom ut av det.<br> … og ikke vær redd – jeg har klart å ‘løse’ alle kritzelene hittil."
+  ]
+},
 
     16: {
       title: "16. desember",
