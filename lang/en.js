@@ -132,10 +132,16 @@ const lang_en = {
       ]
     },
 
-    15: { 
-      title: "15 December", 
-      text: [""] 
-    },
+ 15: {
+  title: "15 December",
+  text: [
+    "'Ouch!' – I’m slowly running out of doodle drawings! <br>I could really use some new doodles!",
+    "Would you like to help me out? <br> Now that you know how this works?",
+    "Then send me a ‘remote doodle’! <br> That would make me very happy!",
+    "But how?",
+    "Thank you so much! I’ll send you what came out of it.<br> … and don’t worry, I’ve managed to ‘solve’ every doodle so far."
+  ]
+},
 
     16: {
       title: "16 December",
