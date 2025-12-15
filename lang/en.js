@@ -132,16 +132,14 @@ const lang_en = {
       ]
     },
 
- 15: {
-  title: "15 December",
-  text: [
-    "'Ouch!' – I’m slowly running out of doodle drawings! <br>I could really use some new doodles!",
-    "Would you like to help me out? <br> Now that you know how this works?",
-    "Then send me a ‘remote doodle’! <br> That would make me very happy!",
-    "But how?",
-    "Thank you so much! I’ll send you what came out of it.<br> … and don’t worry, I’ve managed to ‘solve’ every doodle so far."
-  ]
-},
+        15: { title: "15 December", text: [
+      "Apparently I have a soft spot for striped lifebuoys.",
+      "Whenever a creature is bobbing around in the water, my inner rescue team kicks in.",
+      "Though this cow doesn’t look worried at all. Thanks, Hedda, for this doodle."
+    ] 
+    },
+    
+ 
 
     16: {
       title: "16 December",
@@ -161,12 +159,17 @@ const lang_en = {
       ]
     },
 
-    18: { title: "18 December", text: [
-      "Apparently I have a soft spot for striped lifebuoys.",
-      "Whenever a creature is bobbing around in the water, my inner rescue team kicks in.",
-      "Though this cow doesn’t look worried at all. Thanks, Hedda, for this doodle."
-    ] 
-    },
+
+    18: {
+  title: "18 December",
+  text: [
+    "'Ouch!' – I’m slowly running out of doodle drawings! <br>I could really use some new doodles!",
+    "Would you like to help me out? <br> Now that you know how this works?",
+    "Then send me a ‘remote doodle’! <br> That would make me very happy!",
+    "But how?",
+    "Thank you so much! I’ll send you what came out of it.<br> … and don’t worry, I’ve managed to ‘solve’ every doodle so far."
+  ]
+},
     
     19: { title: "19 December", text: [""] },
 
