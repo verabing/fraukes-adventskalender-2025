@@ -202,7 +202,7 @@ const lang_no = {
       text: [
         "Kamelkaravane … sikkert på vei med gull, røkelse og myrra til de tre vise menn.",
         "… men jeg ser nå at det også kunne vært en spøkelsesprosesjon …",
-        ""
+        "Takk til Gunna for denne krusedullen ♡"
       ]
     },
 
