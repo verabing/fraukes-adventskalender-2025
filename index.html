@@ -210,10 +210,37 @@
 
     #prevImage { left: 8px; }
     #nextImage { right: 8px; }
+
+    #snow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  top: -10px;
+  color: white;
+  opacity: 0.8;
+  user-select: none;
+  animation-name: snow-fall;
+  animation-timing-function: linear;
+}
+
+@keyframes snow-fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+    
   </style>
 </head>
 
 <body>
+<div id="snow"></div>
 
 <header>
   <h1>Fraukes Adventskalender 2025</h1>
@@ -436,6 +463,32 @@ document.addEventListener("keydown", e => {
   else if (e.key === "ArrowLeft") slide(-1);
   else if (e.key === "Escape") modal.classList.add("hidden");
 });
+
+/* ======================
+   SNOW ON MAIN PAGE
+====================== */
+  
+  const snowContainer = document.getElementById("snow");
+
+function createSnowflake() {
+  const flake = document.createElement("div");
+  flake.className = "snowflake";
+  flake.textContent = "❄";
+
+  const size = Math.random() * 10 + 8;
+  flake.style.fontSize = size + "px";
+  flake.style.left = Math.random() * 100 + "vw";
+  flake.style.animationDuration = Math.random() * 5 + 6 + "s";
+  flake.style.opacity = Math.random() * 0.5 + 0.3;
+
+  snowContainer.appendChild(flake);
+
+  setTimeout(() => flake.remove(), 12000);
+}
+
+let snowInterval = setInterval(createSnowflake, 300);
+
+  
 </script>
 
 </body>
