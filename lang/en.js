@@ -176,7 +176,7 @@ const lang_en = {
   text: [
     "Holy crab! I almost forgot to upload a doodle for the 19th...",
     "Phew, good thing I just happened to have a crab lying around!",
-    "This doodle I gifted to myself <br> Since I’m still waiting for your doodles :)"
+    "This doodle I gifted to myself <br> Since I’m still waiting for your doodles ☺︎ ♡"
   ]
 },
 
@@ -185,7 +185,7 @@ const lang_en = {
       title: "20 December",
       text: [
         "Who’s arriving on a sleigh here?",
-        "Sometimes I have to turn the scribble upside down to see what’s inside.",
+        "Sometimes I have to turn the scribble upside down to see what’s 'inside'.",
         "Thanks, Yngve, for this scribble."
       ]
     },
@@ -194,8 +194,8 @@ const lang_en = {
       title: "21 December",
       text: [
         "This scribble was born from the lines of two lovely colleagues – teamwork at its best!",
-        "Thanks, Marit,",
-        "and thanks, Marianne, for the collaboration."
+        "Thanks, Marit and Marianne,",
+        "...for the collaboration."
       ]
     },
 
@@ -204,7 +204,7 @@ const lang_en = {
       text: [
         "Camel caravan … surely carrying gold, frankincense and myrrh for the three kings.",
         "… although now I can see it might well have been a ghost procession …",
-        ""
+        "Thank you, Gunna, for this doodle.♡"
       ]
     },
 
@@ -217,7 +217,7 @@ const lang_en = {
     24: {
       title: "24 December",
       text: [
-        "An alternative Christmas story.Isn't it always? <br> Merry Christmas!"
+        "An alternative Christmas story. Isn't it always? ♡ <br> Merry Christmas!<br> And thanks for following along.♡"
       ]
     }
   }
