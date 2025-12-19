@@ -197,21 +197,21 @@ const lang_de = {
       title: "22. Dezember",
       text: [
         "Kamelkarawane… gehört doch auch irgendwie zu Weihnachten...",
-        "sie trägt bestimmt Gold, Weihrauch und Myrrhe für die drei Könige mit sich.",
+        "sie trägt bestimmt Gold, Weihrauch und Myrrhe von den drei Königen mit sich.",
         "… ich sehe jetzt, dass genauso gut eine Gespensterprozession daraus hätte werden können… <br> Danke Gunna für diesen Kritzel!"
       ]
     },
 
     23: { title: "23. Dezember", text: [
       "Hoho, die Vorbereitungen laufen heiss, der weissbärtige Kumpel hier will schonmal versichern,...",
-      "...dass auch dieses Jahr wieder Weihnachten wird.",
+      "...dass auch dieses Jahr wieder Weihnachten wird!",
       "Danke für diesen Weihnachtsmann-kritzel, Hendrik."
       ] },
 
     24: {
       title: "24. Dezember",
       text: [
-        "Alternative Weihnachtsgeschichte <br> Frohe Weihnachten!"
+        "Alternative Weihnachtsgeschichte? Na denn: <br>Fröhliche Weihnachten!<br> Und danke für's Mitmachen."
       ]
     }
   }
