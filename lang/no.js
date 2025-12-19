@@ -169,7 +169,15 @@ const lang_no = {
   ]
 },
     
-    19: { title: "19. desember", text: [""] },
+    19: {
+  title: "19. desember",
+  text: [
+    "Holy crab! Jeg holdt på å glemme å laste opp en krusedull for den 19.",
+    "Puh, så bra at jeg tilfeldigvis hadde en krabbe liggende!",
+    "Denne krusedullen ga jeg meg selv <br> Siden jeg venter fortsatt på kruseduller fra dere ;)"
+  ]
+},
+
 
     20: {
       title: "20. desember",
