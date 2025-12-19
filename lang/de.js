@@ -166,6 +166,15 @@ const lang_de = {
       "Vielen Dank! Ich schicke dir dann, was dabei herauskam.<br> ... und keine Sorge, ich habe bisher alle Kritzel 'gelöst'. "
     ] },
 
+    19: {
+      title: "19. Dezember",
+      text: [
+        "Holy crab! Jetzt hätte ich fast vergessen einen Kritzel für den 19. hochzuladen...",
+        "Puh, wie gut, dass ich passenderweise noch eine Krabbe herumliegen hatte!",
+        "Den Kritzel habe ich mir mal selbst geschenkt <br> Ich warte ja noch auf die Kritzel von euch :) "
+      ]
+    },
+    
     20: {
       title: "20. Dezember",
       text: [
