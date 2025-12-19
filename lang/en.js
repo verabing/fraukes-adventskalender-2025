@@ -171,7 +171,15 @@ const lang_en = {
   ]
 },
     
-    19: { title: "19 December", text: [""] },
+    19: {
+  title: "19 December",
+  text: [
+    "Holy crab! I almost forgot to upload a doodle for the 19th...",
+    "Phew, good thing I just happened to have a crab lying around!",
+    "This doodle I gifted to myself <br> Since I’m still waiting for your doodles :)"
+  ]
+},
+
 
     20: {
       title: "20 December",
