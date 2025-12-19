@@ -207,15 +207,15 @@ const lang_no = {
     },
 
     23: { title: "23. desember", text: [
-      "'Hohoho', denne kompissen ville allerede titte innom i dag og...",
+      "'Hohoho', denne skjeggete kompissen ville allerede titte innom i dag og...",
       "...forsikre seg om at juleforberedelsene går som planlagt?",
-      "Det blir i hvertfall jul igjen i år også.<br> Takk til Henrik for denne julenisse-krusedullen."
+      "Det blir i hvertfall jul igjen i år også. ♡<br> Takk til Henrik for denne julenisse-krusedullen."
     ] },
 
     24: {
       title: "24. desember",
       text: [
-        "En litt alternativ julefortelling her i år. <br> Jeg håper at julekalenderen min har bidratt til lys, glede og smil. <br> God jul!"
+        "En litt alternativ julefortelling her i år. <br> Jeg håper at julekalenderen min har bidratt til lys, glede og smil. <br> God jul!<br> Og takk for at du var med hele veien. ♡"
       ]
     }
   }
